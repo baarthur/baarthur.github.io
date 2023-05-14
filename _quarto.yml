@@ -17,7 +17,7 @@ format:
   html:
     theme: 
      - flatly
-     - mystyles.scss
+     - styles.scss
     css: styles.css
     toc: true
     mainfont: Atkinson Hyperlegible
