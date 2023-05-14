@@ -15,7 +15,9 @@ website:
 
 format:
   html:
-    theme: flatly
+    theme: 
+     - flatly
+     - mystyles.scss
     css: styles.css
     toc: true
     mainfont: Atkinson Hyperlegible
