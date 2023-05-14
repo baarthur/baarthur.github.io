@@ -1,7 +1,41 @@
 ---
-title: "baarthur.github.io"
+title: "Arthur Bazolli Alvarenga"
+image: input/anpec50.jpg
+about: 
+  template: trestles
+  image-shape: round
+  image-width: 23em
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/baarthur0/
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/baarthur0
+    - icon: github
+      text: GitHub
+      href: https://github.com/baarthur
+    - icon: envelope
+      text: Email
+      href: mailto:arthur.bazolli@estudante.ufjf.br
 ---
 
-This is a Quarto website.
+Master's student in Economics at UFJF, Brazil. 
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Passionate about cities and rapid transit, I research about urban and regional economics.
+
+## Education
+
+Universidade Federal de Juiz de Fora (UFJF) | Juiz de Fora, Brazil
+M.Sc. in Applied Economics | March 2022 - present   
+
+Ibmec | Belo Horizonte, Brazil
+B.Sc. in Economics | February 2017 - December 2021
+
+## Experience
+
+UFJF | Research Assistant | March 2023 - present
+
+UFJF | Teaching Assistant | October 2022 - February 2023
+
+Impacto Hub | M&A Analyst | November 2019 - March 2021
