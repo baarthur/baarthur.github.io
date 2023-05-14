@@ -4,7 +4,7 @@ image: input/anpec50.jpg
 about: 
   template: trestles
   image-shape: round
-  image-width: 23em
+  image-width: 20em
   links:
     - icon: linkedin
       text: LinkedIn
