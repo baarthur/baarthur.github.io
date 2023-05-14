@@ -1,10 +1,10 @@
 project:
   title: "Arthur Bazolli Alvarenga"
-  output-dir: ./docs/pt
+  output-dir: docs/pt
 
 website:
   navbar:
-    background: primary
+    #background: primary
     left:
       - href: index.qmd
         text: Início

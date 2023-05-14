@@ -1,10 +1,10 @@
 project:
   title: "Arthur Bazolli Alvarenga"
-  output-dir: ./docs/en
+  output-dir: docs/en
 
 website:
   navbar:
-    background: primary
+    #background: primary
     left:
       - href: index.qmd
         text: Home
@@ -28,6 +28,3 @@ format:
     css: styles.css
     toc: true
     mainfont: Atkinson Hyperlegible
-
-
-
