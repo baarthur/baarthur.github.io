@@ -1,26 +1,6 @@
 project:
   type: website
-  output-dir: docs
 
-website:
-  title: "Arthur Bazolli Alvarenga"
-  navbar:
-    background: primary
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-      - href: input/cv.pdf
-        text: CV
-
-format:
-  html:
-    theme: 
-     light: [flatly, styles.scss] 
-     dark: [darkly, styles.scss]
-    css: styles.css
-    toc: true
-    mainfont: Atkinson Hyperlegible
-
-
-
+profile:
+  default: english
+  group: [english, portuguese]
