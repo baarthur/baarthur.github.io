@@ -10,6 +10,8 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - href: input/cv.pdf
+        text: CV
 
 format:
   html:
