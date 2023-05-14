@@ -16,7 +16,8 @@ website:
 format:
   html:
     theme: 
-     - styles.scss
+     light: [flatly, styles.scss] 
+     dark: [darkly, styles.scss]
     css: styles.css
     toc: true
     mainfont: Atkinson Hyperlegible
