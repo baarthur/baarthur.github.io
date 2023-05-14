@@ -1,6 +1,6 @@
 project:
   title: "Arthur Bazolli Alvarenga"
-  output-dir: docs/
+  output-dir: ./docs/
 
 website:
   navbar:
