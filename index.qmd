@@ -20,6 +20,7 @@ about:
       href: mailto:arthur.bazolli@estudante.ufjf.br
 ---
 
+::: {when-profile="english"}
 Master's student in Economics at UFJF, Brazil. 
 
 Passionate about cities and rapid transit, I research about urban and regional economics.
@@ -43,3 +44,32 @@ UFJF | Research Assistant | March 2023 - present
 UFJF | Teaching Assistant | October 2022 - February 2023
 
 Impacto Hub | M&A Analyst | November 2019 - March 2021
+:::
+
+
+
+::: {when-profile="portuguese"}
+Mestrando em Economia na UFJF 
+
+Apaixonado por cidades e metrô, pesquiso economia regional e urbana.
+
+---
+
+## Formação
+
+Universidade Federal de Juiz de Fora (UFJF) | Juiz de Fora, Brazil
+Mestrado em Economia Aplicada | Março de 2022 - presente  
+
+Ibmec | Belo Horizonte, Brazil
+Graduação em Economia | Fevereiro de 2017 - dezembro de 2021
+
+---
+
+## Experiênca
+
+UFJF | Assistante de pesquisa | Março de 2023 - presente
+
+UFJF | Estágio docência | Outubro de 2022 - fevereiro de 2023
+
+Impacto Hub | Analita de M&A | Novembro de 2019 - março de 2021
+:::

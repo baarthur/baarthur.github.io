@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: docs/pt
+  output-dir: ./_site/pt
 
 website:
   title: "Arthur Bazolli Alvarenga"
@@ -19,7 +19,7 @@ website:
       - href: ../en
         text: English
 
-lang: pt-BR
+lang: pt
 
 format:
   html:
