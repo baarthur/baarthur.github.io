@@ -1,6 +1,6 @@
 project:
   title: "Arthur Bazolli Alvarenga"
-  output-dir: docs/pt
+  output-dir: _site/pt
 
 website:
   navbar:
@@ -8,7 +8,7 @@ website:
     right:
       - href: ../pt
         text: Português
-      - href: ../en
+      - href: ../
         text: English
     left:
       - href: index.qmd
