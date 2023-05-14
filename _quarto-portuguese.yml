@@ -8,7 +8,7 @@ website:
     right:
       - href: docs/pt
         text: Português
-      - href: docs/
+      - href: docs/en
         text: English
     left:
       - href: index.qmd
