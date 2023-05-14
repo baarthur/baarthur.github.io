@@ -6,9 +6,9 @@ website:
   navbar:
     background: primary
     right:
-      - href: .docs/pt
+      - href: ./docs/pt
         text: Português
-      - href: .docs/
+      - href: ./docs/
         text: English
     left:
       - href: index.qmd
