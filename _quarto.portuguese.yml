@@ -1,10 +1,15 @@
 project:
   title: "Arthur Bazolli Alvarenga"
-  output-dir: docs/pt
+  output-dir: ./_site/pt
 
 website:
   navbar:
-    #background: primary
+    background: primary
+    right:
+      - href: ../pt
+        text: Português
+      - href: ./
+        text: English
     left:
       - href: index.qmd
         text: Início
@@ -12,13 +17,8 @@ website:
         text: Material
       - href: input/cv.pdf
         text: CV
-    right:
-      - href: ../pt
-        text: Português
-      - href: ../en
-        text: English
 
-lang: pt
+lang: pt-BR
 
 format:
   html:
