@@ -5,7 +5,7 @@ toc: false
 about: 
   template: trestles
   image-shape: round
-  image-width: 21em
+  image-width: 15em
   links:
     - icon: linkedin
       text: LinkedIn
@@ -72,5 +72,5 @@ UFJF | Assistante de pesquisa | Março de 2023 - presente
 
 UFJF | Estágio docência | Outubro de 2022 - fevereiro de 2023
 
-Impacto Hub | Analita de M&A | Novembro de 2019 - março de 2021
+Impacto Hub | Analista de M&A | Novembro de 2019 - março de 2021
 :::

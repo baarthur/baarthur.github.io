@@ -1,0 +1,63 @@
+---
+toc: true
+---
+
+::: {.content-visible when-profile="english"}
+# Resources
+Class material, working papers, and more
+
+## ECO075-2022 - Economia Urbana
+- Urban Structure Equilibrium (Portuguese)
+  + [Presentation](https://baarthur.github.io/urbana_grad/)
+  + [Class notes](input/eco075-2022_aula10.pdf)
+
+
+## Working Papers
+- Real estate and rapid transit: Estimating the market premium of the São Paulo Rail Network
+  + Presented at 20th Enaber (Salvador, Brazil) and 50th Anpec (Fortaleza, Brazil)
+  + [English version](input/metro_en.pdf)
+  + [Portuguese version](input/metro_pt.pdf)
+  + [Presentation (Portuguese)](https://baarthur.github.io/metro_sp/)
+  
+- Heritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil
+  + Presenting at the 29th IIOA (Alghero, Italy) in June 2023
+  + [English version](input/io-tur_en.pdf)
+  + Presentation: coming soon
+
+## Other
+- The economy of cities and transit: How economists understand urban spaces (English)
+  + Informal talk with urbanism and transit enthusiasts
+  + [Presentation](https://baarthur.github.io/urban_econ/)
+
+:::
+
+
+
+::: {.content-visible when-profile="portuguese"}
+# Material
+Notas de aula, trabalhos em andamento e mais
+
+## ECO075-2022 - Economia Urbana
+- Equilíbrio da estrutura intraurbana
+  + [Apresentação](https://baarthur.github.io/urbana_grad/)
+  + [Notas de aula](input/eco075-2022_aula10.pdf)
+
+
+## Trabalhos em andamento
+- Real estate and rapid transit: estimating the market premium of the São Paulo Rail Network
+  + Apresentado no XX Enaber (Salvador, Brasil) e no 50º Encontro Nacional de Economia (Fortaleza, Brasil)
+  + [Versão atual (inglês)](input/metro_en.pdf)
+  + [Versão em português](input/metro_pt.pdf)
+  + [Apresentação (português)](https://baarthur.github.io/metro_sp/)
+  
+- Heritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil
+  + Apresentando no 29th IIOA (Alghero, Itália) em junho de 2023
+  + [Versão atual (inglês)](input/io-tur_en.pdf)
+  + Apresentação: em breve
+
+## Outros
+- The economy of cities and transit: How economists understand urban spaces (English)
+  + Conversa informal para entusiastas de urbanismo e mobilidade urbana
+  + [Apresentação](https://baarthur.github.io/urban_econ/)
+  
+:::
