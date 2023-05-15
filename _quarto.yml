@@ -1,6 +1,14 @@
 project:
   type: website
 
+website: 
+  favicon: input/favicon.png
+  twitter-card: 
+    creator: "@baarthur0"
+  open-graph: 
+    locale: pt-BR
+    site-name: "Arthur Bazolli"
+
 profile:
   default: english
   group: [english, portuguese]
