@@ -24,7 +24,7 @@ about:
 ::: {.content-visible when-profile="english"}
 Master's student in Economics at UFJF, Brazil. 
 
-Passionate about cities and rapid transit, I research about urban and regional economics.
+Passionate about cities, I research about regional and urban economics, especially agglomeration economies, accessibility, and land use.
 
 ---
 
@@ -52,7 +52,7 @@ Impacto Hub | M&A Analyst | November 2019 - March 2021
 ::: {.content-visible when-profile="portuguese"}
 Mestrando em Economia na UFJF 
 
-Apaixonado por cidades e metrô, pesquiso economia regional e urbana.
+Apaixonado por cidades e mobilidade, pesquiso economia regional e urbana, em especial economias de aglomeração, acessibilidade e uso do solo.
 
 ---
 
