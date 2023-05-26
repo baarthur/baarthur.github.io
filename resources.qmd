@@ -23,12 +23,17 @@ Class material, working papers, and more
   + Presenting at the 29th IIOA (Alghero, Italy) in June 2023
   + [English version](input/io-tur_en.pdf)
   + Presentation: coming soon
+  
+## R
+- `abnquarto`: A `Quarto` template using Brazilian standardization system
+  + [GitHub repo](https://github.com/baarthur/abnquarto)
+  + [Demo](input/abnq-demo.pdf)
 
 ## Other
 - The economy of cities and transit: How economists understand urban spaces (English)
-  + Informal talk with urbanism and transit enthusiasts
+  + Informal talk to urbanism and transit enthusiasts
   + [Presentation](https://baarthur.github.io/urban_econ/)
-
+  
 :::
 
 
@@ -54,6 +59,11 @@ Notas de aula, trabalhos em andamento e mais
   + Apresentando no 29th IIOA (Alghero, Itália) em junho de 2023
   + [Versão atual (inglês)](input/io-tur_en.pdf)
   + Apresentação: em breve
+  
+## R
+- `abnquarto`: um template em `Quarto` nas normas da ABNT
+  + [GitHub repo](https://github.com/baarthur/abnquarto)
+  + [Exemplo](input/abnq-demo.pdf)
 
 ## Outros
 - The economy of cities and transit: How economists understand urban spaces (English)
