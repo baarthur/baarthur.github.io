@@ -7,5 +7,14 @@
   },
   "resources.qmd": {
     "resources.html": "47e14450"
+  },
+  "posts.qmd": {
+    "posts.html": "a6390272"
+  },
+  "Untitled.Rmd": {
+    "Untitled.html": "648def28"
+  },
+  "posts/2023-06-20-basedosdados/index.qmd": {
+    "index.html": "bc1f0c07"
   }
 }

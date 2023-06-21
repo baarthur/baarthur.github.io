@@ -1,5 +1,40 @@
 [
   {
+    "objectID": "posts/2023-06-20-basedosdados/index.html",
+    "href": "posts/2023-06-20-basedosdados/index.html",
+    "title": "Acessando a Base dos Dados no R",
+    "section": "",
+    "text": "A Base dos Dados é uma platadorma excelente para obter dados oficiais e tratados de forma conveniente. Podemos baixá-la direto no R com facilidade, basta prestarmos atenção a algumas etapas.\nEsta é uma rotina simplificada. Veja mais no Workshop: Aprenda a acessar dados públicos em R, da Base dos Dados."
+  },
+  {
+    "objectID": "posts/2023-06-20-basedosdados/index.html#google-cloud",
+    "href": "posts/2023-06-20-basedosdados/index.html#google-cloud",
+    "title": "Acessando a Base dos Dados no R",
+    "section": "Google Cloud",
+    "text": "Google Cloud\nPara baixar os dados no R, vamos precisar criar um projeto no Google Cloud. Os projetos do Google Cloud são muito usados em diversas situações (ex.: APIs do Google Maps) e a Google nos dá um limite gratuito (1 TB por dia ou 200 dólares por mês): mas não se preocupe, você não vai estourar essa cota.\n\nVá até cloud.google.com/\nClique em Console (canto superior direito)\nNa caixa de diálogo (vide abaixo), concorde e continue\n\n\n\nEm seguida, clique em Selecione um projeto &gt; NOVO PROJETO\nDê um nome ao projeto. Esse nome não pode ser alterado depois.\n\n\n\nApós criar o seu projeto, você será direcionado à página do projeto. Agora, é só configurar as funções do pacote {basedosdados} no R para acessar o seu projeto."
+  },
+  {
+    "objectID": "posts/2023-06-20-basedosdados/index.html#base-dos-dados",
+    "href": "posts/2023-06-20-basedosdados/index.html#base-dos-dados",
+    "title": "Acessando a Base dos Dados no R",
+    "section": "Base dos dados",
+    "text": "Base dos dados\nVamos chamar a função set_billing_id(). Dentro dela, você vai inserir o ID do seu projeto (entre aspas, porque é um character), disponível aqui:\n\n\n\n\n\n\n\n\n\n\n\nO seu ID do projeto é pessoal. Não compartilhe com ninguém, ou disponibilize na internet, ou você corre o risco de ganhar uma fatura nada amigável no seu cartão de crédito.\n\n\n\n```{r}\n#| label: config-bd\n\nset_billing_id(\"id-projeto\")\n```\n\nVocê deve ver a mensagem “Project keys set successfully”."
+  },
+  {
+    "objectID": "posts/2023-06-20-basedosdados/index.html#query-sintaxe-básica",
+    "href": "posts/2023-06-20-basedosdados/index.html#query-sintaxe-básica",
+    "title": "Acessando a Base dos Dados no R",
+    "section": "Query: sintaxe básica",
+    "text": "Query: sintaxe básica\nNa página da base que você pretende baixar (ex.: PNAD Contínua), copie o código que está na aba SQL: ele é a sua query, que você vai usar para requisitar uma informação. Você vai criar um objeto no R para guardá-la.\nObserve que a query tem a seguinte estrutura &gt; SELECT * FROM `basedosdados.br_ibge_pnadc.microdados` LIMIT 100\nVamos entendê-la:\n\nSELECT indica as variáveis que vamos selecionar. Como essa informação é seguida de um asterisco, indica que vamos selecionar todas as variáveis da base. Para selecionar variáveis:\n\nSelecione uma das tabelas tratadas no menu lateral esquerdo.\nDesça até colunas: ali você encontra o nome das variáveis, seu formato e uma descrição.\nSepare os nomes das variáveis por vírgulas após SELECT (apague o asterisco)\n\nFROM `basedosdados.br_ibge_pnadc.microdados`: o endereço de onde os dados virão.\nLIMIT 100 significa que estamos limitando a baixar apenas as 100 primeiras linhas.\n\nAo baixar microdados do Censo, da Rais ou da Pnad, estamos lidando com um volume gigante de informações. Por isso, é recomendável usar a opção LIMIT 100, LIMIT 1000 etc para baixar só um pedaço e testar se você vai querer mesmo essa base (por exemplo, investigar se as variáveis te atendem).\nQuando você já tiver certeza de que vai usar essa base, tire o LIMIT XXX, mas atenção: é extremamente recomendável que você selecione uma lista de variáveis em vez de baixar todas. Isso vai poupar não apenas sua internet e o espaço no seu disco, mas também a eficiência do R quando for ler e trabalhar nos seus dados.\nExemplo: vamos pegar algumas informações da PNAD de domicílios.\n\n```{r}\n#| label: query-1\n\nquery_pnad &lt;- \"SELECT ano, id_domicilio, id_uf, id_upa, V1028, V2007, V2010, V3001, V4009, V4012, VD3005 VD4032 FROM basedosdados.br_ibge_pnadc.microdados LIMIT 100\"\n```\n\nPodemos melhorar a query ainda mais aprendendo mais três argumentos: WHERE, AND, OR e in. Eles nos ajudam a filtrar a base para, por exemplo, baixar dados só de um estado, de anos específicos ou uma combinação disso tudo. Isso facilita muito a nossa vida, porque assim evitamos baixar um monte de dados desnecessários.\nExemplo: atualizar a query anterior para pegar apenas dados de 2017 a 2021 de Minas Gerais. Para isso, vamos usar um pouco de lógica para montar a sintaxe:\n\nWHERE indica os filtros a serem aplicados. No caso, sigla_uf='MG' é o filtro do estado.\nO filtro do ano é mais complicado. Temos duas alternativas:\n\nano = 2017 OR ano = 2019 OR ano = 2021. Muito repetitivo!\nMelhor: ano in (2017,2019,2021).\n\nAgora, como queremos dados de MG E nessa janela temporal, concatenamos os dois com AND:\n\nSELECT (...) WHERE sigla_uf='MG' AND (ano in (2017,2019,2021))\nColocamos a cláusula do ano dentro de parênteses para garantir que tudo aquilo será avaliado. Isso é importante, por exemplo, quando estivermos trabalhando com cláusulas OR em conjunto, senão vira bagunça.\n\n\n\n\n\n\n\n\n\n\n\n\nA sua query é um vetor entre aspas no R. Assim, se você estiver filtrando uma variável que é character, você pode acabar estragando sua query se não tomar cuidado. Por isso, use aspas duplas (\") para a query e aspas simples (') para os characters dentro da query, como fizemos com sigla_uf='MG'.\n\n\n\n```{r}\n#| label: query-2\n\nquery_pnad &lt;- \"SELECT ano, id_domicilio, id_uf, id_upa, V1028, V2007, V2010, V3001, V4009, V4012, VD3005 VD4032 FROM basedosdados.br_ibge_pnadc.microdados WHERE sigla_uf='MG' AND ano in (2017,2019,2021) LIMIT 100\"\n```\n\nJá está bom, mas essa query está difícil de ler. Podemos separar cada bloco dela em objetos diferentes. depois concatenar tudo em um objeto só usando paste():\n\n```{r}\n#| label: query-3\n\nvariables &lt;- \"ano, id_domicilio, id_uf, id_upa, V1028, V2007, V2010, V3001, V4009, V4012, VD3005 VD4032\"\nsource &lt;- \"`basedosdados.br_ibge_pnadc.microdados`\"\nclause_where &lt;- \"sigla_uf='MG'\"\nclause_and_ano &lt;- \"(ano in (2017,2019,2021))\"\n\n### query: PNAD MG 2017-2021\nquery_pnad_1721 &lt;- paste(\n  \"SELECT\", variables,\n  \"FROM\", source, \n  \"WHERE\", clause_where,\n  \"AND\", clause_and_ano,\n  \"LIMIT 100\"\n)\n```\n\nEssa estrutura é útil porque permite facilmente modificar trechos evitando erros e reproduzir em outros trabalhos mantendo uma sintaxe padronizada e eficiente. Outra dica: você pode modificar a query comentando linhas do seu vetor, como no exemplo abaixo (tirar o LIMIT e baixar tudo).\n\n```{r}\n#| label: query-4\n\n### query: PNAD MG 2017-2021\nquery_pnad_1721 &lt;- paste(\n  \"SELECT\", variables,\n  \"FROM\", source, \n  \"WHERE\", clause_where,\n  \"AND\", clause_and_ano,\n  \"LIMIT 100\"\n)\n```"
+  },
+  {
+    "objectID": "posts/2023-06-20-basedosdados/index.html#baixar-a-query",
+    "href": "posts/2023-06-20-basedosdados/index.html#baixar-a-query",
+    "title": "Acessando a Base dos Dados no R",
+    "section": "Baixar a query",
+    "text": "Baixar a query\nAgora, podemos baixar a query. Podemos fazer isso de duas formas: salvando em um objeto do R ou salvando em um .csv no computador. Eu prefiro a segunda opção, porque permite carregar os dados depois sem ter que baixar tudo de novo. Na hora de baixar os dados, vai aparecer uma opção no console do R pedindo para autenticar o usuário no seu navegador (ou digite 2, se o seu email já aparecer) e prossiga.\n\n\n\n\n\n\n\n\n\n\nVocê deve selecionar todas as caixas, como na imagem abaixo.\n\n\n\nOpção 1: direto no R\nNesse caso, usamos a função read_sql()\n\n```{r}\n#| label: download-query-R\n\ndf_pnad &lt;- read_sql(query_pnad_1721)\n```\n\nOpção 2: salvar no disco\nPara isso, usamos a função download() e incluímos na chamada o argumento path com o caminho para salvar. Como estamos usando um R Project, passamos o diretório relativo à pasta do projeto. Ou seja: não precisa de inverter barras e pegar o caminho completo da pasta. No caso de usar RMarkdown ou Quarto (meu caso) em vez de um R Script, usamos a função here() também.\nNo exemplo abaixo, vamos salvar a base dos dados na pasta data dentro da pasta do projeto (não se esqueça de criar a pasta).\n\n```{r}\n#| label: download-query\n\ndownload(query_pnad_1721, path = here(\"data/df_pnad_mg_1721.csv\"))\n```\n\nPronto! Agora já podemos carregar, tratar e analisar os dados:\n\n```{r}\n#| label: load-bd\n\ndf_pnad &lt;- read_csv(here(\"data/df_pnad_mg_1721.csv\"))\n```"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Arthur Bazolli Alvarenga",
@@ -19,6 +54,27 @@
     "title": "Arthur Bazolli Alvarenga",
     "section": "Experiênca",
     "text": "Experiênca\nUFJF | Assistante de pesquisa | Março de 2023 - presente\nUFJF | Estágio docência | Outubro de 2022 - fevereiro de 2023\nImpacto Hub | Analista de M&A | Novembro de 2019 - março de 2021"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "My Blog",
+    "section": "",
+    "text": "Acessando a Base dos Dados no R\n\n\n\nR\n\n\nBasedosdados\n\n\nTutorial\n\n\nPortuguês\n\n\n\nÉ mais fácil do que parece!\n\n\n\nArthur Bazolli\n\n\n20 de jun. de 2023\n\n\n\n\n\n\n\n\nNenhum item correspondente"
+  },
+  {
+    "objectID": "Untitled.html",
+    "href": "Untitled.html",
+    "title": "Vinícius",
+    "section": "",
+    "text": "Primeiro passo: carregar os pacotes necessários."
+  },
+  {
+    "objectID": "Untitled.html#bônus",
+    "href": "Untitled.html#bônus",
+    "title": "Vinícius",
+    "section": "Bônus:",
+    "text": "Bônus:\nSupondo que desejamos trocar os “nomes” dos mosquitos:\n\ndf_1 %&gt;% \n  group_by(Mosquitos, Resultado) %&gt;% \n  count() %&gt;% \n  pivot_wider(\n    names_from = Resultado,\n    values_from = n\n  ) %&gt;% \n  replace_na(list(negativo = 0, positivo = 0)) %&gt;% \n  mutate(\n    Mosquitos = str_replace(Mosquitos, \"muitos\", \"Muitos\"),\n    Mosquitos = str_replace(Mosquitos, \"nao\", \"Não\"),\n    Mosquitos = str_replace(Mosquitos, \"poucos\", \"Poucos\")\n    ) %&gt;% \n  kbl(\n    align = \"c\", # para centralizar\n    booktabs = T, # linhas superior, inferior etc\n    escape = F, # não entendi direito, mas parece que tem que ter!\n    caption = \"Mosquitos me mordam!\", # opcional também\n    col.names = c(\"Mosquitos\", \"Negativo\", \"Positivo\") # opcional: pode usar os nomes do dataframe\n  ) %&gt;% \n  kable_styling(\n    latex_options = c(\"hold_position\"), # hold_position é pra ela ficar exatamente onde você quer, se necessário.\n    full_width = F, # para não ocupar a página toda (em largura)\n    position = \"center\" # para ficar no meio da página\n  ) %&gt;% \n  footnote(\n    general = \"Fonte: Elaborado pelo autor.\",\n    general_title = \" \",\n    footnote_as_chunk = T\n  )\n\n\nMosquitos me mordam!\n\n\nMosquitos\nNegativo\nPositivo\n\n\n\n\nMuitos\n3\n2\n\n\nNão\n1\n0\n\n\nPoucos\n4\n0\n\n\n\n   Fonte: Elaborado pelo autor."
   },
   {
     "objectID": "resources.html",

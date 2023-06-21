@@ -17,6 +17,8 @@ website:
         text: Resources
       - href: input/cv.pdf
         text: CV
+      - href: posts.qmd
+        text: Blog
 
 lang: en
 
