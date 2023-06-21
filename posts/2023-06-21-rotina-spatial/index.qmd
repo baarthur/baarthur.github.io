@@ -15,6 +15,14 @@ draft: false # setting this to `true` will prevent your post from appearing on y
 
 execute: 
   echo: fenced
+  
+format: 
+  html:
+     include-in-header: 
+        text: |
+          title-block-header > h1 .title {
+            color: white;
+          }
 ---
 
 # Introdução
