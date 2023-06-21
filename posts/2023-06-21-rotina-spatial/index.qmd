@@ -1,0 +1,389 @@
+---
+title: "Rotina básica para dados espaciais no R"
+description: "Aprenda a baixar, filtrar e combinar dados"
+author:
+  - name: Arthur Bazolli
+    url: https://baarthur.github.io/
+    affiliation: PPGE/UFJF
+    affiliation-url: https://www2.ufjf.br/poseconomia/ 
+date: 2023-06-21
+categories: [R, Basedosdados, Tutorial, Português] # self-defined categories
+citation: 
+  url: https://baarthur.github.io/posts/2023-06-20-basedosdados/ 
+image: thumbnail.png
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+
+execute: 
+  echo: fenced
+---
+
+# Introdução
+
+Muitos amigos me perguntam como fazer operações espaciais no `R`. Então, decidi criar essa rotina muito simples, com o mínimo para começar e algumas operações básicas.
+
+Como eu já disse no [post sobre a Base dos Dados](https://baarthur.github.io/posts/2023-06-20-basedosdados/): crie um R Project e seja organizado, ajude o você de amanhã! Ele vai agradecer.
+
+## Links úteis
+
+* A melhor referência que eu conheço para dados espaciais no R: O livro [Geocomputation With R](https://r.geocompx.org/).
+* Livro em português lançado recentemente. Ainda não tive oportunidade de ler, mas parece muito bom!
+  + [Cartografia Temática em R para estudantes de Geografia](https://ligiaviz.github.io/RCartoTematica/)
+* Excelentes tutoriais também no [r-spatial.org](https://r-spatial.org/)
+* [geobr](https://ipeagit.github.io/geobr/): mapas brasileiros em alta qualidade no R!
+* [aopdata](https://ipeagit.github.io/aopdata/): Projeto Acesso a Oportunidades do Ipea, com base muito rica para download direto no seu R
+* [Geosampa](https://geosampa.prefeitura.sp.gov.br/PaginasPublicas/_SBC.aspx): portal da Prefeitura de São Paulo com diversos dados geolocalizados
+* [BHMap](https://bhmap.pbh.gov.br/v2/mapa/idebhgeo) e [IDE Sistema](https://idesisema.meioambiente.mg.gov.br/webgis): idem, para BH e o Governo de Minas
+* [Mapbiomas](https://mapbiomas.org/): nunca usei, mas é referência para o pessoal que trabalha com meio ambiente.
+* Shapefiles de ferrovias, rodovias, aeroportos, portos e mais no site do [ONTL/EPL](https://ontl2.epl.gov.br/downloads)
+
+
+
+# Setup
+
+Defina um bloco de código (`Ctrl` + `Alt` + `I`) para chamar os pacotes necessários. Use a opção `#| label: setup`, como abaixo, para ele sempre ser executado no começo.
+```{r}
+#| label: setup
+
+# geral e tratamento de dados
+library(here)
+library(janitor)
+library(tidyverse)
+
+# operações espaciais
+library(sf)
+
+# bases de dados
+library(geobr)
+library(sidrar)
+```
+
+
+
+# Carregando dados
+
+## Da internet
+
+Vários shapefiles brasileiros estão disponíveis online. Alguns podem ser baixados direto no `R`, como o `{geobr}` e o `{aopdata}`. Nesse exemplo, vamos baixar o shapefile dos municípios mineiros usando o `{geobr}`:
+```{r}
+#| label: download-shp
+
+shp_mg_muni <- read_municipality(
+  code_muni = "MG",
+  showProgress = FALSE
+)
+```
+
+Segundo o manual da função `read_municipality()` (digite `?read_municipality` no console ou vá em `Help` e digite o nome da função), podemos baixar só os municípios de um estado especificando o código do estado ou sua sigla em `code_muni`, ou ainda baixar apenas uma cidade especificando o seu código de 7 dígitos do IBGE.
+
+Adicionei, ainda, `showProgress = FALSE` para não mostrar o status do download enquanto baixa. Outra opção é `simplified = FALSE` para baixar o shapefile mais detalhado possível. Isso é muito mais pesado; na dúvida, não baixe.
+
+:::{.callout-info}
+Às vezes, um shapefile "dá pau" na hora de fazer as operações que vamos ver lá na frente. Se isso acontecer, use a transformação `st_make_valid()` para consertá-lo:
+:::
+
+```{r}
+#| label: make-valid
+
+shp_mg_muni <- shp_mg_muni %>% 
+  st_make_valid()
+```
+
+
+## Do computador
+
+Neste exemplo, vamos carregar dois shapefiles para fazer operações espaciais: a malha de municípios mineiros, no formato `.shp`, e um mapa ferroviário, no formato do Google Earth (`.kml`). Usando o pacote `{sf}`, carregamos os shapefiles com `st_read()`. Supondo que você tem uma pasta chamada `shp` dentro da pasta `data` com seus shapefiles:
+
+```{r}
+#| label: read-mg
+#| eval: false
+
+shp_mg_muni <- here("data/shp/shapefile_minas.shp") %>% 
+  st_read()
+```
+
+::: {.callout-warning}
+Os shapefiles do tipo `.shp` tem pelo menos quatro camadas, em arquivos separados: `.dbf`, `.prj`, `.shp` e `.shx`. Por mais que na função `st_read()` nós passemos só o `.shp`, ela está usando todas as camadas; logo, elas devem estar na pasta também! 
+:::
+
+```{r}
+#| label: read-ferro-background
+#| echo: false
+
+shp_ferrovias <- here("posts/2023-06-21-rotina-spatial/data/shp/ferrovias.kml") %>% 
+  st_read()
+```
+
+```{r}
+#| label: read-ferro
+#| eval: false
+
+shp_ferrovias <- here("data/shp/ferrovias.kml") %>% 
+  st_read()
+```
+
+::: {.fallout-info}
+No Quarto (`.qmd`) e no RMarkdown (`.Rmd`), usamos a função `here()` do pacote homônimo para passar endereços relativos. Isso evita a bagunça que acontece com a dupla `setwd()`/`getwd()` e a chatice de ficar invertendo barras nos caminhos absolutos. Os endereços relativos são *relativos* à pasta origem do seu projeto, porque o R Project entende qur você está partindo dali.
+:::
+
+
+## Compatibilidade de coordenadas
+
+Existem diferentes padrões de coordenadas (**CRS**, de *Coordinate Reference System*): o mais comum é o WGS 84, usado nos GPS e no Google Maps. Mas, como a terra não é plana, alguns padrões são mais adequados para locais diferentes. No Brasil, mapas administrativos costumam usar o Sirgas 2000 e suas variantes. Por isso, temos ficar atentos se nossos shapefiles estão no mesmo padrão! Para verificar:
+
+```{r}
+#| label: check-crs
+
+st_crs(shp_mg_muni)
+st_crs(shp_ferrovias)
+```
+
+Nesse exemplo, a malha municipal usa o Sirgas 2000, enquanto o mapa de ferrovias usa o WGS 84. Como eu prefiro o primeiro CRS, vou transformar o seguno para que também fique em Sirgas 2000. 
+
+::: {.callout-tip}
+Cada CRS tem um código **EPSG** associado. No caso do Sirgas 2000 é o 4674, e para o WGS 84, é o 4326. Veja mais em [epsg.io](https://epsg.io/).
+:::
+
+```{r}
+#| label: set-crs
+
+# Alternativa 1: modificar manualmente inserindo o CRS desejado.
+shp_ferrovias <- shp_ferrovias %>% 
+  st_transform(crs = 4674)
+
+# Alternativa 2: modificar o CRS de X para que seja igual ao de Y.
+shp_ferrovias <- shp_ferrovias %>% 
+  st_transform(crs = st_crs(shp_mg_muni))
+```
+
+
+
+# Filtrar shapefiles
+
+Suponha que queremos filtrar as cidades que são artravessadas pela Estrada Real. Podemos fazer isso com o `st_filter()`. Mas antes, um resumo sobre as operações espaciais:
+
+O pacte `{sf}` contém uma série de funções que computam relações topológicas entre objetos espaciais (da classe `simple.feature`). Por exemplo: `st_intersects(x,y)` indica se `x` cruza `y`; `st_covers(x,y)`, se `x` cobre `y` e o contrário por `st_covered_by(x,y)` e assim em diante. Leia mais sobre essas operações no excelente [livro do Robin Lovelace](https://r.geocompx.org/geometry-operations.html) e no site do [PostGIS](http://postgis.net/workshops/postgis-intro/spatial_relationships.html), pois as operações realizadas em SQL são basicamente as mesmsas que o `{sf}` faz no `R`.
+
+Essas operações espaciais também podem ser usadas como predicado para filtrar ou juntar dados. Nesse exemplo, vamos usar o predicado `st_intersects`:
+```{r}
+shp_muni_ferro <- shp_mg_muni %>% 
+  st_filter(shp_ferrovias, .predicate = st_intersects)
+```
+
+O novo objeto contém 190 municípios: apenas aqueles atravessados pelas ferrovias contidas no `.kml`. Alternativamente, podemos só salvar o novo objeto em cima do antigo: `shp_mg_muni <- shp_mg_muni %>% (...)`
+
+
+
+# Combinar bases
+
+Outra operação poderosa no R é combinar informações de uma base com um shapefile. Nesse exemplo, vamos usar uma base de população municipal do IBGE para cruzar com o shapefile de cidades mineiras. 
+
+
+## Baixando dados do IBGE com o SidraR
+
+O Sidra ---Sistema IBGE de Recuperação Automática--- pode ser acessado diretamente pelo R. Você pode tanto buscar termos específicos, usando `search_sidra("termo")`, quanto baixar diretamente uma tabela que você já conheça. Vamos usar o exemplo completo: vou buscar informações sobre população.
+
+```{r}
+#| label: search_sidra
+#| eval: false
+
+search_sidra("população")
+```
+
+O resultado retornou mais de 90 tabelas. Como isso é muito confuso, prefiro ir no site do Sidra, ver a tabela que eu quero e baixar no R. No caso, quero a tabela `6579`. Vamos ver as opções disponíveis para ela:
+
+```{r}
+#| label: info_sidra
+
+info_sidra(6579)
+```
+
+De posse dessas informações, podemos configurar a chamada da função `get_sidra()`:
+
+```{r}
+#| label: get_sidra
+
+df_pop <- get_sidra(
+  6579,
+  period = "2021",
+  geo = "City"
+)
+
+head(df_pop)
+```
+
+E assim, baixamos a população de 2021 para todos os municípios brasileiros. No entanto, essa tabela do IBGE não está organizada da melhor forma pra processamento no R. Podemos melhorar removendo as informações desnecessárias (`select()`) e limpando os nomes (`clean_names()` e `rename()`) para compatibilizar com a outra tabela.
+
+::: {.callout-tip}
+Use os mesmos nomes para variáveis comuns nos dois objetos. Não é obrigatório, mas facilita sua vida; caso contrário, tem que especificar qual variável de `x` é igual a qual variável de `y` para dar o join. Como o shapefile do `{geobr}` vem com nomes padronizados, vamos adotá-la e modificar a base do IBGE.  
+:::
+
+```{r}
+#| label: tidy-data
+
+# passo 1: limpar nomes (tirar maiúsculas, espaços e outras complicações)
+df_pop <- df_pop %>% 
+  clean_names() 
+
+# passo 2: remover o que não precismos e renomear. Fazemos isso tudo junto com transmute, na sintaxe novo_nome = nome_antigo
+df_pop <- df_pop %>% 
+  transmute(
+    pop = valor, code_muni = as.numeric(municipio_codigo),
+    year = as.numeric(ano)
+  )
+```
+
+Ao usarmos transmute, estamos ao mesmo tempo renomeando as variáveis que querendo e removendo as que não estão ali. Note que também passei `as.numeric()` em `code_muni` e `ano`, pois estavam como `character.` No caso de `code_muni`, essa informação é numérica (`numeric`) na base do `{geobr}`, então ia dar erro no join; já no caso do ano, é porque facilita quando esse tipo de informação é numérica (por exemplo, para filtrar datas maiores do que `x`).
+
+::: {.callout-warning}
+A informação de nome do município **frequentemente** está diferente entre bases. Ex.: acentuação, hifens, etc. Para não dar erro, prefira **SEMPRE** usar o código em vez do nome; repare que até removi o nome da cidade e vou usar apenas o do `{geobr}`. Nesse caso, a base do IBGE tem a sigla do estado junto do nome do município, como "Abadia dos Dourados - MG".
+:::
+
+
+## Juntando: população e shapefile
+
+Agora é partir para o abraço. Vamos jogar as informações do IBGE no shapefile ---ou vice-versa; nesse caso (não é sempre), a ordem não importa.
+
+```{r}
+#| label: join
+
+shp_mg_muni <- shp_mg_muni %>% 
+  left_join(df_pop)
+```
+
+
+
+# Visualização
+
+## Mapa de municípios e população
+
+Vamos plotar o mapa de Minas Gerais, colorindo de acordo com a população.
+
+```{r}
+#| label: basic-plot
+
+ggplot() +
+  geom_sf(
+    data = shp_mg_muni,
+    aes(fill = pop)
+  )
+```
+
+Podemos customizar esse mapa adiconando camadas e capadas. As duas mais importantes: uma camada para a escala de cores do `fill` (preenchimento) e outra para o tema.
+
+Existem duas coleções de paletas muito famosas: Brewer e Viridis. A primeira tem cores mais "comuns", mas a segunda dá um contraste muito bom. Abaixo, as paletas de cada coleção e a sintaxe (substitua `XXX` pelo tipo de `aesthetic` em uso: `fill`, `color` etc.)
+
+* Brewer: https://r-graph-gallery.com/38-rcolorbrewers-palettes.html
+  + Discreta: `ggplot() + (...) + scale_XXX_brewer()`
+  + Condtínua: `ggplot() + (...) + scale_XXX_distiller()`
+  + Binned: `ggplot() + (...) + scale_XXX_fermenter()`
+* Viridis: https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
+  + Discreta: `ggplot() + (...) + scale_XXX_viridis_d()`
+  + Condtínua: `ggplot() + (...) + scale_XXX_viridis_c()`
+  + Binned: `ggplot() + (...) + scale_XXX_viridis_b()`
+
+Exemplo com viridis
+```{r}
+#| label: cool-plot-viridis
+
+ggplot() +
+  geom_sf(
+    data = shp_mg_muni,
+    aes(fill = pop),
+    color = "lightgrey"
+  ) +
+  scale_fill_viridis_c(
+    option = "magma",
+    direction = -1,
+    name = "População", 
+    labels = scales::comma_format(big.mark = ".", decimal.mark = ",")
+  ) +
+  labs(
+    title = "População dos municípios mineiros em 2021",
+    caption = "Fonte: IBGE (2023)"
+  ) +
+  theme_void()
+```
+
+Exemplo com Brewer:
+```{r}
+#| label: cool-plot-brewer
+
+ggplot() +
+  geom_sf(
+    data = shp_mg_muni,
+    aes(fill = pop),
+    color = "lightgrey"
+  ) +
+  scale_fill_distiller(
+    palette = "YlOrRd",
+    direction = 1,
+    name = "População", 
+    labels = scales::comma_format(big.mark = ".", decimal.mark = ",")
+  ) +
+  labs(
+    title = "População dos municípios mineiros em 2021",
+    caption = "Fonte: IBGE (2023)"
+  ) +
+  theme_void()
+```
+
+
+## Mapa de municípios e ferrovias
+
+```{r}
+#| label: ferro-plot
+
+shp_br <- read_state(showProgress = F)
+
+ggplot() +
+  geom_sf(
+    data = shp_br %>% filter(abbrev_state != "MG"),
+    fill = "grey85",
+    color = "grey60"
+  ) +
+  geom_sf(
+    data = shp_mg_muni,
+    fill = "grey95",
+    color = "grey85"
+  ) + 
+  geom_sf(
+    data = shp_ferrovias %>% filter(Name %in% c("BH - Nova Era", "Nova Era - Pedro Nolasco")),
+    aes(color = "EFVM", linetype = "Operando")
+  ) +
+  geom_sf(
+    data = shp_ferrovias %>% filter(Name %in% c("Horto - Salvador", "Corinto - Pirapora")),
+    aes(color = "FCA", linetype = "Operando")
+  ) +
+  geom_sf(
+    data = shp_ferrovias %>% filter(Name == "Horto - Itabirito"),
+    aes(color = "FdA", linetype = "Obra abandonada")
+  ) +
+  geom_sf(
+    data = shp_ferrovias %>% filter(Name == "Itabirito - Rio"),
+    aes(color = "FdA", linetype = "Operando")
+  ) +
+  scale_color_manual(
+    values = c("EFVM" = "#3cc954", "FCA" = "#60a8f6", "FdA" = "#2a4ea1"),
+    name = "Ferrovia"
+  ) +
+  scale_linetype_manual(
+    values = c("Operando" = "solid", "Obra abandonada" = "dashed"),
+    name = "Status"
+  ) +
+  labs(
+    title = "Minas Gerais: algumas ferrovias"
+  ) +
+  geom_sf_text(
+    data = shp_mg_muni %>% filter(code_muni %in% c(3106200, 3136702, 3127701, 3143302)),
+    aes(label = name_muni),
+    hjust = 1,
+    size = 2.5
+  ) +
+  xlim(-50.75, -40.25) +
+  ylim(-22.75, -14.5) +
+  theme_void() +
+  theme(
+    panel.background = element_rect(fill = "skyblue", color = NA)
+  )
+```
+
