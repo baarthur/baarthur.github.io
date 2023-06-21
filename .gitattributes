@@ -1,0 +1,23 @@
+# Basic .gitattributes for a R repo.
+
+# Source files
+# ============
+*.qmd   text
+*.Rdata binary
+*.RData binary
+*.rda   binary
+*.rdb   binary
+*.rds   binary
+*.Rd    text
+*.Rdx   binary
+*.Rmd	  text
+*.R  	  text
+*.Rproj text
+*.[Rr]md   linguist-detectable
+
+# Linguist detectability
+# ============
+
+*.qmd linguist-language=R
+*.Rmd linguist-language=R
+*.rmd linguist-language=R
