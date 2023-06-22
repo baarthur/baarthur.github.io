@@ -21,9 +21,11 @@ format:
   html:
      include-in-header: 
         text: |
-          title-block-header > h1 .title {
-            color: white;
+          <style>
+          h1 {
+          color: #fff;
           }
+          </style>
 ---
 
 # Introdução

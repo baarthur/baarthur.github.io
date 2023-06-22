@@ -1,5 +1,5 @@
 ---
-title: "Rotina básica para dados espaciais no R"
+title: "Rotina espacial no R"
 description: "Aprenda a baixar, filtrar e combinar dados"
 author:
   - name: Arthur Bazolli
@@ -7,7 +7,7 @@ author:
     affiliation: PPGE/UFJF
     affiliation-url: https://www2.ufjf.br/poseconomia/ 
 date: 2023-06-21
-categories: [R, Basedosdados, Tutorial, Português] # self-defined categories
+categories: [R, r-spatial, Geocomputação, Tutorial, Português] # self-defined categories
 citation: 
   url: https://baarthur.github.io/posts/2023-06-20-basedosdados/ 
 image: thumbnail.png
@@ -16,13 +16,15 @@ draft: false # setting this to `true` will prevent your post from appearing on y
 execute: 
   echo: fenced
   
-format: 
+format:
   html:
-     include-in-header: 
+     include-in-header:
         text: |
-          title-block-header > h1 .title {
-            color: white;
+          <style>
+          h1 {
+          color: #fff;
           }
+          </style>
 ---
 
 # Introdução
