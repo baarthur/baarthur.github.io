@@ -22,17 +22,13 @@ Class material, working papers, and more
 - Heritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil
   + Presenting at the 29th IIOA (Alghero, Italy) in June 2023
   + [English version](input/io-tur_en.pdf)
-  + Presentation: coming soon
+  + [Presentation](https://baarthur.github.io/29iioa_slides)
+  
   
 ## R
 - `abnquarto`: A `Quarto` template using Brazilian standardization system
   + [GitHub repo](https://github.com/baarthur/abnquarto)
   + [Demo](input/abnq-demo.pdf)
-
-## Other
-- The economy of cities and transit: How economists understand urban spaces (English)
-  + Informal talk to urbanism and transit enthusiasts
-  + [Presentation](https://baarthur.github.io/urban_econ/)
   
 :::
 
@@ -58,16 +54,11 @@ Notas de aula, trabalhos em andamento e mais
 - Heritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil
   + Apresentando no 29th IIOA (Alghero, Itália) em junho de 2023
   + [Versão atual (inglês)](input/io-tur_en.pdf)
-  + Apresentação: em breve
+  + [Apresentação (inglês)](https://baarthur.github.io/29iioa_slides)
   
 ## R
 - `abnquarto`: um template em `Quarto` nas normas da ABNT
   + [GitHub repo](https://github.com/baarthur/abnquarto)
   + [Exemplo](input/abnq-demo.pdf)
 
-## Outros
-- The economy of cities and transit: How economists understand urban spaces (English)
-  + Conversa informal para entusiastas de urbanismo e mobilidade urbana
-  + [Apresentação](https://baarthur.github.io/urban_econ/)
-  
 :::
