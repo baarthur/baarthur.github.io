@@ -25,5 +25,12 @@
   },
   "posts/2023-06-21-rotina-spatial/index.rmarkdown": {
     "index.html": "65dfbeb5"
+  },
+  "posts/2023-06-21-abnquarto-v0/index.qmd": {
+    "index.html": "043d9fbc"
+  },
+  "posts/2023-06-21-abnquarto-v0/template.qmd": {
+    "template.html": "5c7b9012",
+    "template.tex": "71475a39"
   }
 }

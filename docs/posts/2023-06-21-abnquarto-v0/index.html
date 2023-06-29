@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Arthur Bazolli">
+<meta name="dcterms.date" content="2023-06-23">
+<meta name="description" content="Monte seu Quarto em ABNT">
 
-<title>Arthur Bazolli Alvarenga – resources</title>
+<title>Arthur Bazolli Alvarenga - abnquarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +23,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./input/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../input/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,9 +98,24 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<style>
+h1 {
+color: #fff;
+}
+</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Arthur Bazolli Alvarenga - abnquarto">
+<meta property="og:description" content="Monte seu Quarto em ABNT">
+<meta property="og:image" content="img/abnq.png">
+<meta property="og:site-name" content="Arthur Bazolli">
+<meta property="og:locale" content="pt-BR">
+<meta name="twitter:title" content="Arthur Bazolli Alvarenga - abnquarto">
+<meta name="twitter:description" content="Monte seu Quarto em ABNT">
+<meta name="twitter:image" content="img/abnq.png">
+<meta name="twitter:creator" content="@baarthur0">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -73,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Arthur Bazolli Alvarenga</span>
     </a>
   </div>
@@ -84,29 +136,29 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./resources.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../resources.html" rel="" target="">
  <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./input/cv.pdf" rel="" target="">
+    <a class="nav-link" href="../../input/cv.pdf" rel="" target="">
  <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts.html" rel="" target="">
+    <a class="nav-link" href="../../posts.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../pt" rel="" target="">
+    <a class="nav-link" href="../../../pt" rel="" target="">
  <span class="menu-text">Português</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./../" rel="" target="">
+    <a class="nav-link" href="../../../" rel="" target="">
  <span class="menu-text">English</span></a>
   </li>  
 </ul>
@@ -118,7 +170,56 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">abnquarto</h1>
+                  <div>
+        <div class="description">
+          Monte seu Quarto em ABNT
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">Quarto</div>
+                <div class="quarto-category">ABNT</div>
+                <div class="quarto-category">Tutorial</div>
+                <div class="quarto-category">Português</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://baarthur.github.io/">Arthur Bazolli</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://www2.ufjf.br/poseconomia/">
+              PPGE/UFJF
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 23, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -126,66 +227,99 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#resources" id="toc-resources" class="nav-link active" data-scroll-target="#resources">Resources</a>
+  <li><a href="#sec-tldr" id="toc-sec-tldr" class="nav-link active" data-scroll-target="#sec-tldr">TL;DR</a></li>
+  <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link" data-scroll-target="#sec-intro">Groselhas preliminares</a>
   <ul class="collapse">
-  <li><a href="#eco075-2022---economia-urbana" id="toc-eco075-2022---economia-urbana" class="nav-link" data-scroll-target="#eco075-2022---economia-urbana">ECO075-2022 - Economia Urbana</a></li>
-  <li><a href="#working-papers" id="toc-working-papers" class="nav-link" data-scroll-target="#working-papers">Working Papers</a></li>
-  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
+  <li><a href="#por-que-quarto" id="toc-por-que-quarto" class="nav-link" data-scroll-target="#por-que-quarto">Por que Quarto</a></li>
+  <li><a href="#por-que-abnquarto" id="toc-por-que-abnquarto" class="nav-link" data-scroll-target="#por-que-abnquarto">Por que abnquarto</a></li>
+  </ul></li>
+  <li><a href="#sec-firststeps" id="toc-sec-firststeps" class="nav-link" data-scroll-target="#sec-firststeps">Primeiros passos</a>
+  <ul class="collapse">
+  <li><a href="#como-baixar" id="toc-como-baixar" class="nav-link" data-scroll-target="#como-baixar">Como baixar</a>
+  <ul class="collapse">
+  <li><a href="#alternativa-1" id="toc-alternativa-1" class="nav-link" data-scroll-target="#alternativa-1">Alternativa 1</a></li>
+  <li><a href="#alternativa-2" id="toc-alternativa-2" class="nav-link" data-scroll-target="#alternativa-2">Alternativa 2</a></li>
+  </ul></li>
+  <li><a href="#sec-usage" id="toc-sec-usage" class="nav-link" data-scroll-target="#sec-usage">Uso básico</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<section id="resources" class="level1">
-<h1>Resources</h1>
-<p>Class material, working papers, and more</p>
-<section id="eco075-2022---economia-urbana" class="level2">
-<h2 class="anchored" data-anchor-id="eco075-2022---economia-urbana">ECO075-2022 - Economia Urbana</h2>
+
+<section id="sec-tldr" class="level1">
+<h1>TL;DR</h1>
+<p>Já vou avisando: a próxima seção é uma apologia ao <a href="https://quarto.org/">Quarto</a> e por que você deve abandonar o processador de texto do Bill Gates. Se não quiser ler essa groselha, pula direto para a parte em que eu ensino como usar o <code>abnquarto</code></p>
+</section>
+<section id="sec-intro" class="level1">
+<h1>Groselhas preliminares</h1>
+<section id="por-que-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="por-que-quarto">Por que Quarto</h2>
+<p>Escrever resenhas, artigos ou até mesmo sua tese no R pode parecer impossível, loucura ou falta do que fazer. Talvez esta última afirmação seja verdade, mas as duas primeiras, certamente não.</p>
+<p>Comecei a escrever pela IDE do RStudio desde que comecei a aprender R pelo <a href="https://www.codecademy.com/learn/learn-r">Codecademy</a>… Mas quando fui tentar compilar um PDF, o bicho pegou: instalar um compilador , uma hora pra entender como muda as margens, três horas para descobrir como coloca recuo no primeiro parágrafo… a lista de perrengues é interminável, mas o meu objetivo aqui é encorajar as pessoas a usarem Quarto, e não o contrário!</p>
+<p>Considerando essa curva de aprendizado, por que vale a pena aprender a escrever em Quarto? E porque não direto em no Overleaf ou outro editor? A minha resposta passa por quatro pontos: <strong>consistência, reprodução, treino e estética</strong>. Em primeiro lugar, a <strong>consistência</strong> de um editor <a href="https://en.wikipedia.org/wiki/WYSIWYM">WYSIWYM</a> (<em>what you see is what you mean</em>), como Markdown ou , é incomparável com a de editores <a href="https://en.wikipedia.org/wiki/WYSIWYG">WYSIWYG</a> (<em>what you see is what you get</em>). Isso acontece porque no segundo grupo de editores, da filosofia “clicar no botão”, você pode estar perdido, sair fuçando e por acaso dar certo… Mas depois, a chance de você não saber o que fez e ficar tudo desconfigurado é considerável. Já nos editores em que o resultado deve ser programado, o comando X sempre vai levar a Y; é mais fácil padronizar.</p>
+<p>Mas então por que Quarto e não ? Aí entramos no segundo argumento, o da <strong>reprodução</strong>. Quando sua análise estatística já foi feita toda em R, fica muito fácil integrar os resultados com um relatório final, misturando tabelas e gráficos programados e texto. Sinceramente, eu acho um inferno transferir tabela e gráfico para o Word; e não importa o que eu faça, ainda não descobri um jeito de evitar perda de qualidade na hora de compilar para PDF. Uma tabela programada via <code>kableExtra()</code> vai te dar trabalho no começo, mas depois que sai, vale a pena. Outra situação em que vale a pena escrever em Quarto é exatamente esta: misturar código e texto, montar uma aula, um tutorial, fazer uma lista de econometria. Mas ainda assim… Por que Quarto Markdown e não <strong>RMarkdown</strong>? Ora, é muito simples. Por acaso fazia sentido ser alfabetizado com o acordo ortográfico antigo no ano em que o novo entrou em vigor? <strong>O Quarto é a evolução</strong> do RMarkdown. Tem muitas funcionalidades que não tinham no outro —eu pessoalmente gosto do YAML global, as configurações de chunk e os callouts. E se você ainda quiser usar um editor visual, they’ve got you covered! O quarto vem com um editor visual que é quase um word, para o desmame do mundo WYSIWYG doer menos.</p>
+<p>Terceiro ponto: <em>treine</em> suas habilidades de programação. Aí é pra maluco mesmo, é pra quem gosta de encarar uma tela preta pra ver um monte de letra e número. Essa caixinha é legal demais, e se você gosta do quebra-cabeça, vai gostar de aprender Quarto. Em todos os casos, é um excelente treino de resolução de problemas! E talvez você acabe aprendendo um pouquinho de , <code>html</code> e <code>css</code>, se quiser customizar seu material…</p>
+<p>O que me leva ao quarto motivo: é bonito demais! A vida é muito curta para coisas feias, e eu pessoalmente gosto muito do resultado de um arquivo compilado em Quarto, Rmarkdown, Xaringan, Revealjs ou Shiny. O céu é o limite! Quanto mais eu aprendo, mais eu gosto. E o importante é ser feliz!</p>
+</section>
+<section id="por-que-abnquarto" class="level2">
+<h2 class="anchored" data-anchor-id="por-que-abnquarto">Por que abnquarto</h2>
+<p>Se você já se convenceu a escrever em Quarto, talvez se depare com o mesmo desafio que eu: entrar na caixinha da <strong>ABNT</strong>. Tem regra de margem, regra de recuo, regra de fonte, disso, daquilo… É um parto e é muito chato, até no Word. Por isso, é bom ter algumas configurações predefinidas para o documento sair no formato exigido pelas nossas instituições patrícias. É um template bem simples, longe de ser um pacote completo, mas já é uma mão na roda!</p>
+</section>
+</section>
+<section id="sec-firststeps" class="level1">
+<h1>Primeiros passos</h1>
+<section id="como-baixar" class="level2">
+<h2 class="anchored" data-anchor-id="como-baixar">Como baixar</h2>
+<section id="alternativa-1" class="level3">
+<h3 class="anchored" data-anchor-id="alternativa-1">Alternativa 1</h3>
+<p>Baixar tudo e inserir manualmente no seu computador: <code>&lt;&gt; Code</code> &gt; <code>Download ZIP</code></p>
+</section>
+<section id="alternativa-2" class="level3">
+<h3 class="anchored" data-anchor-id="alternativa-2">Alternativa 2</h3>
+<p>Basta clonar este repositório, copiando o link acima.</p>
+<p>Pelo <code>Terminal</code> (do RStudio ou do seu computador):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/baarthur/abnquarto.git nome_da_pasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Dica: Garanta que você está na pasta certa usando o comando <code>pwd</code> (print work directory); caso contrário, digite cd e o caminho da pasta onde vai ficar o projeto.</p>
+</blockquote>
+<p>Isso vai criar uma pasta no diretório que você excolheu com os arquivos necessários. Os mais importantes são <code>_quarto.yml</code> (definições globais de margens, recuos, bibliografia etc) e tudo na pasta <code>src</code>, onde há um template e os arquivos necessários na subpasta <code>yaml</code>.</p>
+</section>
+</section>
+<section id="sec-usage" class="level2">
+<h2 class="anchored" data-anchor-id="sec-usage">Uso básico</h2>
+<ol type="1">
+<li>Edite o arquivo <code>_quarto.yml</code> seguindo as instruções do arquivo.</li>
+<li>Use o template em <code>src</code> (ou crie um arquivo do zero onde quiser) —veja <a href="https://github.com/baarthur/abnquarto/blob/main/output/src/template.pdf">aqui</a> como fica o template.</li>
+</ol>
+<p>Links úteis:</p>
 <ul>
-<li>Urban Structure Equilibrium (Portuguese)
-<ul>
-<li><a href="https://baarthur.github.io/urbana_grad/">Presentation</a></li>
-<li><a href="input/eco075-2022_aula10.pdf">Class notes</a></li>
-</ul></li>
+<li><a href="https://quarto.org/docs/guide/">Guias do Quarto</a></li>
+<li><a href="https://quarto.org/docs/reference/formats/html.html">Opções para o formato html</a></li>
+<li><a href="https://quarto.org/docs/reference/formats/pdf.html">Opções para o formato pdf</a></li>
+<li><a href="https://happygitwithr.com/index.html">GitHub + R</a></li>
+<li><a href="https://ucsb-meds.github.io/creating-quarto-websites/">Criando sites com Quarto</a></li>
+<li><a href="http://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">Tabelas para pdf usando kableExtra</a></li>
 </ul>
-</section>
-<section id="working-papers" class="level2">
-<h2 class="anchored" data-anchor-id="working-papers">Working Papers</h2>
-<ul>
-<li>Real estate and rapid transit: Estimating the market premium of the São Paulo Rail Network
-<ul>
-<li>Presented at 20th Enaber (Salvador, Brazil) and 50th Anpec (Fortaleza, Brazil)</li>
-<li><a href="input/metro_en.pdf">English version</a></li>
-<li><a href="input/metro_pt.pdf">Portuguese version</a></li>
-<li><a href="https://baarthur.github.io/metro_sp/">Presentation (Portuguese)</a></li>
-</ul></li>
-<li>Heritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil
-<ul>
-<li>Presenting at the 29th IIOA (Alghero, Italy) in June 2023</li>
-<li><a href="input/io-tur_en.pdf">English version</a></li>
-<li><a href="https://baarthur.github.io/29iioa_slides">Presentation</a></li>
-</ul></li>
-</ul>
-</section>
-<section id="r" class="level2">
-<h2 class="anchored" data-anchor-id="r">R</h2>
-<ul>
-<li><code>abnquarto</code>: A <code>Quarto</code> template using Brazilian standardization system
-<ul>
-<li><a href="https://github.com/baarthur/abnquarto">GitHub repo</a></li>
-<li><a href="input/abnq-demo.pdf">Demo</a></li>
-</ul></li>
-</ul>
 
 
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{bazolli2023,
+  author = {Bazolli, Arthur},
+  title = {Abnquarto},
+  date = {2023-06-23},
+  url = {https://baarthur.github.io/posts/2023-06-20-basedosdados/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-bazolli2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+Bazolli, Arthur. 2023. <span>“Abnquarto.”</span> June 23, 2023. <a href="https://baarthur.github.io/posts/2023-06-20-basedosdados/">https://baarthur.github.io/posts/2023-06-20-basedosdados/</a>.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
