@@ -7,9 +7,9 @@ author:
     affiliation: PPGE/UFJF
     affiliation-url: https://www2.ufjf.br/poseconomia/ 
 date: 2023-06-23
-categories: [R, Quarto, ABNT, Tutorial, Português] # self-defined categories
+categories: [R, Quarto, ABNT, Tutorial] # self-defined categories
 citation: 
-  url: https://baarthur.github.io/posts/2023-06-20-basedosdados/ 
+  url: https://baarthur.github.io/posts/2023-06-20-abnquarto-v0/ 
 image: abnq.png
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 
@@ -18,7 +18,7 @@ execute:
   eval: false
 
 format: 
-  html:
+  html: 
      include-in-header: 
         text: |
           <style>
@@ -28,15 +28,15 @@ format:
           </style>
 ---
 
-# TL;DR {#sec-tldr}
+## TL;DR {#sec-tldr}
 
 Já vou avisando: a próxima seção é uma apologia ao [Quarto](https://quarto.org/) e por que você deve abandonar o processador de texto do Bill Gates. Se não quiser ler essa groselha, pula direto para a parte em que eu ensino como usar o `abnquarto`
 
 
 
-# Groselhas preliminares {#sec-intro}
+## Groselhas preliminares {#sec-intro}
 
-## Por que Quarto
+### Por que Quarto
 
 Escrever resenhas, artigos ou até mesmo sua tese no R pode parecer impossível, loucura ou falta do que fazer. Talvez esta última afirmação seja verdade, mas as duas primeiras, certamente não.
 
@@ -51,20 +51,20 @@ Terceiro ponto: *treine* suas habilidades de programação. Aí é pra maluco me
 O que me leva ao quarto motivo: é bonito demais! A vida é muito curta para coisas feias, e eu pessoalmente gosto muito do resultado de um arquivo compilado em Quarto, Rmarkdown, Xaringan, Revealjs ou Shiny. O céu é o limite! Quanto mais eu aprendo, mais eu gosto. E o importante é ser feliz!
 
 
-## Por que abnquarto
+### Por que abnquarto
 
 Se você já se convenceu a escrever em Quarto, talvez se depare com o mesmo desafio que eu: entrar na caixinha da **ABNT**. Tem regra de margem, regra de recuo, regra de fonte, disso, daquilo... É um parto e é muito chato, até no Word. Por isso, é bom ter algumas configurações predefinidas para o documento sair no formato exigido pelas nossas instituições patrícias. É um template bem simples, longe de ser um pacote completo, mas já é uma mão na roda!
 
 
 
-# Primeiros passos {#sec-firststeps}
+## Primeiros passos {#sec-firststeps}
 
-## Como baixar
+### Como baixar
 
-### Alternativa 1
+#### Alternativa 1
 Baixar tudo e inserir manualmente no seu computador: `<> Code` > `Download ZIP`
 
-### Alternativa 2
+#### Alternativa 2
 Basta clonar este repositório, copiando o link acima.
 
 Pelo `Terminal` (do RStudio ou do seu computador):
@@ -78,7 +78,7 @@ git clone https://github.com/baarthur/abnquarto.git nome_da_pasta
 Isso vai criar uma pasta no diretório que você excolheu com os arquivos necessários. Os mais importantes são `_quarto.yml` (definições globais de margens, recuos, bibliografia etc) e tudo na pasta `src`, onde há um template e os arquivos necessários na subpasta `yaml`.
 
 
-## Uso básico {#sec-usage}
+### Uso básico {#sec-usage}
 
 1. Edite o arquivo `_quarto.yml` seguindo as instruções do arquivo.
 2. Use o template em `src` (ou crie um arquivo do zero onde quiser) ---veja [aqui](https://github.com/baarthur/abnquarto/blob/main/output/src/template.pdf) como fica o template.

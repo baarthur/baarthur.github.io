@@ -184,7 +184,6 @@ color: #fff;
                 <div class="quarto-category">Quarto</div>
                 <div class="quarto-category">ABNT</div>
                 <div class="quarto-category">Tutorial</div>
-                <div class="quarto-category">Português</div>
               </div>
                   </div>
   </div>
@@ -235,11 +234,7 @@ color: #fff;
   </ul></li>
   <li><a href="#sec-firststeps" id="toc-sec-firststeps" class="nav-link" data-scroll-target="#sec-firststeps">Primeiros passos</a>
   <ul class="collapse">
-  <li><a href="#como-baixar" id="toc-como-baixar" class="nav-link" data-scroll-target="#como-baixar">Como baixar</a>
-  <ul class="collapse">
-  <li><a href="#alternativa-1" id="toc-alternativa-1" class="nav-link" data-scroll-target="#alternativa-1">Alternativa 1</a></li>
-  <li><a href="#alternativa-2" id="toc-alternativa-2" class="nav-link" data-scroll-target="#alternativa-2">Alternativa 2</a></li>
-  </ul></li>
+  <li><a href="#como-baixar" id="toc-como-baixar" class="nav-link" data-scroll-target="#como-baixar">Como baixar</a></li>
   <li><a href="#sec-usage" id="toc-sec-usage" class="nav-link" data-scroll-target="#sec-usage">Uso básico</a></li>
   </ul></li>
   </ul>
@@ -251,14 +246,14 @@ color: #fff;
 
 
 
-<section id="sec-tldr" class="level1">
-<h1>TL;DR</h1>
+<section id="sec-tldr" class="level2">
+<h2 class="anchored" data-anchor-id="sec-tldr">TL;DR</h2>
 <p>Já vou avisando: a próxima seção é uma apologia ao <a href="https://quarto.org/">Quarto</a> e por que você deve abandonar o processador de texto do Bill Gates. Se não quiser ler essa groselha, pula direto para a parte em que eu ensino como usar o <code>abnquarto</code></p>
 </section>
-<section id="sec-intro" class="level1">
-<h1>Groselhas preliminares</h1>
-<section id="por-que-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="por-que-quarto">Por que Quarto</h2>
+<section id="sec-intro" class="level2">
+<h2 class="anchored" data-anchor-id="sec-intro">Groselhas preliminares</h2>
+<section id="por-que-quarto" class="level3">
+<h3 class="anchored" data-anchor-id="por-que-quarto">Por que Quarto</h3>
 <p>Escrever resenhas, artigos ou até mesmo sua tese no R pode parecer impossível, loucura ou falta do que fazer. Talvez esta última afirmação seja verdade, mas as duas primeiras, certamente não.</p>
 <p>Comecei a escrever pela IDE do RStudio desde que comecei a aprender R pelo <a href="https://www.codecademy.com/learn/learn-r">Codecademy</a>… Mas quando fui tentar compilar um PDF, o bicho pegou: instalar um compilador , uma hora pra entender como muda as margens, três horas para descobrir como coloca recuo no primeiro parágrafo… a lista de perrengues é interminável, mas o meu objetivo aqui é encorajar as pessoas a usarem Quarto, e não o contrário!</p>
 <p>Considerando essa curva de aprendizado, por que vale a pena aprender a escrever em Quarto? E porque não direto em no Overleaf ou outro editor? A minha resposta passa por quatro pontos: <strong>consistência, reprodução, treino e estética</strong>. Em primeiro lugar, a <strong>consistência</strong> de um editor <a href="https://en.wikipedia.org/wiki/WYSIWYM">WYSIWYM</a> (<em>what you see is what you mean</em>), como Markdown ou , é incomparável com a de editores <a href="https://en.wikipedia.org/wiki/WYSIWYG">WYSIWYG</a> (<em>what you see is what you get</em>). Isso acontece porque no segundo grupo de editores, da filosofia “clicar no botão”, você pode estar perdido, sair fuçando e por acaso dar certo… Mas depois, a chance de você não saber o que fez e ficar tudo desconfigurado é considerável. Já nos editores em que o resultado deve ser programado, o comando X sempre vai levar a Y; é mais fácil padronizar.</p>
@@ -266,21 +261,21 @@ color: #fff;
 <p>Terceiro ponto: <em>treine</em> suas habilidades de programação. Aí é pra maluco mesmo, é pra quem gosta de encarar uma tela preta pra ver um monte de letra e número. Essa caixinha é legal demais, e se você gosta do quebra-cabeça, vai gostar de aprender Quarto. Em todos os casos, é um excelente treino de resolução de problemas! E talvez você acabe aprendendo um pouquinho de , <code>html</code> e <code>css</code>, se quiser customizar seu material…</p>
 <p>O que me leva ao quarto motivo: é bonito demais! A vida é muito curta para coisas feias, e eu pessoalmente gosto muito do resultado de um arquivo compilado em Quarto, Rmarkdown, Xaringan, Revealjs ou Shiny. O céu é o limite! Quanto mais eu aprendo, mais eu gosto. E o importante é ser feliz!</p>
 </section>
-<section id="por-que-abnquarto" class="level2">
-<h2 class="anchored" data-anchor-id="por-que-abnquarto">Por que abnquarto</h2>
+<section id="por-que-abnquarto" class="level3">
+<h3 class="anchored" data-anchor-id="por-que-abnquarto">Por que abnquarto</h3>
 <p>Se você já se convenceu a escrever em Quarto, talvez se depare com o mesmo desafio que eu: entrar na caixinha da <strong>ABNT</strong>. Tem regra de margem, regra de recuo, regra de fonte, disso, daquilo… É um parto e é muito chato, até no Word. Por isso, é bom ter algumas configurações predefinidas para o documento sair no formato exigido pelas nossas instituições patrícias. É um template bem simples, longe de ser um pacote completo, mas já é uma mão na roda!</p>
 </section>
 </section>
-<section id="sec-firststeps" class="level1">
-<h1>Primeiros passos</h1>
-<section id="como-baixar" class="level2">
-<h2 class="anchored" data-anchor-id="como-baixar">Como baixar</h2>
-<section id="alternativa-1" class="level3">
-<h3 class="anchored" data-anchor-id="alternativa-1">Alternativa 1</h3>
+<section id="sec-firststeps" class="level2">
+<h2 class="anchored" data-anchor-id="sec-firststeps">Primeiros passos</h2>
+<section id="como-baixar" class="level3">
+<h3 class="anchored" data-anchor-id="como-baixar">Como baixar</h3>
+<section id="alternativa-1" class="level4">
+<h4 class="anchored" data-anchor-id="alternativa-1">Alternativa 1</h4>
 <p>Baixar tudo e inserir manualmente no seu computador: <code>&lt;&gt; Code</code> &gt; <code>Download ZIP</code></p>
 </section>
-<section id="alternativa-2" class="level3">
-<h3 class="anchored" data-anchor-id="alternativa-2">Alternativa 2</h3>
+<section id="alternativa-2" class="level4">
+<h4 class="anchored" data-anchor-id="alternativa-2">Alternativa 2</h4>
 <p>Basta clonar este repositório, copiando o link acima.</p>
 <p>Pelo <code>Terminal</code> (do RStudio ou do seu computador):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/baarthur/abnquarto.git nome_da_pasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -290,8 +285,8 @@ color: #fff;
 <p>Isso vai criar uma pasta no diretório que você excolheu com os arquivos necessários. Os mais importantes são <code>_quarto.yml</code> (definições globais de margens, recuos, bibliografia etc) e tudo na pasta <code>src</code>, onde há um template e os arquivos necessários na subpasta <code>yaml</code>.</p>
 </section>
 </section>
-<section id="sec-usage" class="level2">
-<h2 class="anchored" data-anchor-id="sec-usage">Uso básico</h2>
+<section id="sec-usage" class="level3">
+<h3 class="anchored" data-anchor-id="sec-usage">Uso básico</h3>
 <ol type="1">
 <li>Edite o arquivo <code>_quarto.yml</code> seguindo as instruções do arquivo.</li>
 <li>Use o template em <code>src</code> (ou crie um arquivo do zero onde quiser) —veja <a href="https://github.com/baarthur/abnquarto/blob/main/output/src/template.pdf">aqui</a> como fica o template.</li>
@@ -314,11 +309,11 @@ color: #fff;
   author = {Bazolli, Arthur},
   title = {Abnquarto},
   date = {2023-06-23},
-  url = {https://baarthur.github.io/posts/2023-06-20-basedosdados/},
+  url = {https://baarthur.github.io/posts/2023-06-20-abnquarto-v0/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-bazolli2023" class="csl-entry quarto-appendix-citeas" role="listitem">
-Bazolli, Arthur. 2023. <span>“Abnquarto.”</span> June 23, 2023. <a href="https://baarthur.github.io/posts/2023-06-20-basedosdados/">https://baarthur.github.io/posts/2023-06-20-basedosdados/</a>.
+Bazolli, Arthur. 2023. <span>“Abnquarto.”</span> June 23, 2023. <a href="https://baarthur.github.io/posts/2023-06-20-abnquarto-v0/">https://baarthur.github.io/posts/2023-06-20-abnquarto-v0/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

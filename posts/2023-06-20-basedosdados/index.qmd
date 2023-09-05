@@ -7,7 +7,7 @@ author:
     affiliation: PPGE/UFJF
     affiliation-url: https://www2.ufjf.br/poseconomia/ 
 date: 2023-06-20
-categories: [R, Basedosdados, Tutorial, Português] # self-defined categories
+categories: [R, Basedosdados, Tutorial] # self-defined categories
 citation: 
   url: https://baarthur.github.io/posts/2023-06-20-basedosdados/ 
 image: img/bd_logo.png
@@ -28,13 +28,13 @@ format:
           </style>
 ---
 
-# Introdução
+## Introdução
 
 A [Base dos Dados](https://basedosdados.org/) é uma platadorma excelente para obter dados oficiais e tratados de forma conveniente. Podemos baixá-la direto no R com facilidade, basta prestarmos atenção a algumas etapas.
 
 Esta é uma rotina simplificada. Veja mais no Workshop: [Aprenda a acessar dados públicos em R](https://www.youtube.com/watch?v=M9ayiseIjvI&t=2781s&ab_channel=BasedosDados), da Base dos Dados.
 
-# Primeiros passos
+## Primeiros passos
 
 Sempre que for trabalhar em um novo projeto, aproveite as funcionalidades do R Studio. Vá em `File` > `New Project...` > `New Directory` ou `Existing Directory`.
 Segundo passo: criar um arquivo para a rotina (`File` > `New File...` > `...`). Pode ser um R Script, um R Markdown ou um Quarto Markdown (recomendo este último).
@@ -56,7 +56,7 @@ library(basedosdados)
 ```
 
 
-## Google Cloud
+### Google Cloud
 
 Para baixar os dados no R, vamos precisar criar um projeto no Google Cloud. Os projetos do Google Cloud são muito usados em diversas situações (ex.: APIs do Google Maps) e a Google nos dá um limite gratuito (1 TB por dia ou 200 dólares por mês): mas não se preocupe, você não vai estourar essa cota.
 
@@ -73,7 +73,7 @@ Para baixar os dados no R, vamos precisar criar um projeto no Google Cloud. Os p
 
 6. Após criar o seu projeto, você será direcionado à página do projeto. Agora, é só configurar as funções do pacote `{basedosdados}` no R para acessar o seu projeto.
 
-## Base dos dados
+### Base dos dados
 
 Vamos chamar a função `set_billing_id()`. Dentro dela, você vai inserir o ID do seu projeto (entre aspas, porque é um `character`), disponível aqui:
 
@@ -92,11 +92,11 @@ set_billing_id("id-projeto")
 Você deve ver a mensagem "Project keys set successfully".
 
 
-# Chamada SQL
+## Chamada SQL
 
 A melhor forma de baixar dados da BD pelo R é fazendo uma chamada SQL (lê-se "síquel" ou *sequel*). [SQL](https://pt.wikipedia.org/wiki/SQL) é uma linguagem de pesquisa, muito usada para acessar base dos dados. Mas não se preocupe, não precisamos dominar SQL! Basta aprender a estrutura básica.
 
-## Query: sintaxe básica
+### Query: sintaxe básica
 
 Na página da base que você pretende baixar (ex.: [PNAD Contínua](https://basedosdados.org/dataset/9fa532fb-5681-4903-b99d-01dc45fd527a?table=a04fc85d-908a-4393-b51d-1bd517a40210)), copie o código que está na aba SQL: ele é a sua *query*, que você vai usar para requisitar uma informação. Você vai criar um objeto no `R` para guardá-la.
 
@@ -179,7 +179,7 @@ query_pnad_1721 <- paste(
 ```
 
 
-## Baixar a query
+### Baixar a query
 
 Agora, podemos baixar a query. Podemos fazer isso de duas formas: salvando em um objeto do R ou salvando em um .csv no computador. Eu prefiro a segunda opção, porque permite carregar os dados depois sem ter que baixar tudo de novo. Na hora de baixar os dados, vai aparecer uma opção no console do `R` pedindo para autenticar o usuário no seu navegador (ou digite `2`, se o seu email já aparecer) e prossiga.
 

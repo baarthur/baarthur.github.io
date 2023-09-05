@@ -7,9 +7,9 @@ author:
     affiliation: PPGE/UFJF
     affiliation-url: https://www2.ufjf.br/poseconomia/ 
 date: 2023-06-21
-categories: [R, r-spatial, Geocomputação, Tutorial, Português] # self-defined categories
+categories: [R, r-spatial, Geocomputação, Tutorial] # self-defined categories
 citation: 
-  url: https://baarthur.github.io/posts/2023-06-20-basedosdados/ 
+  url: https://baarthur.github.io/posts/2023-06-20-rotina-spatial/ 
 image: thumbnail.png
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 
@@ -27,20 +27,20 @@ format:
           </style>
 ---
 
-# Introdução
+## Introdução
 
 Muitos amigos me perguntam como fazer operações espaciais no `R`. Então, decidi criar essa rotina muito simples, com o mínimo para começar e algumas operações básicas.
 
 Como eu já disse no [post sobre a Base dos Dados](https://baarthur.github.io/posts/2023-06-20-basedosdados/): crie um R Project e seja organizado, ajude o você de amanhã! Ele vai agradecer.
 
-## Links úteis
+### Links úteis
 
 * A melhor referência que eu conheço para dados espaciais no R: O livro [Geocomputation With R](https://r.geocompx.org/).
 * Livro em português lançado recentemente. Ainda não tive oportunidade de ler, mas parece muito bom!
   + [Cartografia Temática em R para estudantes de Geografia](https://ligiaviz.github.io/RCartoTematica/)
 * Excelentes tutoriais também no [r-spatial.org](https://r-spatial.org/)
 * [geobr](https://ipeagit.github.io/geobr/): mapas brasileiros em alta qualidade no R!
-* [aopdata](https://ipeagit.github.io/aopdata/): Projeto Acesso a Oportunidades do Ipea, com base muito rica para download direto no seu R
+* [aopdata](https://ipeagit.github.io/aopdata/): Projeto Acesso a Oportunidades do Ipea, com base muito rica para download direto no R.
 * [Geosampa](https://geosampa.prefeitura.sp.gov.br/PaginasPublicas/_SBC.aspx): portal da Prefeitura de São Paulo com diversos dados geolocalizados
 * [BHMap](https://bhmap.pbh.gov.br/v2/mapa/idebhgeo) e [IDE Sistema](https://idesisema.meioambiente.mg.gov.br/webgis): idem, para BH e o Governo de Minas
 * [Mapbiomas](https://mapbiomas.org/): nunca usei, mas é referência para o pessoal que trabalha com meio ambiente.
@@ -48,11 +48,12 @@ Como eu já disse no [post sobre a Base dos Dados](https://baarthur.github.io/po
 
 
 
-# Setup
+## Setup
 
 Defina um bloco de código (`Ctrl` + `Alt` + `I`) para chamar os pacotes necessários. Use a opção `#| label: setup`, como abaixo, para ele sempre ser executado no começo.
 ```{r}
 #| label: setup
+#| results: hold
 
 # geral e tratamento de dados
 library(here)
@@ -69,9 +70,9 @@ library(sidrar)
 
 
 
-# Carregando dados
+## Carregando dados
 
-## Da internet
+### Da internet
 
 Vários shapefiles brasileiros estão disponíveis online. Alguns podem ser baixados direto no `R`, como o `{geobr}` e o `{aopdata}`. Nesse exemplo, vamos baixar o shapefile dos municípios mineiros usando o `{geobr}`:
 ```{r}
@@ -99,7 +100,7 @@ shp_mg_muni <- shp_mg_muni %>%
 ```
 
 
-## Do computador
+### Do computador
 
 Neste exemplo, vamos carregar dois shapefiles para fazer operações espaciais: a malha de municípios mineiros, no formato `.shp`, e um mapa ferroviário, no formato do Google Earth (`.kml`). Usando o pacote `{sf}`, carregamos os shapefiles com `st_read()`. Supondo que você tem uma pasta chamada `shp` dentro da pasta `data` com seus shapefiles:
 
@@ -136,7 +137,7 @@ No Quarto (`.qmd`) e no RMarkdown (`.Rmd`), usamos a função `here()` do pacote
 :::
 
 
-## Compatibilidade de coordenadas
+### Compatibilidade de coordenadas
 
 Existem diferentes padrões de coordenadas (**CRS**, de *Coordinate Reference System*): o mais comum é o WGS 84, usado nos GPS e no Google Maps. Mas, como a terra não é plana, alguns padrões são mais adequados para locais diferentes. No Brasil, mapas administrativos costumam usar o Sirgas 2000 e suas variantes. Por isso, temos ficar atentos se nossos shapefiles estão no mesmo padrão! Para verificar:
 
@@ -167,9 +168,9 @@ shp_ferrovias <- shp_ferrovias %>%
 
 
 
-# Filtrar shapefiles
+## Filtrar shapefiles
 
-Suponha que queremos filtrar as cidades que são artravessadas pela Estrada Real. Podemos fazer isso com o `st_filter()`. Mas antes, um resumo sobre as operações espaciais:
+Suponha que queremos filtrar as cidades que são atravessadas por algumas ferrovias. Podemos fazer isso com o `st_filter()`. Mas antes, um resumo sobre as operações espaciais:
 
 O pacte `{sf}` contém uma série de funções que computam relações topológicas entre objetos espaciais (da classe `simple.feature`). Por exemplo: `st_intersects(x,y)` indica se `x` cruza `y`; `st_covers(x,y)`, se `x` cobre `y` e o contrário por `st_covered_by(x,y)` e assim em diante. Leia mais sobre essas operações no excelente [livro do Robin Lovelace](https://r.geocompx.org/geometry-operations.html) e no site do [PostGIS](http://postgis.net/workshops/postgis-intro/spatial_relationships.html), pois as operações realizadas em SQL são basicamente as mesmsas que o `{sf}` faz no `R`.
 
@@ -183,12 +184,12 @@ O novo objeto contém 190 municípios: apenas aqueles atravessados pelas ferrovi
 
 
 
-# Combinar bases
+## Combinar bases
 
 Outra operação poderosa no R é combinar informações de uma base com um shapefile. Nesse exemplo, vamos usar uma base de população municipal do IBGE para cruzar com o shapefile de cidades mineiras. 
 
 
-## Baixando dados do IBGE com o SidraR
+### Baixando dados do IBGE com o SidraR
 
 O Sidra ---Sistema IBGE de Recuperação Automática--- pode ser acessado diretamente pelo R. Você pode tanto buscar termos específicos, usando `search_sidra("termo")`, quanto baixar diretamente uma tabela que você já conheça. Vamos usar o exemplo completo: vou buscar informações sobre população.
 
@@ -218,7 +219,7 @@ df_pop <- get_sidra(
   geo = "City"
 )
 
-head(df_pop)
+glimpse(df_pop)
 ```
 
 E assim, baixamos a população de 2021 para todos os municípios brasileiros. No entanto, essa tabela do IBGE não está organizada da melhor forma pra processamento no R. Podemos melhorar removendo as informações desnecessárias (`select()`) e limpando os nomes (`clean_names()` e `rename()`) para compatibilizar com a outra tabela.
@@ -249,7 +250,7 @@ A informação de nome do município **frequentemente** está diferente entre ba
 :::
 
 
-## Juntando: população e shapefile
+### Juntando: população e shapefile
 
 Agora é partir para o abraço. Vamos jogar as informações do IBGE no shapefile ---ou vice-versa; nesse caso (não é sempre), a ordem não importa.
 
@@ -262,9 +263,9 @@ shp_mg_muni <- shp_mg_muni %>%
 
 
 
-# Visualização
+## Visualização
 
-## Mapa de municípios e população
+### Mapa de municípios e população
 
 Vamos plotar o mapa de Minas Gerais, colorindo de acordo com a população.
 
@@ -305,7 +306,7 @@ ggplot() +
     option = "magma",
     direction = -1,
     name = "População", 
-    labels = scales::comma_format(big.mark = ".", decimal.mark = ",")
+    labels = scales::comma_format(big.mark = " ", decimal.mark = ",")
   ) +
   labs(
     title = "População dos municípios mineiros em 2021",
@@ -325,10 +326,10 @@ ggplot() +
     color = "lightgrey"
   ) +
   scale_fill_distiller(
-    palette = "YlOrRd",
+    palette = "YlGnBu",
     direction = 1,
     name = "População", 
-    labels = scales::comma_format(big.mark = ".", decimal.mark = ",")
+    labels = scales::comma_format(big.mark = " ", decimal.mark = ",")
   ) +
   labs(
     title = "População dos municípios mineiros em 2021",
@@ -337,8 +338,46 @@ ggplot() +
   theme_void()
 ```
 
+#### Melhorando o mapa
 
-## Mapa de municípios e ferrovias
+De cara, eu acho que podemos melhorar esse mapa de duas formas: 
+
+1. A escala não é muito útil. Temos só uma cidade com mais de 1 milhão de habitantes e só 4 com mais de 500 mil, então uma escala `binned` pode ser mais útil do que uma contínua. 
+2. A às vezes os limites municipais mais poluem do que ajudam. Nesse caso, eu gosto de definir `color = NA` ou deixar `color` na mesma escala do `fill`. 
+  + Vai depender do tamanho da sua malha e da precisão dos shapefiles: se ficar um vazio esquisito entre um polígono e outro, unifique color e fill.
+
+Primeiro, vamos definir os argumentos de `scale_...` do lado de fora, para aplicar no `fill` e no `color` de forma unificada e diminuir o risco de erro humano. Nesse processo, vamos definir os `breaks` meio no olho, mas se quiser você pode usar quantis. Escolhi os valores abaixo vendo o que ficava melhor no mapa, tentando criar um equilíbrio de forma que permita distinguir as disparidades regionais, mas sem prejudicar muito o conforto visual. Para usar quantis, é só usar em `breaks` a função `quantile(x, probs = seq(0,1, p))` em que `x` é a variável sendo quantificada (no caso, `pop`) e definimos o vetor de probabilidades como sendo a sequência de 0 a 1 de p em p. Por exemplo: para quartis, p = 0,25; para decis, p = 0,10 e assim por diante.
+
+```{r}
+#| label: scale-args
+
+scale_args <- list(
+  palette = "YlGnBu",
+    direction = 1,
+    name = "População", 
+    labels = scales::comma_format(big.mark = " ", decimal.mark = ","),
+    breaks = c(5000, 25000, 50000, 100000, 250000, 500000, 2500000)
+)
+```
+
+Agora, precisamos de um pouco de atenção: salvamos os argumentos numa lista e para usá-los na escala, usamos a função `do.call(f,x)`, que faz uma chamada `call` à função `f()` usando os argumentos de `x`:
+```{r}
+#| label: coolest-plot-brewer
+
+ggplot() +
+  geom_sf(
+    data = shp_mg_muni,
+    aes(fill = pop, color = pop)) +
+  do.call(scale_fill_fermenter, scale_args) +
+  do.call(scale_color_fermenter, scale_args) +
+  labs(
+    title = "População dos municípios mineiros em 2021",
+    caption = "Fonte: IBGE (2023)"
+  ) +
+  theme_void()
+```
+
+### Mapa de municípios e ferrovias
 
 ```{r}
 #| label: ferro-plot
@@ -354,7 +393,7 @@ ggplot() +
   geom_sf(
     data = shp_mg_muni,
     fill = "grey95",
-    color = "grey85"
+    color = "grey90"
   ) + 
   geom_sf(
     data = shp_ferrovias %>% filter(Name %in% c("BH - Nova Era", "Nova Era - Pedro Nolasco")),

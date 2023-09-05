@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2023-06-21">
 <meta name="description" content="Aprenda a baixar, filtrar e combinar dados">
 
-<title>Arthur Bazolli Alvarenga - Rotina espacial no R</title>
+<title>Arthur Bazolli Alvarenga - Rotina básica para dados espaciais no R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -98,22 +98,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
-<style>
-h1 {
-color: #fff;
-}
-</style>
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Arthur Bazolli Alvarenga - Rotina espacial no R">
+<meta property="og:title" content="Arthur Bazolli Alvarenga - Rotina básica para dados espaciais no R">
 <meta property="og:description" content="Aprenda a baixar, filtrar e combinar dados">
-<meta property="og:image" content="thumbnail.png">
+<meta property="og:image" content="img/bd_logo.png">
 <meta property="og:site-name" content="Arthur Bazolli">
 <meta property="og:locale" content="pt-BR">
-<meta name="twitter:title" content="Arthur Bazolli Alvarenga - Rotina espacial no R">
+<meta name="twitter:title" content="Arthur Bazolli Alvarenga - Rotina básica para dados espaciais no R">
 <meta name="twitter:description" content="Aprenda a baixar, filtrar e combinar dados">
-<meta name="twitter:image" content="thumbnail.png">
+<meta name="twitter:image" content="img/bd_logo.png">
 <meta name="twitter:creator" content="@baarthur0">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -173,7 +168,7 @@ color: #fff;
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Acessando a Base dos Dados no R</h1>
+      <h1 class="title">Rotina básica para dados espaciais no R</h1>
                   <div>
         <div class="description">
           Aprenda a baixar, filtrar e combinar dados
@@ -265,10 +260,6 @@ color: #fff;
 <h2 class="anchored" data-anchor-id="links-úteis">Links úteis</h2>
 <ul>
 <li>A melhor referência que eu conheço para dados espaciais no R: O livro <a href="https://r.geocompx.org/">Geocomputation With R</a>.</li>
-<li>Livro em português lançado recentemente. Ainda não tive oportunidade de ler, mas parece muito bom!
-<ul>
-<li><a href="https://ligiaviz.github.io/RCartoTematica/">Cartografia Temática em R para estudantes de Geografia</a></li>
-</ul></li>
 <li>Excelentes tutoriais também no <a href="https://r-spatial.org/">r-spatial.org</a></li>
 <li><a href="https://ipeagit.github.io/geobr/">geobr</a>: mapas brasileiros em alta qualidade no R!</li>
 <li><a href="https://ipeagit.github.io/aopdata/">aopdata</a>: Projeto Acesso a Oportunidades do Ipea, com base muito rica para download direto no seu R</li>
@@ -681,7 +672,7 @@ $geo
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/basic-plot-1.png" class="img-fluid" width="672"></p>
+<p><img src="rotina-spatial_files/figure-html/basic-plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Podemos customizar esse mapa adiconando camadas e capadas. As duas mais importantes: uma camada para a escala de cores do <code>fill</code> (preenchimento) e outra para o tema.</p>
@@ -719,12 +710,13 @@ $geo
 <span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"População dos municípios mineiros em 2021"</span>,</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: IBGE (2023)"</span></span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Olha só que doido esse trem!"</span>,</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: IBGE (2023)"</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/cool-plot-viridis-1.png" class="img-fluid" width="672"></p>
+<p><img src="rotina-spatial_files/figure-html/cool-plot-viridis-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Exemplo com Brewer:</p>
@@ -746,12 +738,13 @@ $geo
 <span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"População dos municípios mineiros em 2021"</span>,</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: IBGE (2023)"</span></span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Olha só que doido esse trem!"</span>,</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: IBGE (2023)"</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/cool-plot-brewer-1.png" class="img-fluid" width="672"></p>
+<p><img src="rotina-spatial_files/figure-html/cool-plot-brewer-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -825,7 +818,7 @@ $geo
 give correct results for longitude/latitude data</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/ferro-plot-1.png" class="img-fluid" width="672"></p>
+<p><img src="rotina-spatial_files/figure-html/ferro-plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
@@ -835,14 +828,14 @@ give correct results for longitude/latitude data</code></pre>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{bazolli2023,
   author = {Bazolli, Arthur},
-  title = {Rotina Espacial No {R}},
+  title = {Rotina Básica Para Dados Espaciais No {R}},
   date = {2023-06-21},
-  url = {https://baarthur.github.io/posts/2023-06-20-rotina-spatial/},
+  url = {https://samanthacsik.github.io/posts/2023-06-20-basedosdados/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-bazolli2023" class="csl-entry quarto-appendix-citeas" role="listitem">
-Bazolli, Arthur. 2023. <span>“Rotina Espacial No R.”</span> June 21,
-2023. <a href="https://baarthur.github.io/posts/2023-06-20-rotina-spatial/">https://baarthur.github.io/posts/2023-06-20-rotina-spatial/</a>.
+Bazolli, Arthur. 2023. <span>“Rotina Básica Para Dados Espaciais No
+R.”</span> June 21, 2023. <a href="https://samanthacsik.github.io/posts/2023-06-20-basedosdados/">https://samanthacsik.github.io/posts/2023-06-20-basedosdados/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

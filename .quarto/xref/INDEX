@@ -32,5 +32,11 @@
   "posts/2023-06-21-abnquarto-v0/template.qmd": {
     "template.html": "5c7b9012",
     "template.tex": "71475a39"
+  },
+  "posts/2023-06-20-basedosdados/index.rmarkdown": {
+    "index.html": "03a66e4c"
+  },
+  "posts/2023-06-21-rotina-spatial/rotina-spatial.rmarkdown": {
+    "rotina-spatial.html": "5c26a480"
   }
 }
