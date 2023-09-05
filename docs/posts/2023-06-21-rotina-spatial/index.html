@@ -173,7 +173,7 @@ color: #fff;
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Acessando a Base dos Dados no R</h1>
+      <h1 class="title">Rotina espacial no R</h1>
                   <div>
         <div class="description">
           Aprenda a baixar, filtrar e combinar dados
@@ -181,9 +181,9 @@ color: #fff;
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">R</div>
-                <div class="quarto-category">Basedosdados</div>
+                <div class="quarto-category">r-spatial</div>
+                <div class="quarto-category">Geocomputação</div>
                 <div class="quarto-category">Tutorial</div>
-                <div class="quarto-category">Português</div>
               </div>
                   </div>
   </div>
@@ -257,12 +257,12 @@ color: #fff;
 
 
 
-<section id="introdução" class="level1">
-<h1>Introdução</h1>
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
 <p>Muitos amigos me perguntam como fazer operações espaciais no <code>R</code>. Então, decidi criar essa rotina muito simples, com o mínimo para começar e algumas operações básicas.</p>
 <p>Como eu já disse no <a href="https://baarthur.github.io/posts/2023-06-20-basedosdados/">post sobre a Base dos Dados</a>: crie um R Project e seja organizado, ajude o você de amanhã! Ele vai agradecer.</p>
-<section id="links-úteis" class="level2">
-<h2 class="anchored" data-anchor-id="links-úteis">Links úteis</h2>
+<section id="links-úteis" class="level3">
+<h3 class="anchored" data-anchor-id="links-úteis">Links úteis</h3>
 <ul>
 <li>A melhor referência que eu conheço para dados espaciais no R: O livro <a href="https://r.geocompx.org/">Geocomputation With R</a>.</li>
 <li>Livro em português lançado recentemente. Ainda não tive oportunidade de ler, mas parece muito bom!
@@ -271,7 +271,7 @@ color: #fff;
 </ul></li>
 <li>Excelentes tutoriais também no <a href="https://r-spatial.org/">r-spatial.org</a></li>
 <li><a href="https://ipeagit.github.io/geobr/">geobr</a>: mapas brasileiros em alta qualidade no R!</li>
-<li><a href="https://ipeagit.github.io/aopdata/">aopdata</a>: Projeto Acesso a Oportunidades do Ipea, com base muito rica para download direto no seu R</li>
+<li><a href="https://ipeagit.github.io/aopdata/">aopdata</a>: Projeto Acesso a Oportunidades do Ipea, com base muito rica para download direto no R.</li>
 <li><a href="https://geosampa.prefeitura.sp.gov.br/PaginasPublicas/_SBC.aspx">Geosampa</a>: portal da Prefeitura de São Paulo com diversos dados geolocalizados</li>
 <li><a href="https://bhmap.pbh.gov.br/v2/mapa/idebhgeo">BHMap</a> e <a href="https://idesisema.meioambiente.mg.gov.br/webgis">IDE Sistema</a>: idem, para BH e o Governo de Minas</li>
 <li><a href="https://mapbiomas.org/">Mapbiomas</a>: nunca usei, mas é referência para o pessoal que trabalha com meio ambiente.</li>
@@ -279,24 +279,26 @@ color: #fff;
 </ul>
 </section>
 </section>
-<section id="setup" class="level1">
-<h1>Setup</h1>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>Defina um bloco de código (<code>Ctrl</code> + <code>Alt</code> + <code>I</code>) para chamar os pacotes necessários. Use a opção <code>#| label: setup</code>, como abaixo, para ele sempre ser executado no começo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># geral e tratamento de dados</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># geral e tratamento de dados</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>here() starts at /Users/baarthur/Library/CloudStorage/OneDrive-Personal/Documentos/R/Projects/baarthur.github.io</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'janitor'</code></pre>
@@ -308,16 +310,17 @@ Attaching package: 'janitor'</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     </code></pre>
+✔ purrr     1.0.2     </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -327,26 +330,28 @@ Attaching package: 'janitor'</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># operações espaciais</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># operações espaciais</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bases de dados</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geobr)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sidrar)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># bases de dados</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geobr)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sidrar)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="carregando-dados" class="level1">
-<h1>Carregando dados</h1>
-<section id="da-internet" class="level2">
-<h2 class="anchored" data-anchor-id="da-internet">Da internet</h2>
+<section id="carregando-dados" class="level2">
+<h2 class="anchored" data-anchor-id="carregando-dados">Carregando dados</h2>
+<section id="da-internet" class="level3">
+<h3 class="anchored" data-anchor-id="da-internet">Da internet</h3>
 <p>Vários shapefiles brasileiros estão disponíveis online. Alguns podem ser baixados direto no <code>R</code>, como o <code>{geobr}</code> e o <code>{aopdata}</code>. Nesse exemplo, vamos baixar o shapefile dos municípios mineiros usando o <code>{geobr}</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -375,8 +380,8 @@ Attaching package: 'janitor'</code></pre>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="do-computador" class="level2">
-<h2 class="anchored" data-anchor-id="do-computador">Do computador</h2>
+<section id="do-computador" class="level3">
+<h3 class="anchored" data-anchor-id="do-computador">Do computador</h3>
 <p>Neste exemplo, vamos carregar dois shapefiles para fazer operações espaciais: a malha de municípios mineiros, no formato <code>.shp</code>, e um mapa ferroviário, no formato do Google Earth (<code>.kml</code>). Usando o pacote <code>{sf}</code>, carregamos os shapefiles com <code>st_read()</code>. Supondo que você tem uma pasta chamada <code>shp</code> dentro da pasta <code>data</code> com seus shapefiles:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -425,8 +430,8 @@ Geodetic CRS:  WGS 84</code></pre>
 <p>No Quarto (<code>.qmd</code>) e no RMarkdown (<code>.Rmd</code>), usamos a função <code>here()</code> do pacote homônimo para passar endereços relativos. Isso evita a bagunça que acontece com a dupla <code>setwd()</code>/<code>getwd()</code> e a chatice de ficar invertendo barras nos caminhos absolutos. Os endereços relativos são <em>relativos</em> à pasta origem do seu projeto, porque o R Project entende qur você está partindo dali.</p>
 </div>
 </section>
-<section id="compatibilidade-de-coordenadas" class="level2">
-<h2 class="anchored" data-anchor-id="compatibilidade-de-coordenadas">Compatibilidade de coordenadas</h2>
+<section id="compatibilidade-de-coordenadas" class="level3">
+<h3 class="anchored" data-anchor-id="compatibilidade-de-coordenadas">Compatibilidade de coordenadas</h3>
 <p>Existem diferentes padrões de coordenadas (<strong>CRS</strong>, de <em>Coordinate Reference System</em>): o mais comum é o WGS 84, usado nos GPS e no Google Maps. Mas, como a terra não é plana, alguns padrões são mais adequados para locais diferentes. No Brasil, mapas administrativos costumam usar o Sirgas 2000 e suas variantes. Por isso, temos ficar atentos se nossos shapefiles estão no mesmo padrão! Para verificar:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -505,9 +510,9 @@ GEOGCRS["WGS 84",
 </div>
 </section>
 </section>
-<section id="filtrar-shapefiles" class="level1">
-<h1>Filtrar shapefiles</h1>
-<p>Suponha que queremos filtrar as cidades que são artravessadas pela Estrada Real. Podemos fazer isso com o <code>st_filter()</code>. Mas antes, um resumo sobre as operações espaciais:</p>
+<section id="filtrar-shapefiles" class="level2">
+<h2 class="anchored" data-anchor-id="filtrar-shapefiles">Filtrar shapefiles</h2>
+<p>Suponha que queremos filtrar as cidades que são atravessadas por algumas ferrovias. Podemos fazer isso com o <code>st_filter()</code>. Mas antes, um resumo sobre as operações espaciais:</p>
 <p>O pacte <code>{sf}</code> contém uma série de funções que computam relações topológicas entre objetos espaciais (da classe <code>simple.feature</code>). Por exemplo: <code>st_intersects(x,y)</code> indica se <code>x</code> cruza <code>y</code>; <code>st_covers(x,y)</code>, se <code>x</code> cobre <code>y</code> e o contrário por <code>st_covered_by(x,y)</code> e assim em diante. Leia mais sobre essas operações no excelente <a href="https://r.geocompx.org/geometry-operations.html">livro do Robin Lovelace</a> e no site do <a href="http://postgis.net/workshops/postgis-intro/spatial_relationships.html">PostGIS</a>, pois as operações realizadas em SQL são basicamente as mesmsas que o <code>{sf}</code> faz no <code>R</code>.</p>
 <p>Essas operações espaciais também podem ser usadas como predicado para filtrar ou juntar dados. Nesse exemplo, vamos usar o predicado <code>st_intersects</code>:</p>
 <div class="cell">
@@ -518,11 +523,11 @@ GEOGCRS["WGS 84",
 </div>
 <p>O novo objeto contém 190 municípios: apenas aqueles atravessados pelas ferrovias contidas no <code>.kml</code>. Alternativamente, podemos só salvar o novo objeto em cima do antigo: <code>shp_mg_muni &lt;- shp_mg_muni %&gt;% (...)</code></p>
 </section>
-<section id="combinar-bases" class="level1">
-<h1>Combinar bases</h1>
+<section id="combinar-bases" class="level2">
+<h2 class="anchored" data-anchor-id="combinar-bases">Combinar bases</h2>
 <p>Outra operação poderosa no R é combinar informações de uma base com um shapefile. Nesse exemplo, vamos usar uma base de população municipal do IBGE para cruzar com o shapefile de cidades mineiras.</p>
-<section id="baixando-dados-do-ibge-com-o-sidrar" class="level2">
-<h2 class="anchored" data-anchor-id="baixando-dados-do-ibge-com-o-sidrar">Baixando dados do IBGE com o SidraR</h2>
+<section id="baixando-dados-do-ibge-com-o-sidrar" class="level3">
+<h3 class="anchored" data-anchor-id="baixando-dados-do-ibge-com-o-sidrar">Baixando dados do IBGE com o SidraR</h3>
 <p>O Sidra —Sistema IBGE de Recuperação Automática— pode ser acessado diretamente pelo R. Você pode tanto buscar termos específicos, usando <code>search_sidra("termo")</code>, quanto baixar diretamente uma tabela que você já conheça. Vamos usar o exemplo completo: vou buscar informações sobre população.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -578,30 +583,22 @@ $geo
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: get_sidra</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_pop)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_pop)</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  Nível Territorial (Código) Nível Territorial Unidade de Medida (Código)
-2                          6         Município                         45
-3                          6         Município                         45
-4                          6         Município                         45
-5                          6         Município                         45
-6                          6         Município                         45
-7                          6         Município                         45
-  Unidade de Medida  Valor Município (Código)                  Município
-2           Pessoas  22516            1100015 Alta Floresta D'Oeste - RO
-3           Pessoas 111148            1100023             Ariquemes - RO
-4           Pessoas   5067            1100031                Cabixi - RO
-5           Pessoas  86416            1100049                Cacoal - RO
-6           Pessoas  16088            1100056            Cerejeiras - RO
-7           Pessoas  15213            1100064     Colorado do Oeste - RO
-  Ano (Código)  Ano Variável (Código)                     Variável
-2         2021 2021              9324 População residente estimada
-3         2021 2021              9324 População residente estimada
-4         2021 2021              9324 População residente estimada
-5         2021 2021              9324 População residente estimada
-6         2021 2021              9324 População residente estimada
-7         2021 2021              9324 População residente estimada</code></pre>
+<pre><code>Rows: 5,570
+Columns: 11
+$ `Nível Territorial (Código)` &lt;chr&gt; "6", "6", "6", "6", "6", "6", "6", "6", "…
+$ `Nível Territorial`          &lt;chr&gt; "Município", "Município", "Município", "M…
+$ `Unidade de Medida (Código)` &lt;chr&gt; "45", "45", "45", "45", "45", "45", "45",…
+$ `Unidade de Medida`          &lt;chr&gt; "Pessoas", "Pessoas", "Pessoas", "Pessoas…
+$ Valor                        &lt;dbl&gt; 22516, 111148, 5067, 86416, 16088, 15213,…
+$ `Município (Código)`         &lt;chr&gt; "1100015", "1100023", "1100031", "1100049…
+$ Município                    &lt;chr&gt; "Alta Floresta D'Oeste - RO", "Ariquemes …
+$ `Ano (Código)`               &lt;chr&gt; "2021", "2021", "2021", "2021", "2021", "…
+$ Ano                          &lt;chr&gt; "2021", "2021", "2021", "2021", "2021", "…
+$ `Variável (Código)`          &lt;chr&gt; "9324", "9324", "9324", "9324", "9324", "…
+$ Variável                     &lt;chr&gt; "População residente estimada", "Populaçã…</code></pre>
 </div>
 </div>
 <p>E assim, baixamos a população de 2021 para todos os municípios brasileiros. No entanto, essa tabela do IBGE não está organizada da melhor forma pra processamento no R. Podemos melhorar removendo as informações desnecessárias (<code>select()</code>) e limpando os nomes (<code>clean_names()</code> e <code>rename()</code>) para compatibilizar com a outra tabela.</p>
@@ -649,8 +646,8 @@ $geo
 </div>
 </div>
 </section>
-<section id="juntando-população-e-shapefile" class="level2">
-<h2 class="anchored" data-anchor-id="juntando-população-e-shapefile">Juntando: população e shapefile</h2>
+<section id="juntando-população-e-shapefile" class="level3">
+<h3 class="anchored" data-anchor-id="juntando-população-e-shapefile">Juntando: população e shapefile</h3>
 <p>Agora é partir para o abraço. Vamos jogar as informações do IBGE no shapefile —ou vice-versa; nesse caso (não é sempre), a ordem não importa.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -665,10 +662,10 @@ $geo
 </div>
 </section>
 </section>
-<section id="visualização" class="level1">
-<h1>Visualização</h1>
-<section id="mapa-de-municípios-e-população" class="level2">
-<h2 class="anchored" data-anchor-id="mapa-de-municípios-e-população">Mapa de municípios e população</h2>
+<section id="visualização" class="level2">
+<h2 class="anchored" data-anchor-id="visualização">Visualização</h2>
+<section id="mapa-de-municípios-e-população" class="level3">
+<h3 class="anchored" data-anchor-id="mapa-de-municípios-e-população">Mapa de municípios e população</h3>
 <p>Vamos plotar o mapa de Minas Gerais, colorindo de acordo com a população.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -715,7 +712,7 @@ $geo
 <span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">option =</span> <span class="st">"magma"</span>,</span>
 <span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
 <span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"População"</span>, </span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">big.mark =</span> <span class="st">" "</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
 <span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"População dos municípios mineiros em 2021"</span>,</span>
@@ -739,10 +736,10 @@ $geo
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"lightgrey"</span></span>
 <span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">"YlOrRd"</span>,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">"YlGnBu"</span>,</span>
 <span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="dv">1</span>,</span>
 <span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"População"</span>, </span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">big.mark =</span> <span class="st">" "</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
 <span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"População dos municípios mineiros em 2021"</span>,</span>
@@ -754,72 +751,118 @@ $geo
 <p><img src="index_files/figure-html/cool-plot-brewer-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="mapa-de-municípios-e-ferrovias" class="level2">
-<h2 class="anchored" data-anchor-id="mapa-de-municípios-e-ferrovias">Mapa de municípios e ferrovias</h2>
+<section id="melhorando-o-mapa" class="level4">
+<h4 class="anchored" data-anchor-id="melhorando-o-mapa">Melhorando o mapa</h4>
+<p>De cara, eu acho que podemos melhorar esse mapa de duas formas:</p>
+<ol type="1">
+<li>A escala não é muito útil. Temos só uma cidade com mais de 1 milhão de habitantes e só 4 com mais de 500 mil, então uma escala <code>binned</code> pode ser mais útil do que uma contínua.</li>
+<li>A às vezes os limites municipais mais poluem do que ajudam. Nesse caso, eu gosto de definir <code>color = NA</code> ou deixar <code>color</code> na mesma escala do <code>fill</code>.</li>
+</ol>
+<ul>
+<li>Vai depender do tamanho da sua malha e da precisão dos shapefiles: se ficar um vazio esquisito entre um polígono e outro, unifique color e fill.</li>
+</ul>
+<p>Primeiro, vamos definir os argumentos de <code>scale_...</code> do lado de fora, para aplicar no <code>fill</code> e no <code>color</code> de forma unificada e diminuir o risco de erro humano. Nesse processo, vamos definir os <code>breaks</code> meio no olho, mas se quiser você pode usar quantis. Escolhi os valores abaixo vendo o que ficava melhor no mapa, tentando criar um equilíbrio de forma que permita distinguir as disparidades regionais, mas sem prejudicar muito o conforto visual. Para usar quantis, é só usar em <code>breaks</code> a função <code>quantile(x, probs = seq(0,1, p))</code> em que <code>x</code> é a variável sendo quantificada (no caso, <code>pop</code>) e definimos o vetor de probabilidades como sendo a sequência de 0 a 1 de p em p.&nbsp;Por exemplo: para quartis, p = 0,25; para decis, p = 0,10 e assim por diante.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ferro-plot</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: scale-args</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>shp_br <span class="ot">&lt;-</span> <span class="fu">read_state</span>(<span class="at">showProgress =</span> F)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using year 2010</code></pre>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>scale_args <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">"YlGnBu"</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="dv">1</span>,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"População"</span>, </span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">big.mark =</span> <span class="st">" "</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>),</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">5000</span>, <span class="dv">25000</span>, <span class="dv">50000</span>, <span class="dv">100000</span>, <span class="dv">250000</span>, <span class="dv">500000</span>, <span class="dv">2500000</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Agora, precisamos de um pouco de atenção: salvamos os argumentos numa lista e para usá-los na escala, usamos a função <code>do.call(f,x)</code>, que faz uma chamada <code>call</code> à função <code>f()</code> usando os argumentos de <code>x</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: coolest-plot-brewer</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_mg_muni,</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> pop, <span class="at">color =</span> pop)) <span class="sc">+</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do.call</span>(scale_fill_fermenter, scale_args) <span class="sc">+</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do.call</span>(scale_color_fermenter, scale_args) <span class="sc">+</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"População dos municípios mineiros em 2021"</span>,</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: IBGE (2023)"</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/coolest-plot-brewer-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="mapa-de-municípios-e-ferrovias" class="level3">
+<h3 class="anchored" data-anchor-id="mapa-de-municípios-e-ferrovias">Mapa de municípios e ferrovias</h3>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ferro-plot</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_br <span class="sc">%&gt;%</span> <span class="fu">filter</span>(abbrev_state <span class="sc">!=</span> <span class="st">"MG"</span>),</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"grey85"</span>,</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey60"</span></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_mg_muni,</span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"grey95"</span>,</span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey85"</span></span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_ferrovias <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"BH - Nova Era"</span>, <span class="st">"Nova Era - Pedro Nolasco"</span>)),</span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"EFVM"</span>, <span class="at">linetype =</span> <span class="st">"Operando"</span>)</span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_ferrovias <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Horto - Salvador"</span>, <span class="st">"Corinto - Pirapora"</span>)),</span>
-<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"FCA"</span>, <span class="at">linetype =</span> <span class="st">"Operando"</span>)</span>
-<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_ferrovias <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Name <span class="sc">==</span> <span class="st">"Horto - Itabirito"</span>),</span>
-<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"FdA"</span>, <span class="at">linetype =</span> <span class="st">"Obra abandonada"</span>)</span>
-<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_ferrovias <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Name <span class="sc">==</span> <span class="st">"Itabirito - Rio"</span>),</span>
-<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"FdA"</span>, <span class="at">linetype =</span> <span class="st">"Operando"</span>)</span>
-<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb37-31"><a href="#cb37-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb37-32"><a href="#cb37-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"EFVM"</span> <span class="ot">=</span> <span class="st">"#3cc954"</span>, <span class="st">"FCA"</span> <span class="ot">=</span> <span class="st">"#60a8f6"</span>, <span class="st">"FdA"</span> <span class="ot">=</span> <span class="st">"#2a4ea1"</span>),</span>
-<span id="cb37-33"><a href="#cb37-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Ferrovia"</span></span>
-<span id="cb37-34"><a href="#cb37-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb37-35"><a href="#cb37-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(</span>
-<span id="cb37-36"><a href="#cb37-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Operando"</span> <span class="ot">=</span> <span class="st">"solid"</span>, <span class="st">"Obra abandonada"</span> <span class="ot">=</span> <span class="st">"dashed"</span>),</span>
-<span id="cb37-37"><a href="#cb37-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Status"</span></span>
-<span id="cb37-38"><a href="#cb37-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb37-39"><a href="#cb37-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb37-40"><a href="#cb37-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Minas Gerais: algumas ferrovias"</span></span>
-<span id="cb37-41"><a href="#cb37-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb37-42"><a href="#cb37-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(</span>
-<span id="cb37-43"><a href="#cb37-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_mg_muni <span class="sc">%&gt;%</span> <span class="fu">filter</span>(code_muni <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3106200</span>, <span class="dv">3136702</span>, <span class="dv">3127701</span>, <span class="dv">3143302</span>)),</span>
-<span id="cb37-44"><a href="#cb37-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> name_muni),</span>
-<span id="cb37-45"><a href="#cb37-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
-<span id="cb37-46"><a href="#cb37-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">2.5</span></span>
-<span id="cb37-47"><a href="#cb37-47" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb37-48"><a href="#cb37-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">50.75</span>, <span class="sc">-</span><span class="fl">40.25</span>) <span class="sc">+</span></span>
-<span id="cb37-49"><a href="#cb37-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="fl">22.75</span>, <span class="sc">-</span><span class="fl">14.5</span>) <span class="sc">+</span></span>
-<span id="cb37-50"><a href="#cb37-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb37-51"><a href="#cb37-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb37-52"><a href="#cb37-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="cn">NA</span>)</span>
-<span id="cb37-53"><a href="#cb37-53" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb37-54"><a href="#cb37-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>shp_br <span class="ot">&lt;-</span> <span class="fu">read_state</span>(<span class="at">showProgress =</span> F)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using year 2010</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ferro-plot</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_br <span class="sc">%&gt;%</span> <span class="fu">filter</span>(abbrev_state <span class="sc">!=</span> <span class="st">"MG"</span>),</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"grey85"</span>,</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey60"</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_mg_muni,</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"grey95"</span>,</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey90"</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_ferrovias <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"BH - Nova Era"</span>, <span class="st">"Nova Era - Pedro Nolasco"</span>)),</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"EFVM"</span>, <span class="at">linetype =</span> <span class="st">"Operando"</span>)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_ferrovias <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Horto - Salvador"</span>, <span class="st">"Corinto - Pirapora"</span>)),</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"FCA"</span>, <span class="at">linetype =</span> <span class="st">"Operando"</span>)</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_ferrovias <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Name <span class="sc">==</span> <span class="st">"Horto - Itabirito"</span>),</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"FdA"</span>, <span class="at">linetype =</span> <span class="st">"Obra abandonada"</span>)</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_ferrovias <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Name <span class="sc">==</span> <span class="st">"Itabirito - Rio"</span>),</span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"FdA"</span>, <span class="at">linetype =</span> <span class="st">"Operando"</span>)</span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"EFVM"</span> <span class="ot">=</span> <span class="st">"#3cc954"</span>, <span class="st">"FCA"</span> <span class="ot">=</span> <span class="st">"#60a8f6"</span>, <span class="st">"FdA"</span> <span class="ot">=</span> <span class="st">"#2a4ea1"</span>),</span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Ferrovia"</span></span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(</span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Operando"</span> <span class="ot">=</span> <span class="st">"solid"</span>, <span class="st">"Obra abandonada"</span> <span class="ot">=</span> <span class="st">"dashed"</span>),</span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Status"</span></span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Minas Gerais: algumas ferrovias"</span></span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(</span>
+<span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> shp_mg_muni <span class="sc">%&gt;%</span> <span class="fu">filter</span>(code_muni <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3106200</span>, <span class="dv">3136702</span>, <span class="dv">3127701</span>, <span class="dv">3143302</span>)),</span>
+<span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> name_muni),</span>
+<span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb39-46"><a href="#cb39-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">2.5</span></span>
+<span id="cb39-47"><a href="#cb39-47" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-48"><a href="#cb39-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">50.75</span>, <span class="sc">-</span><span class="fl">40.25</span>) <span class="sc">+</span></span>
+<span id="cb39-49"><a href="#cb39-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="fl">22.75</span>, <span class="sc">-</span><span class="fl">14.5</span>) <span class="sc">+</span></span>
+<span id="cb39-50"><a href="#cb39-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb39-51"><a href="#cb39-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb39-52"><a href="#cb39-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="cn">NA</span>)</span>
+<span id="cb39-53"><a href="#cb39-53" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb39-54"><a href="#cb39-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in st_point_on_surface.sfc(sf::st_zm(x)): st_point_on_surface may not
 give correct results for longitude/latitude data</code></pre>

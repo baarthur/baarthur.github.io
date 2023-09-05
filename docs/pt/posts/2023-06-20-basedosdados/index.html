@@ -182,7 +182,6 @@ color: #fff;
                 <div class="quarto-category">R</div>
                 <div class="quarto-category">Basedosdados</div>
                 <div class="quarto-category">Tutorial</div>
-                <div class="quarto-category">Português</div>
               </div>
                   </div>
   </div>
@@ -245,13 +244,13 @@ color: #fff;
 
 
 
-<section id="introdução" class="level1">
-<h1>Introdução</h1>
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
 <p>A <a href="https://basedosdados.org/">Base dos Dados</a> é uma platadorma excelente para obter dados oficiais e tratados de forma conveniente. Podemos baixá-la direto no R com facilidade, basta prestarmos atenção a algumas etapas.</p>
 <p>Esta é uma rotina simplificada. Veja mais no Workshop: <a href="https://www.youtube.com/watch?v=M9ayiseIjvI&amp;t=2781s&amp;ab_channel=BasedosDados">Aprenda a acessar dados públicos em R</a>, da Base dos Dados.</p>
 </section>
-<section id="primeiros-passos" class="level1">
-<h1>Primeiros passos</h1>
+<section id="primeiros-passos" class="level2">
+<h2 class="anchored" data-anchor-id="primeiros-passos">Primeiros passos</h2>
 <p>Sempre que for trabalhar em um novo projeto, aproveite as funcionalidades do R Studio. Vá em <code>File</code> &gt; <code>New Project...</code> &gt; <code>New Directory</code> ou <code>Existing Directory</code>. Segundo passo: criar um arquivo para a rotina (<code>File</code> &gt; <code>New File...</code> &gt; <code>...</code>). Pode ser um R Script, um R Markdown ou um Quarto Markdown (recomendo este último).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -279,8 +278,8 @@ color: #fff;
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(basedosdados)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="google-cloud" class="level2">
-<h2 class="anchored" data-anchor-id="google-cloud">Google Cloud</h2>
+<section id="google-cloud" class="level3">
+<h3 class="anchored" data-anchor-id="google-cloud">Google Cloud</h3>
 <p>Para baixar os dados no R, vamos precisar criar um projeto no Google Cloud. Os projetos do Google Cloud são muito usados em diversas situações (ex.: APIs do Google Maps) e a Google nos dá um limite gratuito (1 TB por dia ou 200 dólares por mês): mas não se preocupe, você não vai estourar essa cota.</p>
 <ol type="1">
 <li>Vá até <a href="https://cloud.google.com/">cloud.google.com/</a></li>
@@ -297,8 +296,8 @@ color: #fff;
 <li>Após criar o seu projeto, você será direcionado à página do projeto. Agora, é só configurar as funções do pacote <code>{basedosdados}</code> no R para acessar o seu projeto.</li>
 </ol>
 </section>
-<section id="base-dos-dados" class="level2">
-<h2 class="anchored" data-anchor-id="base-dos-dados">Base dos dados</h2>
+<section id="base-dos-dados" class="level3">
+<h3 class="anchored" data-anchor-id="base-dos-dados">Base dos dados</h3>
 <p>Vamos chamar a função <code>set_billing_id()</code>. Dentro dela, você vai inserir o ID do seu projeto (entre aspas, porque é um <code>character</code>), disponível aqui:</p>
 <p><img src="img/bd_3.png" height="400"></p>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -324,11 +323,11 @@ color: #fff;
 <p>Você deve ver a mensagem “Project keys set successfully”.</p>
 </section>
 </section>
-<section id="chamada-sql" class="level1">
-<h1>Chamada SQL</h1>
+<section id="chamada-sql" class="level2">
+<h2 class="anchored" data-anchor-id="chamada-sql">Chamada SQL</h2>
 <p>A melhor forma de baixar dados da BD pelo R é fazendo uma chamada SQL (lê-se “síquel” ou <em>sequel</em>). <a href="https://pt.wikipedia.org/wiki/SQL">SQL</a> é uma linguagem de pesquisa, muito usada para acessar base dos dados. Mas não se preocupe, não precisamos dominar SQL! Basta aprender a estrutura básica.</p>
-<section id="query-sintaxe-básica" class="level2">
-<h2 class="anchored" data-anchor-id="query-sintaxe-básica">Query: sintaxe básica</h2>
+<section id="query-sintaxe-básica" class="level3">
+<h3 class="anchored" data-anchor-id="query-sintaxe-básica">Query: sintaxe básica</h3>
 <p>Na página da base que você pretende baixar (ex.: <a href="https://basedosdados.org/dataset/9fa532fb-5681-4903-b99d-01dc45fd527a?table=a04fc85d-908a-4393-b51d-1bd517a40210">PNAD Contínua</a>), copie o código que está na aba SQL: ele é a sua <em>query</em>, que você vai usar para requisitar uma informação. Você vai criar um objeto no <code>R</code> para guardá-la.</p>
 <p>Observe que a <code>query</code> tem a seguinte estrutura &gt; <code>SELECT</code> * <code>FROM</code> `basedosdados.br_ibge_pnadc.microdados` <code>LIMIT 100</code></p>
 <p>Vamos entendê-la:</p>
@@ -423,8 +422,8 @@ color: #fff;
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="baixar-a-query" class="level2">
-<h2 class="anchored" data-anchor-id="baixar-a-query">Baixar a query</h2>
+<section id="baixar-a-query" class="level3">
+<h3 class="anchored" data-anchor-id="baixar-a-query">Baixar a query</h3>
 <p>Agora, podemos baixar a query. Podemos fazer isso de duas formas: salvando em um objeto do R ou salvando em um .csv no computador. Eu prefiro a segunda opção, porque permite carregar os dados depois sem ter que baixar tudo de novo. Na hora de baixar os dados, vai aparecer uma opção no console do <code>R</code> pedindo para autenticar o usuário no seu navegador (ou digite <code>2</code>, se o seu email já aparecer) e prossiga.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
