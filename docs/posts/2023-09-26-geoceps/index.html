@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.60">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Arthur Bazolli">
+<meta name="dcterms.date" content="2023-09-26">
+<meta name="description" content="A partir dos dados da RAIS">
+
+<title>Arthur Bazolli Alvarenga - Geolocalizando CEPs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../input/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>
+h1 {
+color: #fff;
+}
+</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Arthur Bazolli Alvarenga - Geolocalizando CEPs">
+<meta property="og:description" content="A partir dos dados da RAIS">
+<meta property="og:image" content="api-create.png">
+<meta property="og:site-name" content="Arthur Bazolli">
+<meta property="og:locale" content="pt-BR">
+<meta name="twitter:title" content="Arthur Bazolli Alvarenga - Geolocalizando CEPs">
+<meta name="twitter:description" content="A partir dos dados da RAIS">
+<meta name="twitter:image" content="api-create.png">
+<meta name="twitter:creator" content="@baarthur0">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Arthur Bazolli Alvarenga</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html" rel="" target="">
+ <span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../input/cv.pdf" rel="" target="">
+ <span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pt" rel="" target="">
+ <span class="menu-text">Português</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../" rel="" target="">
+ <span class="menu-text">English</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Geolocalizando CEPs</h1>
+                  <div>
+        <div class="description">
+          A partir dos dados da RAIS
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">r-spatial</div>
+                <div class="quarto-category">Geocomputação</div>
+                <div class="quarto-category">Tutorial</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://baarthur.github.io/">Arthur Bazolli</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://www2.ufjf.br/poseconomia/">
+              PPGE/UFJF
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 26, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#preparar-a-base-de-ceps" id="toc-preparar-a-base-de-ceps" class="nav-link" data-scroll-target="#preparar-a-base-de-ceps">Preparar a base de CEPs</a></li>
+  <li><a href="#configurar-a-api" id="toc-configurar-a-api" class="nav-link" data-scroll-target="#configurar-a-api">Configurar a API</a></li>
+  <li><a href="#geocodificar-os-ceps" id="toc-geocodificar-os-ceps" class="nav-link" data-scroll-target="#geocodificar-os-ceps">Geocodificar os CEPs</a>
+  <ul class="collapse">
+  <li><a href="#alternativa-1-tudo-de-uma-vez" id="toc-alternativa-1-tudo-de-uma-vez" class="nav-link" data-scroll-target="#alternativa-1-tudo-de-uma-vez">Alternativa 1: tudo de uma vez</a></li>
+  <li><a href="#alternativa-2-safely" id="toc-alternativa-2-safely" class="nav-link" data-scroll-target="#alternativa-2-safely">Alternativa 2: safely</a></li>
+  <li><a href="#alternativa-3-por-partes-safely" id="toc-alternativa-3-por-partes-safely" class="nav-link" data-scroll-target="#alternativa-3-por-partes-safely">Alternativa 3: por partes, safely</a></li>
+  </ul></li>
+  <li><a href="#bônus-background-jobs" id="toc-bônus-background-jobs" class="nav-link" data-scroll-target="#bônus-background-jobs">Bônus: background jobs</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>Passo a passo para geolocalizar CEPs. Aqui vamos usar o pacote <code>{mapsapi}</code> do Google. Outra possibilidade é o <code>{cepR}</code> (CepAberto), mas tem um limite muito baixo de requisições por dia e, na minha experiência, é menos preciso. Tem ainda o <code>{osmdata}</code> (Open Street Map), mas o uso é um pouco mais complicado.</p>
+<p>O exemplo parte da RAIS, mas qualquer outra base pode ser usada. Cada API tem sua vantagem e desvantagem, mas a rotina geral é a mesma: preparar a base &gt; submeter a busca (<code>query</code>) &gt; salvar os dados &gt; carregar.</p>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>Carregar os pacotes necessários</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapsapi)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="preparar-a-base-de-ceps" class="level2">
+<h2 class="anchored" data-anchor-id="preparar-a-base-de-ceps">Preparar a base de CEPs</h2>
+<p>Partindo da RAIS, vamos pegar os CEPs que queremos buscar e deixá-los no formato necessário. Como a base é muito grande, isso pode levar um tempo.</p>
+<p>Supondo que a RAIS está em um arquivo único: leia-o e salve em um objeto. Aqui usamos a função <code>read_fst()</code>, substitua por <code>read_csv()</code>, <code>readRDS()</code> ou a função apropriada para o seu tipo de arquivo.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para evitar a confusão de diretórios envolvendo <code>setwd()</code>/<code>getwd()</code> e a inversão de barras, recomendo criar um R Project. Ele já considera que todos os seus diretórios são relativos à pasta principal do projeto, assim, todos os diretórios podem ser relativos a ele. Ex.: <code>read_csv("data/rais.csv")</code> em vez de <code>read_csv("C:/Documents/User/Projects/trabalho/data/rais.csv")</code>.</p>
+<p>É bom ainda usar a função <code>here()</code> do pacote homônimo para garantir que o diretório será lido corretamente, principalmente quando se usar RMarkdown (<code>.Rmd</code>)/Quarto (<code>.qmd</code>), mas também nos scripts <code>.R</code>, como no exemplo abaixo.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-rais</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df_estab <span class="ot">&lt;-</span> fst<span class="sc">::</span><span class="fu">read_fst</span>(<span class="fu">here</span>(<span class="st">"data/db/df_rais_estab.fst"</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora, vamos filtrar essa base para excluir os CEPs duplicados e remover as outras informações, não vamos precisar delas agoras. Com isso, vamos gerar uma base de CEPs. O procedimento é o seguinte:</p>
+<ol type="1">
+<li>Primeiro, selecionamos só a variável que contém o cep (no meu caso, <code>cep</code>).</li>
+<li>Isso não é obrigatório, mas ajuda: modificamos (usando <code>mutate()</code>) a variável <code>cep</code> de duas formas,</li>
+</ol>
+<ul>
+<li>primeiro, removendo o hífen, se houver</li>
+<li>segundo, padronizando o CEP como uma variável do tipo <code>character</code> com 8 caracteres. No caso dos CEPs de SP Capital, um cuidado adicional: como eles começam com um zero à esquerda, se <code>cep</code> estivesse antes no formato de número, inserimo-lo novamente com a função <code>str_pad()</code>.</li>
+</ul>
+<ol start="3" type="1">
+<li>Passamos a função <code>distinct()</code> para remover duplicados.</li>
+<li>Salvamos na pasta adequada e com nome legível para usar depois.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Salve essa base na sua pasta de dados para usar novamente se precisar, principalmente se a API travar</li>
+<li>Use um formato como o <code>.RDS</code> ou o <code>.fst</code>, que ocupam menos espaço e tem leitura mais rápida. Aqui, vamos usar o <code>.RDS</code> para já salvar direto no formato de vetor, que vamos precisar lá na frente.</li>
+</ol>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: filter-ceps</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df_ceps <span class="ot">&lt;-</span> df_estab <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cep) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cep =</span> <span class="fu">str_remove</span>(cep, <span class="st">"-"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cep =</span> <span class="fu">str_pad</span>(<span class="fu">as.character</span>(cep), <span class="at">width =</span> <span class="dv">8</span>, <span class="at">side =</span> <span class="st">"left"</span>, <span class="at">pad =</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># transformar em vetor</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>df_ceps <span class="ot">&lt;-</span> df_ceps<span class="sc">$</span>cep <span class="sc">%&gt;%</span> <span class="fu">as.vector</span>()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>df_ceps <span class="sc">%&gt;%</span> <span class="fu">saveRDS</span>(<span class="fu">here</span>(<span class="st">"data/db/df_ceps.RDS"</span>))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="configurar-a-api" class="level2">
+<h2 class="anchored" data-anchor-id="configurar-a-api">Configurar a API</h2>
+<p>Agora, selecionamos a API desejada e fazemos a <code>query</code>. O <code>{mapsapi}</code> é minha escolha favorita para esse tipo de tarefa porque contém as informações mais precisas e é fácil de usar depois que você configura a chave.</p>
+<p>Primeiro, crie um projeto no Google Cloud. Se você não sabe fazer isso, veja meu passo a passo no post <a href="https://baarthur.github.io/pt/posts/2023-06-20-basedosdados/">Acessando a Base dos Dados no R</a>.</p>
+<p>Depois disso, vá ao <a href="https://console.cloud.google.com">console</a> do seu projeto, clique em <strong>APIs e serviços</strong>, depois em credenciais e crie uma chave API, como na imagem abaixo.</p>
+<p><img src="api-create.png" height="200"></p>
+<p>Você vai ver um alerta do google informando que sua API não está restrita: isso significa que qualquer um que tiver acesso a ela pode usá-la livremente (e cobrar no seu cartão de crédito). Eu recomendo que, no mínimo, você restrinja a API aos serviços que vai usar. Clique no nome dela para editá-la e defina as restrições, eu selecionei 16 serviços:</p>
+<p><img src="api-restrict.png" height="400"></p>
+<p>Assim que tiver a sua API, copie a sua chave. Atenção: NUNCA compartilhe a sua chave com ninguém. Não faça upload de nenhum script que contenha sua chave! Assim que usá-la, recomendo apagar do script. Ou, melhor ainda, <a href="https://laurenilano.com/posts/api-keys/">salve no .Renviron</a>.</p>
+</section>
+<section id="geocodificar-os-ceps" class="level2">
+<h2 class="anchored" data-anchor-id="geocodificar-os-ceps">Geocodificar os CEPs</h2>
+<p>Vou apresentar aqui três formas de geocodificar os CEPs. Elas são quase idênticas, a diferença é que na primeira buscamos todos os CEPs direto, na segunda usamos uma função para “tentar” o resultado e na terceira fazemos isso aos poucos. A vantagem é reduzir o retrabalho: na primeira alternativa, se der erro, temos que voltar do começo e buscar tudo de novo. Na segunda, se der problema, temos que refazer apenas os problemáticos. A terceira é uma camada a mais de proteção: se por exemplo a sua internet cair no meio do processo, você já tem os resultados salvos para parte dos dados.</p>
+<section id="alternativa-1-tudo-de-uma-vez" class="level3">
+<h3 class="anchored" data-anchor-id="alternativa-1-tudo-de-uma-vez">Alternativa 1: tudo de uma vez</h3>
+<p>Usamos a função <code>mp_geocode</code> para geocodificação do <code>{mapsapi}</code>. Ela tem dois argumentos principais: (i) <code>key</code>, a chave API (podemos colocá-la direto na função ou salvar por fora, como abaixo) e (ii) <code>addresses</code>, que são os endereços que queremos geolocalizar. A função tem um argumento <code>postcode</code>, mas não vamos usá-lo: ele serve para limitar os endereços postais dos endereços, como nossos <code>addresses</code> já são CEPs, não faz sentido usar. O outro argumento que usamos, <code>timeout</code>, é o tempo limite (em segundos) que definimos para a API tentar buscar o CEP. Se passar esse tempo e não funcionar, ela desiste e passa para o próximo.</p>
+<blockquote class="blockquote">
+<p>Nota: neste e nos chunks abaixo, estou usando <code>message: false</code> para ocultar minha chave API.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: geocode-v1</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># chave API</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>mapsapi_key <span class="ot">&lt;-</span> <span class="st">"sua chave API"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## ou, usando .Renviron:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>mapsapi_key <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"mapsapi_key"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># query</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">## obs.: aqui selecionei só os 2 primeiros para exemplo</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>query_ceps <span class="ot">&lt;-</span> <span class="fu">mp_geocode</span>(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">addresses =</span> df_ceps[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">key =</span> mapsapi_key,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">timeout =</span> <span class="dv">11</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>05724005................................OK
+04570001................................OK</code></pre>
+</div>
+</div>
+<p>Depois disso, usamos <code>mp_get_points()</code> para obter o centroide do CEP. A função faz isso a partir de todos os endereços cadastrados no Google com esse CEP —ou seja, não reflete exatamente toda a área do CEP— mas é uma boa aproximação. Em seguida, salvamos em um objeto na pasta adequada e podemos (de preferência, em outro script) carregar para casar com a base da RAIS.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Embora o formato <code>.fst</code> tenha a melhor compressão de todas, ele não funciona com objetos espaciais. Por isso, salvamos no formato <code>.RDS</code>, que também é muito bom.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: geocode-ceps</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pegar o centroide</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>shp_ceps <span class="ot">&lt;-</span> <span class="fu">mp_get_points</span>(query_ceps)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>shp_ceps <span class="sc">%&gt;%</span> <span class="fu">saveRDS</span>(<span class="fu">here</span>(<span class="st">"data/shp/shp_ceps.RDS"</span>))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="alternativa-2-safely" class="level3">
+<h3 class="anchored" data-anchor-id="alternativa-2-safely">Alternativa 2: safely</h3>
+<p>Aqui, vamos usar a função <code>safely()</code>: como explicado nesse <a href="https://blog.curso-r.com/posts/2017-04-09-try/">excelente post</a> do curso-r, essa função serve para tentar rodar um código e, quando der erro, ela salva o erro em uma lista em vez de parar tudo. Passo a passo:</p>
+<ol type="1">
+<li>Criar uma função <code>wrapper</code> (i.e., “que embrulha”) para <code>mp_geocode()</code> e <code>mp_get_points()</code>. Essa função deve ter só um argumento: a base de dados. A chave e o timeout devem ser definidos dentro dela.</li>
+<li>Passar a base de CEPs na função que criamos, <code>safely()</code></li>
+</ol>
+<ul>
+<li>Isso envolve usar a função <code>map()</code> para mapear os dados na função.</li>
+<li>Em seguida, transpomos os dados com <code>transpose()</code> para obter uma lista com duas sublistas: os resultados e os erros. Cada sublista tem ainda uma lista para cada resultado. É lista demais mas respire fundo, vai dar tudo certo.</li>
+</ul>
+<ol start="3" type="1">
+<li>Selecionar só a lista de resultados e juntar tudo em um dataframe só com <code>bind_rows()</code></li>
+<li>Salvar em um objeto na pasta adequada. Esse objeto terá duas classes: <code>data.frame</code> e <code>sf</code>, ou Simple Feature, que é a classe dos objetos espaciais.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: geocode-v2</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># chave API</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>mapsapi_key <span class="ot">&lt;-</span> <span class="st">"sua chave API"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">## ou, usando .Renviron:</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>mapsapi_key <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"mapsapi_key"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># função envelope</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>geoceps <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mp_geocode</span>(<span class="at">addresses =</span> data, <span class="at">key =</span> mapsapi_key, <span class="at">timeout =</span> <span class="dv">11</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mp_get_points</span>()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># novamente: selecionando só 5 para exemplificar e adicionei um erro de propósito</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>query_ceps <span class="ot">&lt;-</span> df_ceps[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">%&gt;%</span> <span class="fu">map</span>(<span class="fu">safely</span>(geoceps)) <span class="sc">%&gt;%</span> <span class="fu">transpose</span>()</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># puxar só os resultados</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>shp_ceps <span class="ot">&lt;-</span> query_ceps<span class="sc">$</span>result <span class="sc">%&gt;%</span> <span class="fu">bind_rows</span>()</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar </span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>shp_ceps <span class="sc">%&gt;%</span> <span class="fu">saveRDS</span>(<span class="fu">here</span>(<span class="st">"data/shp/shp_ceps.RDS"</span>))</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>05724005................................OK
+04570001................................OK
+11721100................................OK
+03311000................................OK
+05615190................................OK</code></pre>
+</div>
+</div>
+<p>Visualizando os resultados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: view-ceps</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># conferir a classe</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(shp_ceps)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># usando kable para visualização limpa no arquivo final</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>shp_ceps <span class="sc">%&gt;%</span> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sf"         "data.frame"</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 59%">
+<col style="width: 9%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">status</th>
+<th style="text-align: left;">address</th>
+<th style="text-align: left;">address_google</th>
+<th style="text-align: left;">location_type</th>
+<th style="text-align: left;">pnt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">05724005</td>
+<td style="text-align: left;">Av. Giovanni Gronchi, 6633-2147483647 - Vila Andrade, São Paulo - SP, 05724-005, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.73669 -23.63962)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">04570001</td>
+<td style="text-align: left;">Av. Nova Independência, 552-2147483647 - Brooklin, São Paulo - SP, 04570-001, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.6888 -23.6008)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">11721100</td>
+<td style="text-align: left;">Vila Antartica, Praia Grande - SP, 11721-100, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.45468 -24.01176)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">03311000</td>
+<td style="text-align: left;">R. Apucarana, 1-1000 - Tatuapé, São Paulo - SP, 03311-000, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.56427 -23.54278)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">05615190</td>
+<td style="text-align: left;">Rua dos Três Irmãos - Vila Progredior, São Paulo - SP, 05615-190, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.7165 -23.58819)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="alternativa-3-por-partes-safely" class="level3">
+<h3 class="anchored" data-anchor-id="alternativa-3-por-partes-safely">Alternativa 3: por partes, safely</h3>
+<p>Na alternativa 2, já evitamos um bocado de retrabalho impedindo que a função pare se encontrar um erro. Agora, vamos facilitar ainda mais a nossa vida: para evitar que um apagão, queda de internet etc apague todo o seu trabalho, vamos dividir tudo em etapas e ir salvando aos poucos. O procedimento é parecido, mas vamos usar e abusar da função <code>map()</code>:</p>
+<ol type="1">
+<li>Partir o data frame em chunks (pedaços) menores. Eu sugiro ir de 5 mil em 5 mil; aqui no exemplo, vamos de 5 em 5 para os 17 primeiros dados. Para isso:</li>
+</ol>
+<ul>
+<li>A função <code>split()</code> vai partir os dados</li>
+<li>Dentro de split, <code>seq_along(data)</code> é uma sequência ao longo dos dados.</li>
+<li>Dividimo-la pelo tamanho máximo do chunk e depois arredondamos para cima com <code>ceiling()</code></li>
+<li>Isso vai criar uma lista com <span class="math inline">\(n\)</span> sublistas, em que <span class="math inline">\(n\)</span> é o número de chunks.</li>
+</ul>
+<ol start="2" type="1">
+<li>Criar uma função wrapper parecida com a do passo anterior, mas atentando para o fato de que agora temos que mapear a lista nas funções.</li>
+</ol>
+<ul>
+<li>Nota: dentro de map, usamos a sintaxe das funções anônimas, <code>\(coiso) trem(coiso)</code>. No nosso caso, o <code>\(x)</code> é cada chunk de ceps da lista.</li>
+</ul>
+<ol start="3" type="1">
+<li>Agora usamos a <code>imap()</code> uma variação de <code>map()</code> que permite dar nome aos bois.</li>
+</ol>
+<ul>
+<li>Ela pede dois argumentos, que eu chamei de <code>x</code> e <code>y</code>; no caso, <code>y</code> é o identificador. Vamos usá-lo para salvar os chunks no padrão <code>shp_ceps_1.RDS</code>, <code>shp_ceps_2.RDS</code>, …, <code>shp_ceps_n.RDS</code>.</li>
+<li>Em vez do cifrão, puxamos <code>result</code> usando a função <code>pluck()</code>. Ela permite fazer tudo de uma vez, sem quebrar o fluxo.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: geocode-v3</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># definindo os chunks</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>chunk_max <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>df_ceps <span class="ot">&lt;-</span> df_ceps[<span class="dv">1</span><span class="sc">:</span><span class="dv">17</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="fu">ceiling</span>(<span class="fu">seq_along</span>(df_ceps[<span class="dv">1</span><span class="sc">:</span><span class="dv">17</span>])<span class="sc">/</span>chunk_max))</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># chave API</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>mapsapi_key <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"mapsapi_key"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># função envelope</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>geoceps <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">%&gt;%</span> </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>      \(x)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mp_geocode</span>(<span class="at">addresses =</span> x,<span class="at">key =</span> mapsapi_key, <span class="at">timeout =</span> <span class="dv">11</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mp_get_points</span>()</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>query_ceps <span class="ot">&lt;-</span> df_ceps <span class="sc">%&gt;%</span> </span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imap</span>(</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    \(x, y)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(x, <span class="fu">safely</span>(geoceps)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">transpose</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pluck</span>(<span class="st">"result"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">saveRDS</span>(<span class="fu">here</span>(<span class="fu">paste0</span>(<span class="st">"data/shp/shp_ceps_"</span>, y, <span class="st">".RDS"</span>)))</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in min(bb[, 1L], na.rm = TRUE): no non-missing arguments to min;
+returning Inf</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in min(bb[, 2L], na.rm = TRUE): no non-missing arguments to min;
+returning Inf</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in max(bb[, 3L], na.rm = TRUE): no non-missing arguments to max;
+returning -Inf</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in max(bb[, 4L], na.rm = TRUE): no non-missing arguments to max;
+returning -Inf</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>05724005................................OK
+04570001................................OK
+11721100................................OK
+03311000................................OK
+05615190................................OK
+02034010................................OK
+01125000................................OK
+04814630................................OK
+03306030................................OK
+04551060................................OK
+04061003................................OK
+05316900................................ZERO_RESULTS
+05374050................................OK
+04365000................................OK
+02832160................................OK
+03053000................................OK
+01407200................................OK</code></pre>
+</div>
+</div>
+<p>Finalmente, depois que você rodar a query por partes, podemos carregar os arquivos no R e montar de novo em um dataset só com nossos ceps. Para isso:</p>
+<ol type="1">
+<li>vamos usar <code>list.files()</code> para listar todos os arquivos na pasta que seguem o padrão e mapear essa lista de padrões em <code>readRDS()</code> e, em sequência, <code>bind</code>ar as <code>rows</code>. Detalhe importante: <code>pattern</code> é uma <code>regex</code>, ou <a href="https://stringi.gagolewski.com/weave/regular_expressions.html"><em>regular expression</em></a>. Nesse exemplos, estamos buscando o padrão que começa com <code>shp_ceps_</code>, seguido de um ou mais dígitos (<code>\\d_</code>) e do final .RDS (<code>\\.RDS$</code>).</li>
+<li>Agora é só <code>map</code>ear os arquivos.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-queries</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="fu">here</span>(<span class="st">"data/shp"</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">"shp_ceps_</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">.RDS$"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">full.names =</span> T</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>shp_ceps <span class="ot">&lt;-</span> paths <span class="sc">%&gt;%</span> </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(readRDS) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># visualizando</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(shp_ceps)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 56%">
+<col style="width: 9%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">status</th>
+<th style="text-align: left;">address</th>
+<th style="text-align: left;">address_google</th>
+<th style="text-align: left;">location_type</th>
+<th style="text-align: left;">pnt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">05724005</td>
+<td style="text-align: left;">Av. Giovanni Gronchi, 6633-2147483647 - Vila Andrade, São Paulo - SP, 05724-005, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.73669 -23.63962)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">04570001</td>
+<td style="text-align: left;">Av. Nova Independência, 552-2147483647 - Brooklin, São Paulo - SP, 04570-001, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.6888 -23.6008)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">11721100</td>
+<td style="text-align: left;">Vila Antartica, Praia Grande - SP, 11721-100, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.45468 -24.01176)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">03311000</td>
+<td style="text-align: left;">R. Apucarana, 1-1000 - Tatuapé, São Paulo - SP, 03311-000, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.56427 -23.54278)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">05615190</td>
+<td style="text-align: left;">Rua dos Três Irmãos - Vila Progredior, São Paulo - SP, 05615-190, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.7165 -23.58819)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">02034010</td>
+<td style="text-align: left;">R. Alfredo Guedes - Santana, São Paulo - SP, 02034-010, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.62484 -23.50629)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">01125000</td>
+<td style="text-align: left;">R. da Graça, 2-2147483646 - Bom Retiro, São Paulo - SP, 01125-000, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.64014 -23.52655)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">04814630</td>
+<td style="text-align: left;">Rua Caiuby Alves de Castro - Jardim Guanhembu, São Paulo - SP, 04814-630, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.68125 -23.7305)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">03306030</td>
+<td style="text-align: left;">R. Fernão Tavares - Cidade Mãe do Céu, São Paulo - SP, 03306-030, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.57571 -23.54378)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">04551060</td>
+<td style="text-align: left;">R. Funchal - Vila Olímpia, São Paulo - SP, 04551-060, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.68952 -23.59411)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">04061003</td>
+<td style="text-align: left;">Av. Itacira, 2311-2147483647 - Planalto Paulista, São Paulo - SP, 04061-003, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.64444 -23.62447)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">ZERO_RESULTS</td>
+<td style="text-align: left;">05316900</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POINT EMPTY</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">05374050</td>
+<td style="text-align: left;">R. Gertrudes Cunha - Jardim Ester Yolanda, São Paulo - SP, 05374-050, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.75819 -23.57779)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">04365000</td>
+<td style="text-align: left;">Jardim Santo Antoninho, São Paulo - State of São Paulo, 04365-000, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.66846 -23.65589)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">02832160</td>
+<td style="text-align: left;">R. Col. Fernando Costa - Parque Sao Luis, São Paulo - SP, 02832-160, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.69385 -23.48179)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">03053000</td>
+<td style="text-align: left;">R. Bresser, 1051-1800 - Brás, São Paulo - SP, 03053-000, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.60735 -23.54164)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">01407200</td>
+<td style="text-align: left;">Av. Nove de Julho, 4701-2147483647 - Jardim Paulista, São Paulo - SP, 01407-200, Brazil</td>
+<td style="text-align: left;">APPROXIMATE</td>
+<td style="text-align: left;">POINT (-46.67088 -23.57679)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="bônus-background-jobs" class="level2">
+<h2 class="anchored" data-anchor-id="bônus-background-jobs">Bônus: background jobs</h2>
+<p>Quando você estiver geolocalizando vários CEPs, isso vai demorar bastante —talvez uma tarde inteira, talvez mais. Por isso, é útil executar como um background job: isso libera o seu R para você fazer outras coisas enquanto ele roda a API em outra seção. Só não se esqueça de verificar de vez em quando o background job para ver se tá rodando, ao menos logo que você executar. Felizmente, usando <code>safely()</code> a chance de um erro travar tudo diminui muito. O que eu gosto de fazer: executar como background job, dormir, acordar e admirar a base que baixou à noite.</p>
+<p>Para fazer um background job, temos que salvar o código dentro de um script R. Ou seja: não funciona com markdown (<code>.Rmd</code>/<code>.qmd</code>). Quando tiver seu script pronto, é só ir em <strong>Background Jobs</strong>, provavelmente na parte de baixo do seu RStudio, perto do console.</p>
+<p><img src="bg-start.png" height="200"></p>
+<p>Depois que você iniciar o background job, é só ir acompanhando ali:</p>
+<p><img src="bg-running.png" height="200"></p>
+<p>No final, ele te avisa se deu certo. E é isso!</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{bazolli2023,
+  author = {Bazolli, Arthur},
+  title = {Geolocalizando {CEPs}},
+  date = {2023-09-26},
+  url = {https://baarthur.github.io/posts/2023-09-26-geoceps/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-bazolli2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+Bazolli, Arthur. 2023. <span>“Geolocalizando CEPs.”</span> September 26,
+2023. <a href="https://baarthur.github.io/posts/2023-09-26-geoceps/">https://baarthur.github.io/posts/2023-09-26-geoceps/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, function() {
+      let href = xref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note !== null) {
+        if (id.startsWith('sec-')) {
+          // Special case sections, only their first couple elements
+          const container = document.createElement("div");
+          if (note.children && note.children.length > 2) {
+            for (let i = 0; i < 2; i++) {
+              container.appendChild(note.children[i].cloneNode(true));
+            }
+            return container.innerHTML
+          } else {
+            return note.innerHTML;
+          }
+        } else {
+          return note.innerHTML;
+        }
+      } else {
+        return "";
+      }
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
