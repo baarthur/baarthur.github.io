@@ -54,3 +54,4 @@ rsconnect/
 # data sources
 data-raw/*
 data/*
+/.quarto/
