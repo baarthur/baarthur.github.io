@@ -186,7 +186,7 @@
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "Class material, working papers, and more\n\n\n\nUrban Structure Equilibrium (Portuguese)\n\nPresentation\nClass notes\n\n\n\n\n\n\nReal estate and rapid transit: Estimating the market premium of the São Paulo Rail Network\n\nPresented at 20th Enaber (Salvador, Brazil) and 50th Anpec (Fortaleza, Brazil)\nEnglish version\nPortuguese version\nPresentation (Portuguese)\n\nHeritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil\n\nPresenting at the 29th IIOA (Alghero, Italy) in June 2023\nEnglish version\nPresentation\n\n\n\n\n\n\nabnquarto: A Quarto template using Brazilian standardization system\n\nGitHub repo\nDemo"
+    "text": "Class material, working papers, and more\n\n\n\nUrban Structure Equilibrium (Portuguese)\n\nPresentation\nClass notes\n\n\n\n\n\n\nReal estate and rapid transit: Estimating the market premium of the São Paulo Rail Network\n\nPresented at 20th Enaber (Salvador, Brazil) and 50th Anpec (Fortaleza, Brazil)\nEnglish version\nPortuguese version\nPresentation (Portuguese)\n\nHeritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil\n\nPresenting at the 29th IIOA (Alghero, Italy) in June 2023\nEnglish version\nPresentation\n\n\n\n\n\n\n{spatialops}: Spatial operations and other handy tools\n\nGitHub repo\n\nabnquarto: A Quarto template using Brazilian standardization system\n\nGitHub repo\nDemo"
   },
   {
     "objectID": "resources.html#eco075-2022---economia-urbana",
@@ -207,6 +207,6 @@
     "href": "resources.html#r",
     "title": "Resources",
     "section": "",
-    "text": "abnquarto: A Quarto template using Brazilian standardization system\n\nGitHub repo\nDemo"
+    "text": "{spatialops}: Spatial operations and other handy tools\n\nGitHub repo\n\nabnquarto: A Quarto template using Brazilian standardization system\n\nGitHub repo\nDemo"
   }
 ]

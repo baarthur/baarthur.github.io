@@ -26,6 +26,8 @@ Class material, working papers, and more
   
   
 ## R
+- `{spatialops}`: Spatial operations and other handy tools
+  + [GitHub repo](https://github.com/baarthur/spatialops)
 - `abnquarto`: A `Quarto` template using Brazilian standardization system
   + [GitHub repo](https://github.com/baarthur/abnquarto)
   + [Demo](input/abnq-demo.pdf)
@@ -57,6 +59,8 @@ Notas de aula, trabalhos em andamento e mais
   + [Apresentação (inglês)](https://baarthur.github.io/29iioa_slides)
   
 ## R
+- `{spatialops}`: Operações espaciais e outras ferramentas úteis
+  + [GitHub repo](https://github.com/baarthur/spatialops)
 - `abnquarto`: um template em `Quarto` nas normas da ABNT
   + [GitHub repo](https://github.com/baarthur/abnquarto)
   + [Exemplo](input/abnq-demo.pdf)
