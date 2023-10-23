@@ -19,6 +19,9 @@ website:
         text: CV
       - href: posts.qmd
         text: Blog
+    # right:
+    #   - target: |
+    #     <button onclick="window.location = location.href.replace('.io/','.io/pt/');" class="btn"><i class="fa fa-language"></i> Português</button>
 
 lang: pt-BR
 
