@@ -2,7 +2,7 @@
 title: "Rotina espacial no R"
 description: "Aprenda a baixar, filtrar e combinar dados"
 author:
-  - name: Arthur Bazolli
+  - name: Arthur Bazolli Alvarenga
     url: https://baarthur.github.io/
     affiliation: PPGE/UFJF
     affiliation-url: https://www2.ufjf.br/poseconomia/ 

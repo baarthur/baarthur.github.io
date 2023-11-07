@@ -2,7 +2,7 @@
 title: "Geolocalizando CEPs"
 description: "A partir dos dados da RAIS"
 author:
-  - name: Arthur Bazolli
+  - name: Arthur Bazolli Alvarenga
     url: https://baarthur.github.io/
     affiliation: PPGE/UFJF
     affiliation-url: https://www2.ufjf.br/poseconomia/ 

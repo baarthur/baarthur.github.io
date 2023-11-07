@@ -1,0 +1,85 @@
+---
+title: "30 day Map Challenge 2023"
+description: "Code and ramblings"
+author:
+  - name: Arthur Bazolli Alvarenga
+    url: https://baarthur.github.io/
+    affiliation: PPGE/UFJF
+    affiliation-url: https://www2.ufjf.br/poseconomia/ 
+date: 2023-11-05
+date-modified: last-modified
+categories: [R, r-spatial, Geocomputação, Tutorial] # self-defined categories
+citation: 
+  url: https://baarthur.github.io/posts/2023-11-05-mapchallenge/ 
+#image: thumbnail.png
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+
+execute: 
+  echo: fenced
+  
+format:
+  html:
+     include-in-header:
+        text: |
+          <style>
+          h1 {
+          color: #fff;
+          }
+          </style>
+---
+
+I have known the 30 day map challenge for two years now, but I was always too shy to join it. But the whole point is to have fun and learn something along the way, so here I am! I will update this post daily with my maps and the link to the code on my [github repo](https://github.com/baarthur/mapchallenge-2023/tree/main). I missed the first two days, so I'm starting from day 3.
+
+
+
+## Day three: polygons
+
+I spent some five hours making this, and I sadly lost my original code because I was stupid enought to not save the file. Accidents happen, so always save your files! Fortunately, I was at a loose end enough to recreate it. 
+
+The inspiration for this came from this tweet from `@_palenrique`, where he compared Brazil's Federal District size to other huge metropolitan areas. 
+
+{{< tweet _palenrique 1719392264860909951 >}}
+
+The biggest challenge was how to get all metropolitan areas in the same scale. I had a notion that I should use `coord_sf()` in my `ggplot` to make them all in the same frame, but I just did not know how to get a bounding box with the same widths for the different regions. Then I had an idea: what if I calculate a buffer from the region's centroid to the bounding box limit and use this constant ratio to create a buffer & a bounding box for each city? 
+
+![](day-3_suffering.png){width="700"}
+
+Anyways, here it is!
+
+* Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/3-polygons.qmd
+
+![](p-day3.png)
+
+This version is actually a little better than the original one, which you can still find on [twitter](https://twitter.com/baarthur0/status/1720592766479069266).
+
+
+
+## Day four: a bad map!
+
+Whenever I think of a bad map, three things come to my mind: clumsy information, bad colors, and the amazing [@TerribleMaps](https://twitter.com/TerribleMaps) twitter page. Then I thought, what can be both totally useful and disturbing at the same time? The answer was on my face: I've always been fascinated by how my home state of Minas Gerais looks like a face with a big nose and booger coming out of it, so I manually created a list of cities for each feature and `ggplot`ed it. 
+
+* Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/4-bad_map.qmd
+
+{{< tweet baarthur0 1720837569494053167 >}}
+
+Later on, I found out that [gaga stans really liked it](https://twitter.com/MazettiMiguel/status/1720842936793841979). I had no idea they had an internal joke about her!
+
+
+
+## Day five: an analog map
+
+Okay, I'm assuming this means I use no digital thing to make this, am I right? Since a kid/pre-teen I have always loved to draw maps, especially during boring classes in school. So that's what I did, but this time using fountain pains! 
+
+I tried it five times before my final version. I ended up starting by Minas Gerais... And it says a lot that Minas is bigger than Amazonas on my map! Perhaps we increase the things we have a better grasp. I'm so used to Minas and the Southeast that all I can say is sorry for my terrible borders. At least I got all states and capitals right...
+
+{{< tweet baarthur0 1721305648858558571 >}}
+
+
+
+## Day six: Asia
+
+So an Asia map... What can i do that's still related to what I know? Also, I'm very tired. So I just looked for trade values for 1997 and 2022 to see how imports & exports evolved between time and between countries. The scale was a hell of a nightmare as always, but I think this looks quite okay!
+
+* Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/6-asia.qmd
+
+![](p-day6.png)

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.60">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Arthur Bazolli Alvarenga">
+<meta name="description" content="Code and ramblings">
+
+<title>Arthur Bazolli Alvarenga - 30 day Map Challenge 2023</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../input/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+<style>
+h1 {
+color: #fff;
+}
+</style>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Arthur Bazolli Alvarenga - 30 day Map Challenge 2023">
+<meta property="og:description" content="Code and ramblings">
+<meta property="og:image" content="day-3_suffering.png">
+<meta property="og:site-name" content="Arthur Bazolli">
+<meta property="og:locale" content="pt-BR">
+<meta name="twitter:title" content="Arthur Bazolli Alvarenga - 30 day Map Challenge 2023">
+<meta name="twitter:description" content="Code and ramblings">
+<meta name="twitter:image" content="day-3_suffering.png">
+<meta name="twitter:creator" content="@baarthur0">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Arthur Bazolli Alvarenga</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Início</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html" rel="" target="">
+ <span class="menu-text">Material</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../input/cv.pdf" rel="" target="">
+ <span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pt" rel="" target="">
+ <span class="menu-text">Português</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../" rel="" target="">
+ <span class="menu-text">English</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">30 day Map Challenge 2023</h1>
+                  <div>
+        <div class="description">
+          Code and ramblings
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">r-spatial</div>
+                <div class="quarto-category">Geocomputação</div>
+                <div class="quarto-category">Tutorial</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-heading">Afiliação</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://baarthur.github.io/">Arthur Bazolli Alvarenga</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://www2.ufjf.br/poseconomia/">
+              PPGE/UFJF
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Data de Publicação</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">5 de novembro de 2023</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Data de Modificação</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">6 de novembro de 2023</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#day-three-polygons" id="toc-day-three-polygons" class="nav-link active" data-scroll-target="#day-three-polygons">Day three: polygons</a></li>
+  <li><a href="#day-four-a-bad-map" id="toc-day-four-a-bad-map" class="nav-link" data-scroll-target="#day-four-a-bad-map">Day four: a bad map!</a></li>
+  <li><a href="#day-five-an-analog-map" id="toc-day-five-an-analog-map" class="nav-link" data-scroll-target="#day-five-an-analog-map">Day five: an analog map</a></li>
+  <li><a href="#day-six-asia" id="toc-day-six-asia" class="nav-link" data-scroll-target="#day-six-asia">Day six: Asia</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>I have known the 30 day map challenge for two years now, but I was always too shy to join it. But the whole point is to have fun and learn something along the way, so here I am! I will update this post daily with my maps and the link to the code on my <a href="https://github.com/baarthur/mapchallenge-2023/tree/main">github repo</a>. I missed the first two days, so I’m starting from day 3.</p>
+<section id="day-three-polygons" class="level2">
+<h2 class="anchored" data-anchor-id="day-three-polygons">Day three: polygons</h2>
+<p>I spent some five hours making this, and I sadly lost my original code because I was stupid enought to not save the file. Accidents happen, so always save your files! Fortunately, I was at a loose end enough to recreate it.</p>
+<p>The inspiration for this came from this tweet from <code>@_palenrique</code>, where he compared Brazil’s Federal District size to other huge metropolitan areas.</p>
+<p></p><div id="tweet-60218"></div><script>tweet={"url":"https:\/\/twitter.com\/_palenrique\/status\/1719392264860909951","author_name":"ⓟalenrique \uD83C\uDDE6\uD83C\uDDF7\uD83D\uDE4F | \uD83D\uDE87\uD83D\uDE8C\uD83D\uDEB2","author_url":"https:\/\/twitter.com\/_palenrique","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"pt\" dir=\"ltr\"\u003EÉ bastante complicado propormos políticas públicas habitacionais e de mobilidade no Distrito Federal quando não temos noção da escala do nosso território.\u003Cbr\u003E\u003Cbr\u003EDentro do DF cabe toda a Grande SP\uD83C\uDDE7\uD83C\uDDF7 (+20mi hab), toda a Grande Buenos Aires + Colonia \uD83C\uDDE6\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDFE (+10mi hab) ou a cidade de NY \uD83C\uDDFA\uD83C\uDDF2 \u003Ca href=\"https:\/\/t.co\/QcZuobcsIT\"\u003Epic.twitter.com\/QcZuobcsIT\u003C\/a\u003E\u003C\/p\u003E&mdash; ⓟalenrique \uD83C\uDDE6\uD83C\uDDF7\uD83D\uDE4F | \uD83D\uDE87\uD83D\uDE8C\uD83D\uDEB2 (@_palenrique) \u003Ca href=\"https:\/\/twitter.com\/_palenrique\/status\/1719392264860909951?ref_src=twsrc%5Etfw\"\u003EOctober 31, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-60218").innerHTML = tweet["html"];</script><p></p>
+<p>The biggest challenge was how to get all metropolitan areas in the same scale. I had a notion that I should use <code>coord_sf()</code> in my <code>ggplot</code> to make them all in the same frame, but I just did not know how to get a bounding box with the same widths for the different regions. Then I had an idea: what if I calculate a buffer from the region’s centroid to the bounding box limit and use this constant ratio to create a buffer &amp; a bounding box for each city?</p>
+<p><img src="day-3_suffering.png" class="img-fluid" width="700"></p>
+<p>Anyways, here it is!</p>
+<ul>
+<li>Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/3-polygons.qmd</li>
+</ul>
+<p><img src="p-day3.png" class="img-fluid"></p>
+<p>This version is actually a little better than the original one, which you can still find on <a href="https://twitter.com/baarthur0/status/1720592766479069266">twitter</a>.</p>
+</section>
+<section id="day-four-a-bad-map" class="level2">
+<h2 class="anchored" data-anchor-id="day-four-a-bad-map">Day four: a bad map!</h2>
+<p>Whenever I think of a bad map, three things come to my mind: clumsy information, bad colors, and the amazing <a href="https://twitter.com/TerribleMaps"><span class="citation" data-cites="TerribleMaps">@TerribleMaps</span></a> twitter page. Then I thought, what can be both totally useful and disturbing at the same time? The answer was on my face: I’ve always been fascinated by how my home state of Minas Gerais looks like a face with a big nose and booger coming out of it, so I manually created a list of cities for each feature and <code>ggplot</code>ed it.</p>
+<ul>
+<li>Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/4-bad_map.qmd</li>
+</ul>
+<p></p><div id="tweet-63492"></div><script>tweet={"url":"https:\/\/twitter.com\/baarthur0\/status\/1720837569494053167","author_name":"Arthur Bazolli","author_url":"https:\/\/twitter.com\/baarthur0","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Etoday&#39;s \u003Ca href=\"https:\/\/twitter.com\/hashtag\/30DayMapChallenge?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#30DayMapChallenge\u003C\/a\u003E is a bad map. that&#39;s it, no explanation! and for a long time this has been on my my mind, so unfortunately now you have to see it too. i&#39;m sorry! \u003Ca href=\"https:\/\/t.co\/3y0O7GPH3Y\"\u003Ehttps:\/\/t.co\/3y0O7GPH3Y\u003C\/a\u003E \u003Ca href=\"https:\/\/t.co\/c8WWqEO2j3\"\u003Epic.twitter.com\/c8WWqEO2j3\u003C\/a\u003E\u003C\/p\u003E&mdash; Arthur Bazolli (@baarthur0) \u003Ca href=\"https:\/\/twitter.com\/baarthur0\/status\/1720837569494053167?ref_src=twsrc%5Etfw\"\u003ENovember 4, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-63492").innerHTML = tweet["html"];</script><p></p>
+<p>Later on, I found out that <a href="https://twitter.com/MazettiMiguel/status/1720842936793841979">gaga stans really liked it</a>. I had no idea they had an internal joke about her!</p>
+</section>
+<section id="day-five-an-analog-map" class="level2">
+<h2 class="anchored" data-anchor-id="day-five-an-analog-map">Day five: an analog map</h2>
+<p>Okay, I’m assuming this means I use no digital thing to make this, am I right? Since a kid/pre-teen I have always loved to draw maps, especially during boring classes in school. So that’s what I did, but this time using fountain pains!</p>
+<p>I tried it five times before my final version. I ended up starting by Minas Gerais… And it says a lot that Minas is bigger than Amazonas on my map! Perhaps we increase the things we have a better grasp. I’m so used to Minas and the Southeast that all I can say is sorry for my terrible borders. At least I got all states and capitals right…</p>
+<p></p><div id="tweet-33189"></div><script>tweet={"url":"https:\/\/twitter.com\/baarthur0\/status\/1721305648858558571","author_name":"Arthur Bazolli","author_url":"https:\/\/twitter.com\/baarthur0","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Etoday on \u003Ca href=\"https:\/\/twitter.com\/hashtag\/30DayMapChallenge?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#30DayMapChallenge\u003C\/a\u003E we&#39;re supposed to do an analog map, whatever this means. I used no digital source whatsoever and tried to draw brazil by memory, as did some guy on this app recently. \u003Cbr\u003E\u003Cbr\u003Eterrible, but at least everyone&#39;s here! I love all \uD83C\uDDE7\uD83C\uDDF7 states, even DF and RJ \uD83E\uDD70 \u003Ca href=\"https:\/\/t.co\/fgxjEfQQIb\"\u003Ehttps:\/\/t.co\/fgxjEfQQIb\u003C\/a\u003E \u003Ca href=\"https:\/\/t.co\/lms9B68Ftp\"\u003Epic.twitter.com\/lms9B68Ftp\u003C\/a\u003E\u003C\/p\u003E&mdash; Arthur Bazolli (@baarthur0) \u003Ca href=\"https:\/\/twitter.com\/baarthur0\/status\/1721305648858558571?ref_src=twsrc%5Etfw\"\u003ENovember 5, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-33189").innerHTML = tweet["html"];</script><p></p>
+</section>
+<section id="day-six-asia" class="level2">
+<h2 class="anchored" data-anchor-id="day-six-asia">Day six: Asia</h2>
+<p>So an Asia map… What can i do that’s still related to what I know? Also, I’m very tired. So I just looked for trade values for 1997 and 2022 to see how imports &amp; exports evolved between time and between countries. The scale was a hell of a nightmare as always, but I think this looks quite okay!</p>
+<ul>
+<li>Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/6-asia.qmd</li>
+</ul>
+<p><img src="p-day6.png" class="img-fluid"></p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citação</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{bazolli alvarenga2023,
+  author = {Bazolli Alvarenga, Arthur},
+  title = {30 day Map Challenge 2023},
+  date = {2023-11-05},
+  url = {https://baarthur.github.io/posts/2023-11-05-mapchallenge/},
+  langid = {pt-BR}
+}
+</code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Por favor, cite este trabalho como:</div><div id="ref-bazolli alvarenga2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+Bazolli Alvarenga, Arthur. 2023. <span>“30 day Map Challenge
+2023.”</span> November 5, 2023. <a href="https://baarthur.github.io/posts/2023-11-05-mapchallenge/">https://baarthur.github.io/posts/2023-11-05-mapchallenge/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, function() {
+      let href = xref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note !== null) {
+        if (id.startsWith('sec-')) {
+          // Special case sections, only their first couple elements
+          const container = document.createElement("div");
+          if (note.children && note.children.length > 2) {
+            for (let i = 0; i < 2; i++) {
+              container.appendChild(note.children[i].cloneNode(true));
+            }
+            return container.innerHTML
+          } else {
+            return note.innerHTML;
+          }
+        } else {
+          return note.innerHTML;
+        }
+      } else {
+        return "";
+      }
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="https://platform.twitter.com/widgets.js"></script>
+</body></html>

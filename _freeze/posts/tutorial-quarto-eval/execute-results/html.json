@@ -1,0 +1,14 @@
+{
+  "hash": "ee3418685a65350f2493e42c1cb70991",
+  "result": {
+    "markdown": "---\ntitle: \"Untitled\"\nformat: html\ndraft: true\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(here)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\nhere() starts at /Users/baarthur/Library/CloudStorage/OneDrive-Personal/Documentos/R/Projects/baarthur.github.io\n```\n:::\n:::\n\n\n\nPrimeiro vc cria os dados normalmente nesse chunk. com `eval: false`, ele não vai ser avaliado na hora de renderizar.\n\n::: {.cell}\n\n```{.r .cell-code}\ndf <- # aqui seu código mega pesado\n```\n:::\n\n\nE aqui começamos nosso mandrake: vc vai criar um chunk invisível para salvar os dados! Além de `eval: false`, usamos `include: false` para que ele não seja exibido no arquivo final.\n\n\n\n\nPor fim, um segundo código que tb não é incluído, mas precisa ser avaliado. \n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -41,5 +41,11 @@
   },
   "posts/2023-09-26-geoceps/index.qmd": {
     "index.html": "25878d9b"
+  },
+  "posts/2023-11-05-mapchallenge/index.qmd": {
+    "index.html": "50789059"
+  },
+  "posts/tutorial-quarto-eval.qmd": {
+    "tutorial-quarto-eval.html": "851cc10f"
   }
 }

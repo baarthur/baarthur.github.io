@@ -2,7 +2,7 @@
 title: "abnquarto"
 description: "Monte seu Quarto em ABNT"
 author:
-  - name: Arthur Bazolli
+  - name: Arthur Bazolli Alvarenga
     url: https://baarthur.github.io/
     affiliation: PPGE/UFJF
     affiliation-url: https://www2.ufjf.br/poseconomia/ 
