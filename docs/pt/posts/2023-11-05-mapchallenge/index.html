@@ -44,6 +44,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -147,8 +149,8 @@ color: #fff;
                           <div class="quarto-categories">
                 <div class="quarto-category">R</div>
                 <div class="quarto-category">r-spatial</div>
-                <div class="quarto-category">Geocomputação</div>
-                <div class="quarto-category">Tutorial</div>
+                <div class="quarto-category">maps</div>
+                <div class="quarto-category">ramblings</div>
               </div>
                   </div>
   </div>
@@ -182,7 +184,7 @@ color: #fff;
       <div>
       <div class="quarto-title-meta-heading">Data de Modificação</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">6 de novembro de 2023</p>
+        <p class="date-modified">7 de novembro de 2023</p>
       </div>
     </div>
       
@@ -201,6 +203,7 @@ color: #fff;
   <li><a href="#day-four-a-bad-map" id="toc-day-four-a-bad-map" class="nav-link" data-scroll-target="#day-four-a-bad-map">Day four: a bad map!</a></li>
   <li><a href="#day-five-an-analog-map" id="toc-day-five-an-analog-map" class="nav-link" data-scroll-target="#day-five-an-analog-map">Day five: an analog map</a></li>
   <li><a href="#day-six-asia" id="toc-day-six-asia" class="nav-link" data-scroll-target="#day-six-asia">Day six: Asia</a></li>
+  <li><a href="#day-seven-a-navigation-map" id="toc-day-seven-a-navigation-map" class="nav-link" data-scroll-target="#day-seven-a-navigation-map">Day seven: a navigation map</a></li>
   </ul>
 </nav>
     </div>
@@ -215,12 +218,12 @@ color: #fff;
 <h2 class="anchored" data-anchor-id="day-three-polygons">Day three: polygons</h2>
 <p>I spent some five hours making this, and I sadly lost my original code because I was stupid enought to not save the file. Accidents happen, so always save your files! Fortunately, I was at a loose end enough to recreate it.</p>
 <p>The inspiration for this came from this tweet from <code>@_palenrique</code>, where he compared Brazil’s Federal District size to other huge metropolitan areas.</p>
-<p></p><div id="tweet-60218"></div><script>tweet={"url":"https:\/\/twitter.com\/_palenrique\/status\/1719392264860909951","author_name":"ⓟalenrique \uD83C\uDDE6\uD83C\uDDF7\uD83D\uDE4F | \uD83D\uDE87\uD83D\uDE8C\uD83D\uDEB2","author_url":"https:\/\/twitter.com\/_palenrique","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"pt\" dir=\"ltr\"\u003EÉ bastante complicado propormos políticas públicas habitacionais e de mobilidade no Distrito Federal quando não temos noção da escala do nosso território.\u003Cbr\u003E\u003Cbr\u003EDentro do DF cabe toda a Grande SP\uD83C\uDDE7\uD83C\uDDF7 (+20mi hab), toda a Grande Buenos Aires + Colonia \uD83C\uDDE6\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDFE (+10mi hab) ou a cidade de NY \uD83C\uDDFA\uD83C\uDDF2 \u003Ca href=\"https:\/\/t.co\/QcZuobcsIT\"\u003Epic.twitter.com\/QcZuobcsIT\u003C\/a\u003E\u003C\/p\u003E&mdash; ⓟalenrique \uD83C\uDDE6\uD83C\uDDF7\uD83D\uDE4F | \uD83D\uDE87\uD83D\uDE8C\uD83D\uDEB2 (@_palenrique) \u003Ca href=\"https:\/\/twitter.com\/_palenrique\/status\/1719392264860909951?ref_src=twsrc%5Etfw\"\u003EOctober 31, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-60218").innerHTML = tweet["html"];</script><p></p>
+<p></p><div id="tweet-65422"></div><script>tweet={"url":"https:\/\/twitter.com\/_palenrique\/status\/1719392264860909951","author_name":"ⓟalenrique \uD83C\uDDE6\uD83C\uDDF7\uD83D\uDE4F | \uD83D\uDE87\uD83D\uDE8C\uD83D\uDEB2","author_url":"https:\/\/twitter.com\/_palenrique","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"pt\" dir=\"ltr\"\u003EÉ bastante complicado propormos políticas públicas habitacionais e de mobilidade no Distrito Federal quando não temos noção da escala do nosso território.\u003Cbr\u003E\u003Cbr\u003EDentro do DF cabe toda a Grande SP\uD83C\uDDE7\uD83C\uDDF7 (+20mi hab), toda a Grande Buenos Aires + Colonia \uD83C\uDDE6\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDFE (+10mi hab) ou a cidade de NY \uD83C\uDDFA\uD83C\uDDF2 \u003Ca href=\"https:\/\/t.co\/QcZuobcsIT\"\u003Epic.twitter.com\/QcZuobcsIT\u003C\/a\u003E\u003C\/p\u003E&mdash; ⓟalenrique \uD83C\uDDE6\uD83C\uDDF7\uD83D\uDE4F | \uD83D\uDE87\uD83D\uDE8C\uD83D\uDEB2 (@_palenrique) \u003Ca href=\"https:\/\/twitter.com\/_palenrique\/status\/1719392264860909951?ref_src=twsrc%5Etfw\"\u003EOctober 31, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-65422").innerHTML = tweet["html"];</script><p></p>
 <p>The biggest challenge was how to get all metropolitan areas in the same scale. I had a notion that I should use <code>coord_sf()</code> in my <code>ggplot</code> to make them all in the same frame, but I just did not know how to get a bounding box with the same widths for the different regions. Then I had an idea: what if I calculate a buffer from the region’s centroid to the bounding box limit and use this constant ratio to create a buffer &amp; a bounding box for each city?</p>
 <p><img src="day-3_suffering.png" class="img-fluid" width="700"></p>
 <p>Anyways, here it is!</p>
 <ul>
-<li>Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/3-polygons.qmd</li>
+<li><a href="https://github.com/baarthur/mapchallenge-2023/blob/main/src/3-polygons.qmd">Fork me on GitHub</a></li>
 </ul>
 <p><img src="p-day3.png" class="img-fluid"></p>
 <p>This version is actually a little better than the original one, which you can still find on <a href="https://twitter.com/baarthur0/status/1720592766479069266">twitter</a>.</p>
@@ -229,24 +232,33 @@ color: #fff;
 <h2 class="anchored" data-anchor-id="day-four-a-bad-map">Day four: a bad map!</h2>
 <p>Whenever I think of a bad map, three things come to my mind: clumsy information, bad colors, and the amazing <a href="https://twitter.com/TerribleMaps"><span class="citation" data-cites="TerribleMaps">@TerribleMaps</span></a> twitter page. Then I thought, what can be both totally useful and disturbing at the same time? The answer was on my face: I’ve always been fascinated by how my home state of Minas Gerais looks like a face with a big nose and booger coming out of it, so I manually created a list of cities for each feature and <code>ggplot</code>ed it.</p>
 <ul>
-<li>Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/4-bad_map.qmd</li>
+<li><a href="https://github.com/baarthur/mapchallenge-2023/blob/main/src/4-bad_map.qmd">Fork me on GitHub</a></li>
 </ul>
-<p></p><div id="tweet-63492"></div><script>tweet={"url":"https:\/\/twitter.com\/baarthur0\/status\/1720837569494053167","author_name":"Arthur Bazolli","author_url":"https:\/\/twitter.com\/baarthur0","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Etoday&#39;s \u003Ca href=\"https:\/\/twitter.com\/hashtag\/30DayMapChallenge?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#30DayMapChallenge\u003C\/a\u003E is a bad map. that&#39;s it, no explanation! and for a long time this has been on my my mind, so unfortunately now you have to see it too. i&#39;m sorry! \u003Ca href=\"https:\/\/t.co\/3y0O7GPH3Y\"\u003Ehttps:\/\/t.co\/3y0O7GPH3Y\u003C\/a\u003E \u003Ca href=\"https:\/\/t.co\/c8WWqEO2j3\"\u003Epic.twitter.com\/c8WWqEO2j3\u003C\/a\u003E\u003C\/p\u003E&mdash; Arthur Bazolli (@baarthur0) \u003Ca href=\"https:\/\/twitter.com\/baarthur0\/status\/1720837569494053167?ref_src=twsrc%5Etfw\"\u003ENovember 4, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-63492").innerHTML = tweet["html"];</script><p></p>
+<p></p><div id="tweet-42222"></div><script>tweet={"url":"https:\/\/twitter.com\/baarthur0\/status\/1720837569494053167","author_name":"Arthur Bazolli","author_url":"https:\/\/twitter.com\/baarthur0","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Etoday&#39;s \u003Ca href=\"https:\/\/twitter.com\/hashtag\/30DayMapChallenge?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#30DayMapChallenge\u003C\/a\u003E is a bad map. that&#39;s it, no explanation! and for a long time this has been on my my mind, so unfortunately now you have to see it too. i&#39;m sorry! \u003Ca href=\"https:\/\/t.co\/3y0O7GPH3Y\"\u003Ehttps:\/\/t.co\/3y0O7GPH3Y\u003C\/a\u003E \u003Ca href=\"https:\/\/t.co\/c8WWqEO2j3\"\u003Epic.twitter.com\/c8WWqEO2j3\u003C\/a\u003E\u003C\/p\u003E&mdash; Arthur Bazolli (@baarthur0) \u003Ca href=\"https:\/\/twitter.com\/baarthur0\/status\/1720837569494053167?ref_src=twsrc%5Etfw\"\u003ENovember 4, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-42222").innerHTML = tweet["html"];</script><p></p>
 <p>Later on, I found out that <a href="https://twitter.com/MazettiMiguel/status/1720842936793841979">gaga stans really liked it</a>. I had no idea they had an internal joke about her!</p>
 </section>
 <section id="day-five-an-analog-map" class="level2">
 <h2 class="anchored" data-anchor-id="day-five-an-analog-map">Day five: an analog map</h2>
 <p>Okay, I’m assuming this means I use no digital thing to make this, am I right? Since a kid/pre-teen I have always loved to draw maps, especially during boring classes in school. So that’s what I did, but this time using fountain pains!</p>
 <p>I tried it five times before my final version. I ended up starting by Minas Gerais… And it says a lot that Minas is bigger than Amazonas on my map! Perhaps we increase the things we have a better grasp. I’m so used to Minas and the Southeast that all I can say is sorry for my terrible borders. At least I got all states and capitals right…</p>
-<p></p><div id="tweet-33189"></div><script>tweet={"url":"https:\/\/twitter.com\/baarthur0\/status\/1721305648858558571","author_name":"Arthur Bazolli","author_url":"https:\/\/twitter.com\/baarthur0","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Etoday on \u003Ca href=\"https:\/\/twitter.com\/hashtag\/30DayMapChallenge?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#30DayMapChallenge\u003C\/a\u003E we&#39;re supposed to do an analog map, whatever this means. I used no digital source whatsoever and tried to draw brazil by memory, as did some guy on this app recently. \u003Cbr\u003E\u003Cbr\u003Eterrible, but at least everyone&#39;s here! I love all \uD83C\uDDE7\uD83C\uDDF7 states, even DF and RJ \uD83E\uDD70 \u003Ca href=\"https:\/\/t.co\/fgxjEfQQIb\"\u003Ehttps:\/\/t.co\/fgxjEfQQIb\u003C\/a\u003E \u003Ca href=\"https:\/\/t.co\/lms9B68Ftp\"\u003Epic.twitter.com\/lms9B68Ftp\u003C\/a\u003E\u003C\/p\u003E&mdash; Arthur Bazolli (@baarthur0) \u003Ca href=\"https:\/\/twitter.com\/baarthur0\/status\/1721305648858558571?ref_src=twsrc%5Etfw\"\u003ENovember 5, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-33189").innerHTML = tweet["html"];</script><p></p>
+<p></p><div id="tweet-40453"></div><script>tweet={"url":"https:\/\/twitter.com\/baarthur0\/status\/1721305648858558571","author_name":"Arthur Bazolli","author_url":"https:\/\/twitter.com\/baarthur0","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003Etoday on \u003Ca href=\"https:\/\/twitter.com\/hashtag\/30DayMapChallenge?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#30DayMapChallenge\u003C\/a\u003E we&#39;re supposed to do an analog map, whatever this means. I used no digital source whatsoever and tried to draw brazil by memory, as did some guy on this app recently. \u003Cbr\u003E\u003Cbr\u003Eterrible, but at least everyone&#39;s here! I love all \uD83C\uDDE7\uD83C\uDDF7 states, even DF and RJ \uD83E\uDD70 \u003Ca href=\"https:\/\/t.co\/fgxjEfQQIb\"\u003Ehttps:\/\/t.co\/fgxjEfQQIb\u003C\/a\u003E \u003Ca href=\"https:\/\/t.co\/lms9B68Ftp\"\u003Epic.twitter.com\/lms9B68Ftp\u003C\/a\u003E\u003C\/p\u003E&mdash; Arthur Bazolli (@baarthur0) \u003Ca href=\"https:\/\/twitter.com\/baarthur0\/status\/1721305648858558571?ref_src=twsrc%5Etfw\"\u003ENovember 5, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-40453").innerHTML = tweet["html"];</script><p></p>
 </section>
 <section id="day-six-asia" class="level2">
 <h2 class="anchored" data-anchor-id="day-six-asia">Day six: Asia</h2>
 <p>So an Asia map… What can i do that’s still related to what I know? Also, I’m very tired. So I just looked for trade values for 1997 and 2022 to see how imports &amp; exports evolved between time and between countries. The scale was a hell of a nightmare as always, but I think this looks quite okay!</p>
 <ul>
-<li>Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/6-asia.qmd</li>
+<li><a href="https://github.com/baarthur/mapchallenge-2023/blob/main/src/6-asia.qmd">Fork me on GitHub</a></li>
 </ul>
 <p><img src="p-day6.png" class="img-fluid"></p>
+</section>
+<section id="day-seven-a-navigation-map" class="level2">
+<h2 class="anchored" data-anchor-id="day-seven-a-navigation-map">Day seven: a navigation map</h2>
+<p>Being a transportation nerd, today’s quest is my favorite! I had no doubt and took my animated map for the São Paulo rapid transit network, now with a few tweaks.</p>
+<p>To summarize what I did: I have a dataframe with the innauguration date for each line and station. Although being different geometries, lines and stations need to be in the same <code>data.frame</code> for this to work, so you need to compatibilize them beforehand. Then, all you need to do is use <code>gganimate</code> and to make all stations persist in time, add <code>shadow_mark()</code>.</p>
+<ul>
+<li><a href="https://github.com/baarthur/mapchallenge-2023/blob/main/src/7-navigation.qmd">Fork me on github</a></li>
+</ul>
+<p></p><div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="p-day7.mp4"></video></div><p></p>
 
 
 </section>
@@ -668,6 +680,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 

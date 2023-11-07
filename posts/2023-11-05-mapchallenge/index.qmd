@@ -8,7 +8,7 @@ author:
     affiliation-url: https://www2.ufjf.br/poseconomia/ 
 date: 2023-11-05
 date-modified: last-modified
-categories: [R, r-spatial, Geocomputação, Tutorial] # self-defined categories
+categories: [R, r-spatial, maps, ramblings] # self-defined categories
 citation: 
   url: https://baarthur.github.io/posts/2023-11-05-mapchallenge/ 
 #image: thumbnail.png
@@ -46,7 +46,7 @@ The biggest challenge was how to get all metropolitan areas in the same scale. I
 
 Anyways, here it is!
 
-* Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/3-polygons.qmd
+* [Fork me on GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/3-polygons.qmd)
 
 ![](p-day3.png)
 
@@ -58,7 +58,7 @@ This version is actually a little better than the original one, which you can st
 
 Whenever I think of a bad map, three things come to my mind: clumsy information, bad colors, and the amazing [@TerribleMaps](https://twitter.com/TerribleMaps) twitter page. Then I thought, what can be both totally useful and disturbing at the same time? The answer was on my face: I've always been fascinated by how my home state of Minas Gerais looks like a face with a big nose and booger coming out of it, so I manually created a list of cities for each feature and `ggplot`ed it. 
 
-* Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/4-bad_map.qmd
+* [Fork me on GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/4-bad_map.qmd)
 
 {{< tweet baarthur0 1720837569494053167 >}}
 
@@ -80,6 +80,21 @@ I tried it five times before my final version. I ended up starting by Minas Gera
 
 So an Asia map... What can i do that's still related to what I know? Also, I'm very tired. So I just looked for trade values for 1997 and 2022 to see how imports & exports evolved between time and between countries. The scale was a hell of a nightmare as always, but I think this looks quite okay!
 
-* Fork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/6-asia.qmd
+* [Fork me on GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/6-asia.qmd)
 
 ![](p-day6.png)
+
+
+
+## Day seven: a navigation map
+
+Being a transportation nerd, today's quest is my favorite! I had no doubt and took my animated map for the São Paulo rapid transit network, now with a few tweaks. 
+
+To summarize what I did: I have a dataframe with the innauguration date for each line and station. Although being different geometries, lines and stations need to be in the same `data.frame` for this to work, so you need to compatibilize them beforehand. Then, all you need to do is use `gganimate` and to make all stations persist in time, add `shadow_mark()`. 
+
+* [Fork me on github](https://github.com/baarthur/mapchallenge-2023/blob/main/src/7-navigation.qmd)
+
+{{< video p-day7.mp4 >}}
+
+
+

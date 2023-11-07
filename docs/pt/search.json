@@ -39,14 +39,14 @@
     "href": "posts/2023-11-05-mapchallenge/index.html#day-three-polygons",
     "title": "30 day Map Challenge 2023",
     "section": "Day three: polygons",
-    "text": "Day three: polygons\nI spent some five hours making this, and I sadly lost my original code because I was stupid enought to not save the file. Accidents happen, so always save your files! Fortunately, I was at a loose end enough to recreate it.\nThe inspiration for this came from this tweet from @_palenrique, where he compared Brazil’s Federal District size to other huge metropolitan areas.\n\nThe biggest challenge was how to get all metropolitan areas in the same scale. I had a notion that I should use coord_sf() in my ggplot to make them all in the same frame, but I just did not know how to get a bounding box with the same widths for the different regions. Then I had an idea: what if I calculate a buffer from the region’s centroid to the bounding box limit and use this constant ratio to create a buffer & a bounding box for each city?\n\nAnyways, here it is!\n\nFork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/3-polygons.qmd\n\n\nThis version is actually a little better than the original one, which you can still find on twitter."
+    "text": "Day three: polygons\nI spent some five hours making this, and I sadly lost my original code because I was stupid enought to not save the file. Accidents happen, so always save your files! Fortunately, I was at a loose end enough to recreate it.\nThe inspiration for this came from this tweet from @_palenrique, where he compared Brazil’s Federal District size to other huge metropolitan areas.\n\nThe biggest challenge was how to get all metropolitan areas in the same scale. I had a notion that I should use coord_sf() in my ggplot to make them all in the same frame, but I just did not know how to get a bounding box with the same widths for the different regions. Then I had an idea: what if I calculate a buffer from the region’s centroid to the bounding box limit and use this constant ratio to create a buffer & a bounding box for each city?\n\nAnyways, here it is!\n\nFork me on GitHub\n\n\nThis version is actually a little better than the original one, which you can still find on twitter."
   },
   {
     "objectID": "posts/2023-11-05-mapchallenge/index.html#day-four-a-bad-map",
     "href": "posts/2023-11-05-mapchallenge/index.html#day-four-a-bad-map",
     "title": "30 day Map Challenge 2023",
     "section": "Day four: a bad map!",
-    "text": "Day four: a bad map!\nWhenever I think of a bad map, three things come to my mind: clumsy information, bad colors, and the amazing @TerribleMaps twitter page. Then I thought, what can be both totally useful and disturbing at the same time? The answer was on my face: I’ve always been fascinated by how my home state of Minas Gerais looks like a face with a big nose and booger coming out of it, so I manually created a list of cities for each feature and ggploted it.\n\nFork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/4-bad_map.qmd\n\n\nLater on, I found out that gaga stans really liked it. I had no idea they had an internal joke about her!"
+    "text": "Day four: a bad map!\nWhenever I think of a bad map, three things come to my mind: clumsy information, bad colors, and the amazing @TerribleMaps twitter page. Then I thought, what can be both totally useful and disturbing at the same time? The answer was on my face: I’ve always been fascinated by how my home state of Minas Gerais looks like a face with a big nose and booger coming out of it, so I manually created a list of cities for each feature and ggploted it.\n\nFork me on GitHub\n\n\nLater on, I found out that gaga stans really liked it. I had no idea they had an internal joke about her!"
   },
   {
     "objectID": "posts/2023-11-05-mapchallenge/index.html#day-five-an-analog-map",
@@ -60,7 +60,14 @@
     "href": "posts/2023-11-05-mapchallenge/index.html#day-six-asia",
     "title": "30 day Map Challenge 2023",
     "section": "Day six: Asia",
-    "text": "Day six: Asia\nSo an Asia map… What can i do that’s still related to what I know? Also, I’m very tired. So I just looked for trade values for 1997 and 2022 to see how imports & exports evolved between time and between countries. The scale was a hell of a nightmare as always, but I think this looks quite okay!\n\nFork me on GitHub: https://github.com/baarthur/mapchallenge-2023/blob/main/src/6-asia.qmd"
+    "text": "Day six: Asia\nSo an Asia map… What can i do that’s still related to what I know? Also, I’m very tired. So I just looked for trade values for 1997 and 2022 to see how imports & exports evolved between time and between countries. The scale was a hell of a nightmare as always, but I think this looks quite okay!\n\nFork me on GitHub"
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-seven-a-navigation-map",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-seven-a-navigation-map",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day seven: a navigation map",
+    "text": "Day seven: a navigation map\nBeing a transportation nerd, today’s quest is my favorite! I had no doubt and took my animated map for the São Paulo rapid transit network, now with a few tweaks.\nTo summarize what I did: I have a dataframe with the innauguration date for each line and station. Although being different geometries, lines and stations need to be in the same data.frame for this to work, so you need to compatibilize them beforehand. Then, all you need to do is use gganimate and to make all stations persist in time, add shadow_mark().\n\nFork me on github"
   },
   {
     "objectID": "posts/2023-06-21-rotina-spatial/index.html",
@@ -214,7 +221,7 @@
     "href": "posts.html",
     "title": "Blog",
     "section": "",
-    "text": "30 day Map Challenge 2023\n\n\n\nR\n\n\nr-spatial\n\n\nGeocomputação\n\n\nTutorial\n\n\n\nCode and ramblings\n\n\n\nArthur Bazolli Alvarenga\n\n\n5 de nov. de 2023\n\n\n\n\n\n\n\n\n\n\n\n\nGeolocalizando CEPs\n\n\n\nR\n\n\nr-spatial\n\n\nGeocomputação\n\n\nTutorial\n\n\n\nA partir dos dados da RAIS\n\n\n\nArthur Bazolli Alvarenga\n\n\n26 de set. de 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nabnquarto\n\n\n\nR\n\n\nQuarto\n\n\nABNT\n\n\nTutorial\n\n\n\nMonte seu Quarto em ABNT\n\n\n\nArthur Bazolli Alvarenga\n\n\n23 de jun. de 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRotina espacial no R\n\n\n\nR\n\n\nr-spatial\n\n\nGeocomputação\n\n\nTutorial\n\n\n\nAprenda a baixar, filtrar e combinar dados\n\n\n\nArthur Bazolli Alvarenga\n\n\n21 de jun. de 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAcessando a Base dos Dados no R\n\n\n\nR\n\n\nBasedosdados\n\n\nTutorial\n\n\n\nÉ mais fácil do que parece!\n\n\n\nArthur Bazolli Alvarenga\n\n\n20 de jun. de 2023\n\n\n\n\n\n\n\n\nNenhum item correspondente"
+    "text": "30 day Map Challenge 2023\n\n\n\nR\n\n\nr-spatial\n\n\nmaps\n\n\nramblings\n\n\n\nCode and ramblings\n\n\n\nArthur Bazolli Alvarenga\n\n\n5 de nov. de 2023\n\n\n\n\n\n\n\n\n\n\n\n\nGeolocalizando CEPs\n\n\n\nR\n\n\nr-spatial\n\n\nGeocomputação\n\n\nTutorial\n\n\n\nA partir dos dados da RAIS\n\n\n\nArthur Bazolli Alvarenga\n\n\n26 de set. de 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nabnquarto\n\n\n\nR\n\n\nQuarto\n\n\nABNT\n\n\nTutorial\n\n\n\nMonte seu Quarto em ABNT\n\n\n\nArthur Bazolli Alvarenga\n\n\n23 de jun. de 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRotina espacial no R\n\n\n\nR\n\n\nr-spatial\n\n\nGeocomputação\n\n\nTutorial\n\n\n\nAprenda a baixar, filtrar e combinar dados\n\n\n\nArthur Bazolli Alvarenga\n\n\n21 de jun. de 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAcessando a Base dos Dados no R\n\n\n\nR\n\n\nBasedosdados\n\n\nTutorial\n\n\n\nÉ mais fácil do que parece!\n\n\n\nArthur Bazolli Alvarenga\n\n\n20 de jun. de 2023\n\n\n\n\n\n\n\n\nNenhum item correspondente"
   },
   {
     "objectID": "resources.html",
