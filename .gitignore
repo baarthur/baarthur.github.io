@@ -47,6 +47,7 @@ rsconnect/
 
 # macos things
 */.DS_Store
+.DS_Store
 
 # data sources
 data-raw/*

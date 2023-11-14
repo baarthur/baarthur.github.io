@@ -98,3 +98,18 @@ To summarize what I did: I have a dataframe with the innauguration date for each
 
 
 
+## Day nine: hexagons
+
+I gotta admit, I was in a slump for a few days. Day 8 was the day before my master's thesis qualification, so I was very overwhelmed finishing my presentation etcetera. And once you stop producing, it's hard to get back on track! Nonetheless, here I am. 
+
+I love hexagon maps, especially the ones enabled by the great [Access to Opportunities Project](https://www.ipea.gov.br/acessooportunidades/en/) by Ipea... So this was a no-brainer for me: During my Spatial Econometrics course last year, we had to choose a theme and make all sort of shenanigans with it---I'll post a tutorial on spatial analysis one day!
+
+These maps are from my beloved home city, Belo Horizonte, capital of Minas Gerais. Home to 2.3 million inhabitants, it is the heart of a 5.7 million inhabitant metropolis. It's a shame we only have data for the capital, because the surrounding cities work as an interconnected labor market with very differing realities; nonetheless, we can still capture striking patterns in the capital.
+
+First, we have a local index of spatial autocorrelation (LISA) for income, based in the 2010 census---can't wait to reproduce this with 2022 data, as soon as it gets released! The second is a bivariate index, comparing income and access to job opportunities.
+
+* [Fork me on GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/9-hexagons.qmd)
+
+{{< tweet baarthur0 1724473133413884395 >}}
+
+
