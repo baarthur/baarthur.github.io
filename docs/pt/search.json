@@ -70,6 +70,13 @@
     "text": "Day seven: a navigation map\nBeing a transportation nerd, today’s quest is my favorite! I had no doubt and took my animated map for the São Paulo rapid transit network, now with a few tweaks.\nTo summarize what I did: I have a dataframe with the innauguration date for each line and station. Although being different geometries, lines and stations need to be in the same data.frame for this to work, so you need to compatibilize them beforehand. Then, all you need to do is use gganimate and to make all stations persist in time, add shadow_mark().\n\nFork me on github"
   },
   {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-nine-hexagons",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-nine-hexagons",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day nine: hexagons",
+    "text": "Day nine: hexagons\nI gotta admit, I was in a slump for a few days. Day 8 was the day before my master’s thesis qualification, so I was very overwhelmed finishing my presentation etc. And once you stop producing, it’s hard to get back on track! Nonetheless, here I am.\nI love hexagon maps, especially the ones enabled by the great Access to Opportunities Project by Ipea… So this was a no-brainer for me: During my Spatial Econometrics course last year, we had to choose a theme and make all sort of spatial shenanigans with it—I’ll post a tutorial on spatial analysis one day!\nThese maps are from my beloved home city, Belo Horizonte, capital of Minas Gerais. Home to 2.3 million inhabitants, it is at the heart of a 5.7 million inhabitant metropolis. It’s a shame we only have data for the capital, because the surrounding cities work as an interconnected labor market with very differing realities, but we can still capture striking patterns in the capital.\nFirst, we have a local index of spatial autocorrelation (LISA) for income, based in the 2010 census—can’t wait to reproduce this with 2022 data, as soon as it gets released! The second is a bivariate index, comparing income and access to job opportunities.\n\nFork me on GitHub\n\n\nBesides the ggplots, here I also used tmap for interactive viewing. I love these interactive maps, because they really allow you to see what’s going on by navigating through regions.\n\nUnivariate LISA for income\n\n\n```{r}\nreadRDS(\"data/tmap_lisa_bhz.RDS\")\n```\n\n\n\n\n\n\n\n\nBiLISA for income and access to job opportunities\n\n\n```{r}\nreadRDS(\"data/tmap_lisa_bi_bhz.RDS\")\n```"
+  },
+  {
     "objectID": "posts/2023-06-21-rotina-spatial/index.html",
     "href": "posts/2023-06-21-rotina-spatial/index.html",
     "title": "Rotina espacial no R",

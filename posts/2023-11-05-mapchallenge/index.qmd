@@ -28,6 +28,16 @@ format:
           </style>
 ---
 
+```{r}
+#| label: setup
+#| include: false
+
+library(tmap)
+tmap_mode("view")
+```
+
+
+
 I have known the 30 day map challenge for two years now, but I was always too shy to join it. But the whole point is to have fun and learn something along the way, so here I am! I will update this post daily with my maps and the link to the code on my [github repo](https://github.com/baarthur/mapchallenge-2023/tree/main). I missed the first two days, so I'm starting from day 3.
 
 
@@ -46,7 +56,7 @@ The biggest challenge was how to get all metropolitan areas in the same scale. I
 
 Anyways, here it is!
 
-* [Fork me on GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/3-polygons.qmd)
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/3-polygons.qmd)
 
 ![](p-day3.png)
 
@@ -58,7 +68,7 @@ This version is actually a little better than the original one, which you can st
 
 Whenever I think of a bad map, three things come to my mind: clumsy information, bad colors, and the amazing [@TerribleMaps](https://twitter.com/TerribleMaps) twitter page. Then I thought, what can be both totally useful and disturbing at the same time? The answer was on my face: I've always been fascinated by how my home state of Minas Gerais looks like a face with a big nose and booger coming out of it, so I manually created a list of cities for each feature and `ggplot`ed it. 
 
-* [Fork me on GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/4-bad_map.qmd)
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/4-bad_map.qmd)
 
 {{< tweet baarthur0 1720837569494053167 >}}
 
@@ -80,7 +90,8 @@ I tried it five times before my final version. I ended up starting by Minas Gera
 
 So an Asia map... What can i do that's still related to what I know? Also, I'm very tired. So I just looked for trade values for 1997 and 2022 to see how imports & exports evolved between time and between countries. The scale was a hell of a nightmare as always, but I think this looks quite okay!
 
-* [Fork me on GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/6-asia.qmd)
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/6-asia.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1721691439371788357)
 
 ![](p-day6.png)
 
@@ -92,7 +103,8 @@ Being a transportation nerd, today's quest is my favorite! I had no doubt and to
 
 To summarize what I did: I have a dataframe with the innauguration date for each line and station. Although being different geometries, lines and stations need to be in the same `data.frame` for this to work, so you need to compatibilize them beforehand. Then, all you need to do is use `gganimate` and to make all stations persist in time, add `shadow_mark()`. 
 
-* [Fork me on github](https://github.com/baarthur/mapchallenge-2023/blob/main/src/7-navigation.qmd)
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/7-navigation.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1722023441564340477)
 
 {{< video p-day7.mp4 >}}
 
@@ -100,16 +112,37 @@ To summarize what I did: I have a dataframe with the innauguration date for each
 
 ## Day nine: hexagons
 
-I gotta admit, I was in a slump for a few days. Day 8 was the day before my master's thesis qualification, so I was very overwhelmed finishing my presentation etcetera. And once you stop producing, it's hard to get back on track! Nonetheless, here I am. 
+I gotta admit, I was in a slump for a few days. Day 8 was the day before my master's thesis qualification, so I was very overwhelmed finishing my presentation etc. And once you stop producing, it's hard to get back on track! Nonetheless, here I am. 
 
-I love hexagon maps, especially the ones enabled by the great [Access to Opportunities Project](https://www.ipea.gov.br/acessooportunidades/en/) by Ipea... So this was a no-brainer for me: During my Spatial Econometrics course last year, we had to choose a theme and make all sort of shenanigans with it---I'll post a tutorial on spatial analysis one day!
+I love hexagon maps, especially the ones enabled by the great [Access to Opportunities Project](https://www.ipea.gov.br/acessooportunidades/en/) by Ipea... So this was a no-brainer for me: During my Spatial Econometrics course last year, we had to choose a theme and make all sort of spatial shenanigans with it---I'll post a tutorial on spatial analysis one day!
 
-These maps are from my beloved home city, Belo Horizonte, capital of Minas Gerais. Home to 2.3 million inhabitants, it is the heart of a 5.7 million inhabitant metropolis. It's a shame we only have data for the capital, because the surrounding cities work as an interconnected labor market with very differing realities; nonetheless, we can still capture striking patterns in the capital.
+These maps are from my beloved home city, Belo Horizonte, capital of Minas Gerais. Home to 2.3 million inhabitants, it is at the heart of a 5.7 million inhabitant metropolis. It's a shame we only have data for the capital, because the surrounding cities work as an interconnected labor market with very differing realities, but we can still capture striking patterns in the capital.
 
 First, we have a local index of spatial autocorrelation (LISA) for income, based in the 2010 census---can't wait to reproduce this with 2022 data, as soon as it gets released! The second is a bivariate index, comparing income and access to job opportunities.
 
-* [Fork me on GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/9-hexagons.qmd)
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/9-hexagons.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1724473133413884395)
 
-{{< tweet baarthur0 1724473133413884395 >}}
+Besides the `ggplot`s, here I also used `tmap` for interactive viewing. I love these interactive maps, because they really allow you to see what's going on by navigating through regions.
 
+### Univariate LISA for income
+
+![](p-day9_1.png)
+
+```{r}
+#| echo: false
+
+readRDS("data/tmap_lisa_bhz.RDS")
+```
+
+
+### BiLISA for income and access to job opportunities
+
+![](p-day9_2.png)
+
+```{r}
+#| echo: false
+
+readRDS("data/tmap_lisa_bi_bhz.RDS")
+```
 
