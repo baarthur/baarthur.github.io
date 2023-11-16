@@ -146,3 +146,37 @@ readRDS("data/tmap_lisa_bhz.RDS")
 readRDS("data/tmap_lisa_bi_bhz.RDS")
 ```
 
+
+
+## Day 11: a retro map
+
+I have always loved antique maps, especially the 19th century ones. Here are some of my favorites that served as inspiration for today's map:
+
+:::: {layout-nrow=1 layout-valign="bottom"}
+
+::: {layout-nrow=1}
+![Original plan for Belo Horizonte, 1893.](day-11_bh.jpeg){width="300"}
+![Central do Brasil Railway, 1890.](day-11_br1.png){width="300"}
+:::
+
+![Brazilian Railways Company, 1912.](day-11_br2.webp){width="800"}
+::::
+
+So basically this is what I had to do: 
+- adjust theme elements, e.g. `plot.background`, `plot.title`, and `font`;
+- use colors from an old map;
+- find online fonts that are similar to old map typography, which I found `here`.
+
+Since it is a retro map and not a historic one, this is the actual map of operating, under construction, and planned railways in Brazil, as of 2023. The railways shapefile was downloaded from [ANTT](https://www.gov.br/transportes/pt-br/assuntos/dados-de-transportes/bit/bit-mapas), the national ground transportation agency.
+
+I was highly on doubt if I should paint the ocean or not, but I ended up liking this version.
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/11-retro.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1724944556603433344)
+
+![](p-day11.png)
+
+### Fun fact
+
+While researching maps, I found [this interesting article](https://ge.globo.com/sp/sorocaba/futebol/campeonato-paulista/noticia/2015/01/paulistao-historias-de-cidades-e-times-do-interior-sao-ligadas-pela-ferrovia.html) (in portuguese) about how football (yes I refuse to say soccer) teams in São Paulo state relate to railway history 
+
