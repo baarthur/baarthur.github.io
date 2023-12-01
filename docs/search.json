@@ -32,7 +32,7 @@
     "href": "posts/2023-11-05-mapchallenge/index.html",
     "title": "30 day Map Challenge 2023",
     "section": "",
-    "text": "I have known the 30 day map challenge for two years now, but I was always too shy to join it. But the whole point is to have fun and learn something along the way, so here I am! I will update this post daily with my maps and the link to the code on my github repo. I missed the first two days, so I’m starting from day 3."
+    "text": "I have known the 30 day map challenge for two years now, but I was always too shy to join it. But the whole point is to have fun and learn something along the way, so here I am! I will update this post daily with my maps and the link to the code on my github repo. I missed the first two days, so I’m starting from day 3.\nDec 1st update: This has been a great challenge! I got really busy this month so I couldn’t make maps or update this post daily as expected. All in all, I could talk a little about what matters to me through maps and learn new tchniques I was keen to explore. Some days I was really pumped and really dedicated myself to these maps, whereas in others I just wanted to get over with it. I will definitely try again another time, maybe next year!"
   },
   {
     "objectID": "posts/2023-11-05-mapchallenge/index.html#day-three-polygons",
@@ -77,11 +77,81 @@
     "text": "Day nine: hexagons\nI gotta admit, I was in a slump for a few days. Day 8 was the day before my master’s thesis qualification, so I was very overwhelmed finishing my presentation etc. And once you stop producing, it’s hard to get back on track! Nonetheless, here I am.\nI love hexagon maps, especially the ones enabled by the great Access to Opportunities Project by Ipea… So this was a no-brainer for me: During my Spatial Econometrics course last year, we had to choose a theme and make all sort of spatial shenanigans with it—I’ll post a tutorial on spatial analysis one day!\nThese maps are from my beloved home city, Belo Horizonte, capital of Minas Gerais. Home to 2.3 million inhabitants, it is at the heart of a 5.7 million inhabitant metropolis. It’s a shame we only have data for the capital, because the surrounding cities work as an interconnected labor market with very differing realities, but we can still capture striking patterns in the capital.\nFirst, we have a local index of spatial autocorrelation (LISA) for income, based in the 2010 census—can’t wait to reproduce this with 2022 data, as soon as it gets released! The second is a bivariate index, comparing income and access to job opportunities.\n\nFork me on GitHub\nSee me on Twitter\n\nBesides the ggplots, here I also used tmap for interactive viewing. I love these interactive maps, because they really allow you to see what’s going on by navigating through regions.\n\nUnivariate LISA for income\n\n\n\n\n\n\n\n\n\n\nBiLISA for income and access to job opportunities"
   },
   {
-    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-11-a-retro-map",
-    "href": "posts/2023-11-05-mapchallenge/index.html#day-11-a-retro-map",
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#sec-retro",
+    "href": "posts/2023-11-05-mapchallenge/index.html#sec-retro",
     "title": "30 day Map Challenge 2023",
     "section": "Day 11: a retro map",
     "text": "Day 11: a retro map\nI have always loved antique maps, especially the 19th century ones. Here are some of my favorites that served as inspiration for today’s map:\n\n\n\n\n\n \n\n\n\n\n\n\n\nBrazilian Railways Company, 1912.\n\n\n\n\n\nSo basically this is what I had to do: - adjust theme elements, e.g. plot.background, plot.title, and font; - use colors from an old map; - find online fonts that are similar to old map typography, which I found here.\nSince it is a retro map and not a historic one, this is the actual map of operating, under construction, and planned railways in Brazil, as of 2023. The railways shapefile was downloaded from ANTT, the national ground transportation agency.\nI was highly on doubt if I should paint the ocean or not, but I ended up liking this version.\n\nFork me on GitHub\nSee me on Twitter\n\n\n\nFun fact\nWhile researching maps, I found this interesting article (in portuguese) about how football (yes I refuse to say soccer) teams in São Paulo state relate to railway history"
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-13-choropleth",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-13-choropleth",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day 13: Choropleth",
+    "text": "Day 13: Choropleth\nChoropleths are among my favorite maps. In fact, whenever I think of making a map, I am thinking about it! But perhaps you don’t know what this fancy word means—I certainly did not before this challenge. In case you’re wondering, a choropleth is a map that colors polygons according to a variable.\nI present here two choropleths from my master’s thesis1, both related to labor market growth in São Paulo between 2003 and 2018. We can see a similar trend on both, related to the overall Brazilian macroeconomic conditions in that period: rise in the first 10 years and fall from 2013 onwards, on both firm and employment growth.\n\nFork me on GitHub\nSee me on Twitter"
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-15-openstreetmap",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-15-openstreetmap",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day 15: OpenStreetMap",
+    "text": "Day 15: OpenStreetMap\nI love making maps with {osmdata}. It’s more easy than it seems! Also I made some wrapper functions in my {spatialops} package (work in progress) that facilitate it even more. I’ve chosen Fortaleza since it’s a major brazilian city, yet it is very compact so it won’t take a lot of time and memory to query it—in contrast, once I mapped a fraction of São Paulo that ended up taking than 6 GB on the environment! Fortunately tho, when writing it to disk with saveRDS, it was a fraction of it.\n\nFork me on GitHub\nSee me on Twitter"
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-16-oceania",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-16-oceania",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day 16: Oceania",
+    "text": "Day 16: Oceania\nThs is actually a combination of days 16 (Oceania) an 17 (flow). I am a moderate avgeek (as in I was a terminal avgeek before and now I moved to other obssessions such as trains cities maps), so I looked at domestic flight movements in australia. This database was kinda hard to get, it does not considers all routes, and sadly there are some missing data.\nI feel that us non-artistic folks (especially in academia) overlook the importance of producing visual material that is not just beautiful but actually conveys the desired information easily. For instance, I had a hard time getting the right combination of scales: continuous or binned? If binned, where should I cut? Color or linewidth? It comes down to storytelling as well, what’s your point? I couldn’t choose only one map, so I present you the combination. What’s your favorite?\n\nFork me on GitHub\nSee me on Twitter"
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-19-five-minute-map",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-19-five-minute-map",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day 19: Five minute map",
+    "text": "Day 19: Five minute map\nChop chop! I had to do the easiest thing possible, so there was not much margin to be inventive. My inent was to show here once again how easy it is to use {geobr} and how rich the dataset is!\n\nFork me on GitHub\nSee me on Twitter"
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-20-outdoors",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-20-outdoors",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day 20: Outdoors",
+    "text": "Day 20: Outdoors\n\nFork me on GitHub\nSee me on Twitter\n\nApesar de tudo… o Rio de Janeiro continua lindo!\nIf professing hate for Rio de Janeiro (and Brasília) was a sport, than I would bring more gold to Brazil than anyone ever has. Truth be told, while Rio makes me mad, I can’t deny it’s a wonderful city —and I’m not talking only of natural beauty, it has many amazing man-made stuff as well! Maybe I’m just really sad that our former capital is left abandoned and ransacked… by their own citizens sometimes."
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-21-raster",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-21-raster",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day 21: Raster",
+    "text": "Day 21: Raster\nI have never used a raster before, so this was exciting! I have been meaning to try spatial interpolation for a long time… I tried it before in 2021, but back then I was barely a teenager in terms of R knowledge (what am I now, tho?), it didn’t work, I got anxious and never tried it anymore. Now here it is, and I give my special thanks to these tutorials:\n\nIt all started with Prof. Anselin’s tutorial on Kriging, but it wasn’t working very well…\nThen the R-Spatial book from Pebesma and Bivand saved me!\n\n\nI still haven’t figured out why I cant use a sf grid when krigeing (it is allowed according to the function reference), but since the raster worked well, it fits my purpose now!\nFork me on GitHub\nSee me on Twitter"
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-22-north-is-not-always-up",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-22-north-is-not-always-up",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day 22: North is not always up",
+    "text": "Day 22: North is not always up\nThis was very funny to make, because I never flipped a map before so I had no clue on how to do it. It was easier than I thought, tho: while I’m used to simply transforming the CRS by throwing the epsg code (and it’s always either 4326 or 4674 for me), this time I dealt with PROJ4 string and I gotta say… It’s cooler than I thought! This is how it works:\n\n```{r}\n#| label: day22-crs\ncrs &lt;- \"+proj=longlat +ellps=GRS80 +axis=wsu +no_defs +type=crs\"\n```\n\n\nFirst, +proj tells us the type of projection. For instance, this one is longlat, meaning that it is in the longitude-latitude format; another example is the utm (Universal Transverse Mercator)\nellps refers to the ellipsoid in use, we don’t really change that bit but it makes clear that we are representing the earth as an ellipse.\naxis is what really matters here. By setting it to wsu, that’s how we flip north and south.\n+no_defs prevents the inclusion of additional default parameters\nFinally, +type=crs the type of coordinate reference system.\n\nI’d like to say thanks to ChatGPT for helping me break down the PROJ4 string into bits!\n\nInspirations\nWhen thinking of south-orientation, two images instantaneously comes to my mind. The first is rather obvious for us Latin-Americans, the well-known south-oriented drawing of our continent with two meridians and a boat. And as my geography teacher Mariana insisted, map representation goes far beyond cartography. Since they’re all depictions of reality, our choicres matter… a lot. This topic has already been exhaustively debated and I’m definitely not an expert; however, I do believe we better not use Mercator when possible.\n\n\n\nAmérica Invertida, from Uruguayan artist Joaquín García\n\n\nThe second one is a Mafalda comic. I used to love them when I was a child, as I identified a lot with Mafalda.\n\n\n\nMafalda realizes she lives in the global south\n\n\nBut once again, I’ve chosen to talk about Belo Horizonte. If you look back to Section 7, the original plan for Belo Horizonte is south-oriented! As far a I know, specific orientations were more common back in the day, but still I haven’t seen many of them. And to be fair, I have no idea why Aarão Reis decided to use a south-orientation, since if we think about it, the port of arrival to the new capital was the east through the Central do Brasil railway. Fun fact, btw: the rail came fist and the city came second, as the railway was a backbone to transport material to the city construction!\nFor those that unaware, Belo Horizonte had two major inspirations. The clearest of them is Paris: a circular surrounding the urban core; inside of it, a street grid that crosses large, green boulevards, making little plazas in the corners. Washington was also a minor inspiration, since the grid layout is closer to L’Enfant’s than Haussmann’s.\n\n\n\n\n\n\nHaussmann’s transformed Paris\n\n\n\n\n\n\n\nL’Enfant Plan for D.C.\n\n\n\n\n\nHowever, the second inspiration was the City Beautiful movement—in Brazil, we call it Cidade Jardim, or Garden City. This urban paradigm was founded in England by Ebenezer Howard in the lat 19th century, so it was very avant-garde: Belo Horizonte was planned between 1893-1895 and inaugurated only two years later (with a lot of work to be done in the next decades, tho)! At the heart of City Beautiful lies the miasma theory: they believed that some diseases such as cholera spread through the air (now we know that it’s basically a sewage issue) and used this a justification to condemn what was seen as “too much” density.\nOn the good side, they loved trees and this indeed leads to beautiful city… But the bad consequence is that they advocated for smaller cities at every cost. Because they did not understand the concepts of agglomeration economies—Alfred Marshall had barely published his Principles of Economics!—, they saw density as an inherently bad thing, that’s why they proposed a network of idyllic, small to average cities, all of them surrounded by agrarian lands and green belts.\nIt all looks beautiful, but… For who? In Belo Horizonte, it certainly was for the state oligarchies. Reis’ plan2 divided the city in three. The urban zone, inside the circular avenue, is where people were supposed to live and work; most amenities (e.g. the Municipal Park and the Central Station) were built there. The suburban zone would have a sparser grid, allowing low density housing and some less desirable/big venues such as the slaughterhouse, the graveyard, and the (horse) riding club. Finally, the third would be the farms zone, dedicated to small crops and livestock to feed the city. The named edges outside this plant, I believe, are the names of the surrounding estates: back then, Belo Horizonte was no more than a little village.\n\n\n\nCity of Minas, Aarão Reis’ Plan. The city was (re)named Belo Horizonte only in 1904!\n\n\nIn practice, what happened is that the urban part was mostly occupied by the elites, whereas the constructuion workers, besides a portion of Barro Preto neighborhood (which now is mostly trade, services, and offices) in the urban zone, spread through the supposedly suburban zone. From my mother side, I ascend from Italian immigrants that put their blood to build Belo Horizonte, and I grew up hearing all kinds of stories from that time. Many Italian immigrants, like my family, clustered in three neighborhoods: Barro Preto, Santa Teresa (east), and Prado/Barroca/Calafate (west). Belo Horizonte grew exponentially until the 1970s, rapidly occupying most of its area and conurbing with neighboring cities, giving rise to the country’s third biggest metropolitan area (seventh in South America). But as we can see, while this growth was centered in the original urban zone, there were also some clusters here and there, such as Venda Nova in the north (bottom of the map!) and Barreiro in the southwest.\n\n\nCut the crap, gimme the map\n\nFork me on GitHub\nSee me on Twitter"
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-25-antarctica",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-25-antarctica",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day 25: Antarctica",
+    "text": "Day 25: Antarctica\nI don’t have much to say about antarctica… But imagine visiting another research base and suddenly it’s another day!\n\nFork me on GitHub\nSee me on Twitter\n\n\nPs.: What if we use the Antarctic Polar Stereographic to project the whole world? Parece que o jogo virou, não é mesmo? I can barely see Brazil, less even Antarctica"
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-26-minimal",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-26-minimal",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day 26: minimal",
+    "text": "Day 26: minimal\n\nFork me on GitHub\nSee me on Twitter"
+  },
+  {
+    "objectID": "posts/2023-11-05-mapchallenge/index.html#day-28-is-this-a-map-or-a-graph",
+    "href": "posts/2023-11-05-mapchallenge/index.html#day-28-is-this-a-map-or-a-graph",
+    "title": "30 day Map Challenge 2023",
+    "section": "Day 28: is this a map or a graph?",
+    "text": "Day 28: is this a map or a graph?\n\nFork me on GitHub\nSee me on Twitter"
   },
   {
     "objectID": "posts/2023-06-21-rotina-spatial/index.html",

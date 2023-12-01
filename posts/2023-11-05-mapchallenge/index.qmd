@@ -40,6 +40,8 @@ tmap_mode("view")
 
 I have known the 30 day map challenge for two years now, but I was always too shy to join it. But the whole point is to have fun and learn something along the way, so here I am! I will update this post daily with my maps and the link to the code on my [github repo](https://github.com/baarthur/mapchallenge-2023/tree/main). I missed the first two days, so I'm starting from day 3.
 
+**Dec 1st update**: This has been a great challenge! I got really busy this month so I couldn't make maps or update this post daily as expected. All in all, I could talk a little about what matters to me through maps and learn new tchniques I was keen to explore. Some days I was really pumped and really dedicated myself to these maps, whereas in others I just wanted to get over with it. I will definitely try again another time, maybe next year! 
+
 
 
 ## Day three: polygons
@@ -148,7 +150,7 @@ readRDS("data/tmap_lisa_bi_bhz.RDS")
 
 
 
-## Day 11: a retro map
+## Day 11: a retro map {#sec-retro}
 
 I have always loved antique maps, especially the 19th century ones. Here are some of my favorites that served as inspiration for today's map:
 
@@ -179,4 +181,207 @@ I was highly on doubt if I should paint the ocean or not, but I ended up liking 
 ### Fun fact
 
 While researching maps, I found [this interesting article](https://ge.globo.com/sp/sorocaba/futebol/campeonato-paulista/noticia/2015/01/paulistao-historias-de-cidades-e-times-do-interior-sao-ligadas-pela-ferrovia.html) (in portuguese) about how football (yes I refuse to say soccer) teams in São Paulo state relate to railway history 
+
+
+
+## Day 13: Choropleth
+
+Choropleths are among my favorite maps. In fact, whenever I think of making a map, I am thinking about it! But perhaps you don't know what this fancy word means---I certainly did not before this challenge. In case you're wondering, *a* ***choropleth*** *is a map that colors polygons according to a variable*. 
+
+I present here two choropleths from my master's thesis^[I feel very presumptuous saying master's *thesis* instead of dissertation, but apparently they got the titles inverted in North America and I use American English, so...], both related to labor market growth in São Paulo between 2003 and 2018. We can see a similar trend on both, related to the overall Brazilian macroeconomic conditions in that period: rise in the first 10 years and fall from 2013 onwards, on both firm and employment growth.
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/13-choropleth.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1724260344829190204)
+
+![](p-day13_1.png)
+
+![](p-day13_2.png)
+
+
+
+## Day 15: OpenStreetMap
+
+I love making maps with `{osmdata}`. It's more easy than it seems! Also I made some wrapper functions in my `{spatialops}` package (work in progress) that facilitate it even more. I've chosen Fortaleza since it's a major brazilian city, yet it is very compact so it won't take a lot of time and memory to query it---in contrast, once I mapped a fraction of São Paulo that ended up taking than 6 GB on the environment! Fortunately tho, when writing it to disk with `saveRDS`, it was a fraction of it. 
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/15-osm.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1724975147445002323)
+
+![](p-day15.png)
+
+
+
+## Day 16: Oceania
+
+Ths is actually a combination of days 16 (Oceania) an 17 (flow). I am a moderate avgeek (as in I was a terminal avgeek before and now I moved to other obssessions such as trains cities maps), so I looked at domestic flight movements in australia. This database was kinda hard to get, it does not considers all routes, and sadly there are some missing data. 
+
+I feel that us non-artistic folks (especially in academia) overlook the importance of producing visual material that is not just beautiful but actually conveys the desired information easily. For instance, I had a hard time getting the right combination of scales: continuous or binned? If binned, where should I cut? Color or linewidth? It comes down to storytelling as well, *what's your point?* I couldn't choose only one map, so I present you the combination. What's your favorite? 
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/16-oceania.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1725182692600254702)
+
+:::: {layout-nrow=3}
+
+![](p-day16_1.png)
+
+![](p-day16_2.png)
+
+![](p-day16_3.png)
+
+![](p-day16_4.png)
+
+![](p-day16_5.png)
+
+::::
+
+
+
+## Day 19: Five minute map
+
+Chop chop! I had to do the easiest thing possible, so there was not much margin to be inventive. My inent was to show here once again how easy it is to use `{geobr}` and how rich the dataset is!
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/19-5mins.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1726267281691246821)
+
+![](p-day19.png)
+
+
+
+## Day 20: Outdoors
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/20-outdoors.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1726764275316703406)
+
+*Apesar de tudo... o Rio de Janeiro continua lindo!* 
+
+If professing hate for Rio de Janeiro (and Brasília) was a sport, than I would bring more gold to Brazil than anyone ever has. Truth be told, while Rio makes me mad, I can't deny it's a wonderful city ---and I'm not talking only of natural beauty, it has many amazing man-made stuff as well! Maybe I'm just really sad that our former capital is left abandoned and ransacked... by their own citizens sometimes.
+
+![](p-day20.png)
+
+
+
+## Day 21: Raster
+
+I have never used a raster before, so this was exciting! I have been meaning to try spatial interpolation for a long time... I tried it before in 2021, but back then I was barely a teenager in terms of R knowledge (what am I now, tho?), it didn't work, I got anxious and never tried it anymore. Now here it is, and I give my special thanks to these tutorials:
+
+1. It all started with Prof. Anselin's [tutorial on Kriging](https://geodacenter.github.io/aot-workshop/Part2-AOT.html), but it wasn't working very well...
+2. Then the [R-Spatial book](https://r-spatial.org/book/12-Interpolation.html) from Pebesma and Bivand saved me!
+  + I still haven't figured out why I cant use a `sf` grid when `krige`ing (it is allowed according to the function reference), but since the raster worked well, it fits my purpose now!
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/21-raster.qmd)
+* See me on [Twitter](https://x.com/baarthur0/status/1727057340212605430?s=20)
+
+:::: {layout-nrow=3}
+
+![](p-day21_1.png)
+
+![](p-day21_2.png)
+
+![](p-day21_3.png)
+
+![](p-day21_4.png)
+
+![](p-day21_5.png)
+
+![](p-day21_6.png)
+
+::::
+
+
+
+## Day 22: North is not always up
+
+This was very funny to make, because I never flipped a map before so I had no clue on how to do it. It was easier than I thought, tho: while I'm used to simply transforming the CRS by throwing the `epsg` code (and it's always either `4326` or `4674` for me), this time I dealt with `PROJ4` string and I gotta say... It's cooler than I thought! This is how it works:
+
+```{r}
+#| label: day22-crs
+crs <- "+proj=longlat +ellps=GRS80 +axis=wsu +no_defs +type=crs"
+```
+
+* First, `+proj` tells us the type of projection. For instance, this one is `longlat`, meaning that it is in the longitude-latitude format; another example is the `utm` (Universal Transverse Mercator)
+* `ellps` refers to the ellipsoid in use, we don't really change that bit but it makes clear that we are representing the earth as an ellipse.
+* `axis` is what really matters here. By setting it to `wsu`, that's how we **flip north and south**.
+* `+no_defs` prevents the inclusion of additional default parameters
+* Finally, `+type=crs` the type of coordinate reference system.
+
+I'd like to say thanks to ChatGPT for helping me break down the PROJ4 string into bits!
+
+
+### Inspirations
+
+When thinking of south-orientation, two images instantaneously comes to my mind. The first is rather obvious for us Latin-Americans, the well-known south-oriented drawing of our continent with two meridians and a boat. And as my geography teacher Mariana insisted, map representation goes far beyond cartography. Since they're all depictions of reality, our choicres matter... a lot. This topic has already been exhaustively debated and I'm definitely *not* an expert; however, I do believe we better not use Mercator when possible.
+
+![América Invertida, from Uruguayan artist Joaquín García](https://upload.wikimedia.org/wikipedia/commons/0/0d/Joaqu%C3%ADn_Torres_Garc%C3%ADa_-_Am%C3%A9rica_Invertida.jpg){height="500"}
+
+The second one is a Mafalda comic. I used to love them when I was a child, as I identified a lot with Mafalda.
+
+![Mafalda realizes she lives in the global south](mafalda.webp)
+
+But once again, I've chosen to talk about Belo Horizonte. If you look back to @sec-retro, the original plan for Belo Horizonte is south-oriented! As far a I know, specific orientations were more common back in the day, but still I haven't seen many of them. And to be fair, I have no idea why Aarão Reis decided to use a south-orientation, since if we think about it, the port of arrival to the new capital was the east through the Central do Brasil railway. Fun fact, btw: the rail came fist and the city came second, as the railway was a backbone to transport material to the city construction!
+
+For those that unaware, Belo Horizonte had two major inspirations. The clearest of them is Paris: a circular surrounding the urban core; inside of it, a street grid that crosses large, green boulevards, making little plazas in the corners. Washington was also a minor inspiration, since the grid layout is closer to L'Enfant's than Haussmann's. 
+
+:::: {layout-ncol=2}
+![Haussmann's transformed Paris](https://blogs.loc.gov/maps/files/2023/05/ParisMonuments-scaled.jpg)
+
+![L'Enfant Plan for D.C.](https://bostonraremaps.com/wp-content/uploads/2015/08/BRM3051-Ellicott-Washington-DC-1792_lowres-3000x2138.jpg)
+::::
+
+However, the second inspiration was the City Beautiful movement---in Brazil, we call it *Cidade Jardim*, or Garden City. This urban paradigm was founded in England by Ebenezer Howard in the lat 19th century, so it was very *avant-garde*: Belo Horizonte was planned between 1893-1895 and inaugurated only two years later (with a lot of work to be done in the next decades, tho)! At the heart of City Beautiful lies the **miasma theory**: they believed that some diseases such as cholera spread through the air (now we know that it's basically a sewage issue) and used this a justification to condemn what was seen as "too much" density. 
+
+On the good side, they loved trees and this indeed leads to beautiful city... But the bad consequence is that they advocated for smaller cities at every cost. Because they did not understand the concepts of agglomeration economies---Alfred Marshall had barely published his Principles of Economics!---, they saw density as an inherently bad thing, that's why they proposed a network of idyllic, small to average cities, all of them surrounded by agrarian lands and green belts. 
+
+It all looks beautiful, but... For who? In Belo Horizonte, it certainly was for the state oligarchies. Reis' plan^[check it in full resolution at the State's Publich Archive: http://www.siaapm.cultura.mg.gov.br/modules/grandes_formatos_docs/photo.php?lid=88] divided the city in three. The **urban** zone, inside the circular avenue, is where people were supposed to live and work; most amenities (e.g. the Municipal Park and the Central Station) were built there. The **suburban** zone would have a sparser grid, allowing low density housing and some less desirable/big venues such as the slaughterhouse, the graveyard, and the (horse) riding club. Finally, the third would be the farms zone, dedicated to small crops and livestock to feed the city. The named edges outside this plant, I believe, are the names of the surrounding estates: back then, Belo Horizonte was no more than a little village.
+
+![City of Minas, Aarão Reis' Plan. The city was (re)named Belo Horizonte only in 1904!](http://www.siaapm.cultura.mg.gov.br/acervo/grandes_formatos/APM%20-%20098/88.jpg){height="500"}
+
+In practice, what happened is that the urban part was mostly occupied by the elites, whereas the constructuion workers, besides a portion of Barro Preto neighborhood (which now is mostly trade, services, and offices) in the urban zone, spread through the supposedly suburban zone. From my mother side, I ascend from Italian immigrants that put their blood to build Belo Horizonte, and I grew up hearing all kinds of stories from that time. Many Italian immigrants, like my family, clustered in three neighborhoods: Barro Preto, Santa Teresa (east), and Prado/Barroca/Calafate (west). Belo Horizonte grew exponentially until the 1970s, rapidly occupying most of its area and conurbing with neighboring cities, giving rise to the country's third biggest metropolitan area (seventh in South America). But as we can see, while this growth was centered in the original urban zone, there were also some clusters here and there, such as Venda Nova in the north (bottom of the map!) and Barreiro in the southwest.
+
+### Cut the crap, gimme the map
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/22-upside.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1727387001865883984)
+
+![](p-day22_1.png)
+
+{{< video p-day22_2.mp4 >}}
+
+
+## Day 25: Antarctica
+
+I don't have much to say about antarctica... But imagine visiting another research base and suddenly it's another day!
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/25-antarctica.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1728534081409872373)
+
+![](p-day25_1.png)
+
+Ps.: What if we use the Antarctic Polar Stereographic to project the whole world? *Parece que o jogo virou, não é mesmo?* I can barely see Brazil, less even Antarctica
+
+![](p-day25_2.png)
+
+
+
+## Day 26: minimal
+
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/26-minimal.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1728796537994494129)
+
+
+
+## Day 28: is this a map or a graph?
+
+* Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/28-map_or_graph.qmd)
+* See me on [Twitter](https://twitter.com/baarthur0/status/1729604865544835140)
+
+
+
+
+
+
+
+
+
+
+
 
