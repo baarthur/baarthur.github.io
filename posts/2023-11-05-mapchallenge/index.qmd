@@ -332,7 +332,7 @@ On the good side, they loved trees and this indeed leads to beautiful city... Bu
 
 It all looks beautiful, but... For who? In Belo Horizonte, it certainly was for the state oligarchies. Reis' plan^[check it in full resolution at the State's Publich Archive: http://www.siaapm.cultura.mg.gov.br/modules/grandes_formatos_docs/photo.php?lid=88] divided the city in three. The **urban** zone, inside the circular avenue, is where people were supposed to live and work; most amenities (e.g. the Municipal Park and the Central Station) were built there. The **suburban** zone would have a sparser grid, allowing low density housing and some less desirable/big venues such as the slaughterhouse, the graveyard, and the (horse) riding club. Finally, the third would be the farms zone, dedicated to small crops and livestock to feed the city. The named edges outside this plant, I believe, are the names of the surrounding estates: back then, Belo Horizonte was no more than a little village.
 
-![City of Minas, Aarão Reis' Plan. The city was (re)named Belo Horizonte only in 1904!](http://www.siaapm.cultura.mg.gov.br/acervo/grandes_formatos/APM%20-%20098/88.jpg){height="500"}
+![City of Minas, Aarão Reis' Plan. The city was (re)named Belo Horizonte only in 1904!](day-22-bh.jpeg){height="500"}
 
 In practice, what happened is that the urban part was mostly occupied by the elites, whereas the constructuion workers, besides a portion of Barro Preto neighborhood (which now is mostly trade, services, and offices) in the urban zone, spread through the supposedly suburban zone. From my mother side, I ascend from Italian immigrants that put their blood to build Belo Horizonte, and I grew up hearing all kinds of stories from that time. Many Italian immigrants, like my family, clustered in three neighborhoods: Barro Preto, Santa Teresa (east), and Prado/Barroca/Calafate (west). Belo Horizonte grew exponentially until the 1970s, rapidly occupying most of its area and conurbing with neighboring cities, giving rise to the country's third biggest metropolitan area (seventh in South America). But as we can see, while this growth was centered in the original urban zone, there were also some clusters here and there, such as Venda Nova in the north (bottom of the map!) and Barreiro in the southwest.
 
@@ -363,18 +363,53 @@ Ps.: What if we use the Antarctic Polar Stereographic to project the whole world
 
 ## Day 26: minimal
 
+this one turned better than i expected, albeit a little depressing! kudos to itdp for their awesome base at [mobilidadis](https://mobilidados.org.br/database?category_slug=dados-georreferenciados-da-infraestrutura-de-transporte).
+
+i use the same strategy from day 3 to put every city in the same scale... but this create some odd shapes, like teresina. because the rail is centered but there are no borders, it looks like the railway is right aligned, when it is not.
 
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/26-minimal.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1728796537994494129)
+
+these are all the urban rail systems in brazil, regardless of the service quality or frequence. 
+![](p-day26_1.png)
+
+however, we know not all of them are equal. using mobilidados' classification as average-to-high capacity transit,  i generated a new map which basically ruled out infrequent service in single track systems, while still leaving some tram systems such as santos and sobral. 
+![](p-day26_2.png)
+
+alas, as my friend heitor villa-doidos noted, many people were shocked with the existence of light rail systems in ceará outisde of the capital, so i made a special map only for them (fork it [here](https://github.com/baarthur/mapchallenge-2023/blob/main/src/26-minimal_ceara.R)).
+
+{{ < tweet baarthur0 1729145265813324180 > }}
+
+you may be wondering why there's a whole in mació's map. sadly, it is not a bug: a portion of the network is suspended since a whole neighborhood started **sinking** due to rock salt mining nearby.
+
+{{ < tweet baarthur0 1728831528166428942 > }}
+
+
+
+## Day 27: Dot
+
+I love bubblemaps! One advantage over regular choropleths is that areas are misleading. For instance, on a voting map, small towns inside a big municipality give a false impression of more votes than in a very dense city in a small territory. I had no time to make a map that day, but fortunately, I did a bubblemap with my friends Marcello and Igor last year for voting patterns in Minas Gerais.
+
+{{ < tweet baarthur0 1729213019236749601 > }}
 
 
 
 ## Day 28: is this a map or a graph?
 
+I had a hard time thinking what to do for this, and all I could see over twitter was clearly...maps, but with bubbles everywhere. c'mon guys, this was yesterday's theme! So I had an idea: what if I make a dispersion graphic, but I represent each city with their polygon instead of a point? It was a bit hard, but it actually follows the same logic from days 3 and 26: all I had to do was nail each city's coordinates! I explain everything in the github repo below. 
+
+This was a simple dispersion analysis of density and GDP per capita for the 10 Brazilian cities with highest output (overall, not per capita) in 2019. Also, since the polygons are to scale and cities are ordered by density, we can have a notion of their population without knowing anything.
+
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/28-map_or_graph.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1729604865544835140)
 
+![](p-day28.png)
 
+
+
+## Epilogue
+
+November was definitely a month. I couldn't keep up with all of it, but I loved doing these maps! I had great interactions on twitter, as people seemed to enjoy these maps as well... And it was surprising to see that some maps unexpectedly gained more attention than expected ---I'm talking about you, day 4!--- while others that you pour your heart and soul (day 22...) are a flop. I do these things for myself, tho, as I write these lines for myself too. I think it's great if someone enjoys them too, but I'm very happy just for making maps :)
 
 
 
