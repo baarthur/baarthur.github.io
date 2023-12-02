@@ -378,11 +378,11 @@ however, we know not all of them are equal. using mobilidados' classification as
 
 alas, as my friend heitor villa-doidos noted, many people were shocked with the existence of light rail systems in ceará outisde of the capital, so i made a special map only for them (fork it [here](https://github.com/baarthur/mapchallenge-2023/blob/main/src/26-minimal_ceara.R)).
 
-{{ < tweet baarthur0 1729145265813324180 > }}
+{{< tweet baarthur0 1729145265813324180 >}}
 
 you may be wondering why there's a whole in mació's map. sadly, it is not a bug: a portion of the network is suspended since a whole neighborhood started **sinking** due to rock salt mining nearby.
 
-{{ < tweet baarthur0 1728831528166428942 > }}
+{{< tweet baarthur0 1728831528166428942 >}}
 
 
 
@@ -390,7 +390,7 @@ you may be wondering why there's a whole in mació's map. sadly, it is not a bug
 
 I love bubblemaps! One advantage over regular choropleths is that areas are misleading. For instance, on a voting map, small towns inside a big municipality give a false impression of more votes than in a very dense city in a small territory. I had no time to make a map that day, but fortunately, I did a bubblemap with my friends Marcello and Igor last year for voting patterns in Minas Gerais.
 
-{{ < tweet baarthur0 1729213019236749601 > }}
+{{< tweet baarthur0 1729213019236749601 >}}
 
 
 
