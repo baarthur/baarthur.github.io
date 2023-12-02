@@ -12,3 +12,7 @@ website:
 profile:
   default: english
   group: [english, portuguese]
+  
+comments:
+  giscus:
+    repo: baarthur/baarthur.github.io
