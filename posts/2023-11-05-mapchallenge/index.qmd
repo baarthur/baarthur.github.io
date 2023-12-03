@@ -314,16 +314,16 @@ When thinking of south-orientation, two images instantaneously comes to my mind.
 
 The second one is a Mafalda comic. I used to love them when I was a child, as I identified a lot with Mafalda.
 
-![Mafalda realizes she lives in the global south](mafalda.webp)
+![Mafalda realizes she lives in the global south](img/mafalda.webp)
 
 But once again, I've chosen to talk about Belo Horizonte. If you look back to @sec-retro, the original plan for Belo Horizonte is south-oriented! As far a I know, specific orientations were more common back in the day, but still I haven't seen many of them. And to be fair, I have no idea why Aarão Reis decided to use a south-orientation, since if we think about it, the port of arrival to the new capital was the east through the Central do Brasil railway. Fun fact, btw: the rail came fist and the city came second, as the railway was a backbone to transport material to the city construction!
 
 For those that unaware, Belo Horizonte had two major inspirations. The clearest of them is Paris: a circular surrounding the urban core; inside of it, a street grid that crosses large, green boulevards, making little plazas in the corners. Washington was also a minor inspiration, since the grid layout is closer to L'Enfant's than Haussmann's. 
 
 :::: {layout-ncol=2}
-![Haussmann's transformed Paris](https://blogs.loc.gov/maps/files/2023/05/ParisMonuments-scaled.jpg)
+![Haussmann's transformed Paris](img/day-22-paris.jpeg)
 
-![L'Enfant Plan for D.C.](https://bostonraremaps.com/wimg/p-content/uploads/2015/08/BRM3051-Ellicott-Washington-DC-1792_lowres-3000x2138.jpg)
+![L'Enfant Plan for D.C.](img/day-22-dc.jpeg)
 ::::
 
 However, the second inspiration was the City Beautiful movement---in Brazil, we call it *Cidade Jardim*, or Garden City. This urban paradigm was founded in England by Ebenezer Howard in the lat 19th century, so it was very *avant-garde*: Belo Horizonte was planned between 1893-1895 and inaugurated only two years later (with a lot of work to be done in the next decades, tho)! At the heart of City Beautiful lies the **miasma theory**: they believed that some diseases such as cholera spread through the air (now we know that it's basically a sewage issue) and used this a justification to condemn what was seen as "too much" density. 
@@ -411,7 +411,7 @@ This was a simple dispersion analysis of density and GDP per capita for the 10 B
 
 November was definitely a month. I couldn't keep up with all of it, but I loved doing these maps! I had great interactions on twitter, as people seemed to enjoy these maps as well... And it was surprising to see that some maps unexpectedly gained more attention than expected ---I'm talking about you, day 4!--- while others that you pour your heart and soul (day 22...) are a flop. I do these things for myself, tho, as I write these lines for myself too. I think it's great if someone enjoys them too, but I'm very happy just for making maps :)
 
-
+![All my maps, combined](img/all-maps.png)
 
 
 
