@@ -1,5 +1,7 @@
 project:
   type: website
+  resources: 
+    - "*.mp4"
 
 website: 
   favicon: input/favicon.png

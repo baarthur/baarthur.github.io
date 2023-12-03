@@ -54,13 +54,13 @@ The inspiration for this came from this tweet from `@_palenrique`, where he comp
 
 The biggest challenge was how to get all metropolitan areas in the same scale. I had a notion that I should use `coord_sf()` in my `ggplot` to make them all in the same frame, but I just did not know how to get a bounding box with the same widths for the different regions. Then I had an idea: what if I calculate a buffer from the region's centroid to the bounding box limit and use this constant ratio to create a buffer & a bounding box for each city? 
 
-![](day-3_suffering.png){width="700"}
+![](img/day-3_suffering.png){width="700"}
 
 Anyways, here it is!
 
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/3-polygons.qmd)
 
-![](p-day3.png)
+![](img/p-day3.png)
 
 This version is actually a little better than the original one, which you can still find on [twitter](https://twitter.com/baarthur0/status/1720592766479069266).
 
@@ -95,7 +95,7 @@ So an Asia map... What can i do that's still related to what I know? Also, I'm v
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/6-asia.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1721691439371788357)
 
-![](p-day6.png)
+![](img/p-day6.png)
 
 
 
@@ -108,7 +108,7 @@ To summarize what I did: I have a dataframe with the innauguration date for each
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/7-navigation.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1722023441564340477)
 
-{{< video p-day7.mp4 >}}
+{{< video img/p-day7.mp4 >}}
 
 
 
@@ -129,7 +129,7 @@ Besides the `ggplot`s, here I also used `tmap` for interactive viewing. I love t
 
 ### Univariate LISA for income
 
-![](p-day9_1.png)
+![](img/p-day9_1.png)
 
 ```{r}
 #| echo: false
@@ -140,7 +140,7 @@ readRDS("data/tmap_lisa_bhz.RDS")
 
 ### BiLISA for income and access to job opportunities
 
-![](p-day9_2.png)
+![](img/p-day9_2.png)
 
 ```{r}
 #| echo: false
@@ -176,7 +176,7 @@ I was highly on doubt if I should paint the ocean or not, but I ended up liking 
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/11-retro.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1724944556603433344)
 
-![](p-day11.png)
+![](img/p-day11.png)
 
 ### Fun fact
 
@@ -193,9 +193,9 @@ I present here two choropleths from my master's thesis^[I feel very presumptuous
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/13-choropleth.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1724260344829190204)
 
-![](p-day13_1.png)
+![](img/p-day13_1.png)
 
-![](p-day13_2.png)
+![](img/p-day13_2.png)
 
 
 
@@ -206,7 +206,7 @@ I love making maps with `{osmdata}`. It's more easy than it seems! Also I made s
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/15-osm.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1724975147445002323)
 
-![](p-day15.png)
+![](img/p-day15.png)
 
 
 
@@ -221,15 +221,15 @@ I feel that us non-artistic folks (especially in academia) overlook the importan
 
 :::: {layout-nrow=3}
 
-![](p-day16_1.png)
+![](img/p-day16_1.png)
 
-![](p-day16_2.png)
+![](img/p-day16_2.png)
 
-![](p-day16_3.png)
+![](img/p-day16_3.png)
 
-![](p-day16_4.png)
+![](img/p-day16_4.png)
 
-![](p-day16_5.png)
+![](img/p-day16_5.png)
 
 ::::
 
@@ -242,7 +242,7 @@ Chop chop! I had to do the easiest thing possible, so there was not much margin 
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/19-5mins.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1726267281691246821)
 
-![](p-day19.png)
+![](img/p-day19.png)
 
 
 
@@ -255,7 +255,7 @@ Chop chop! I had to do the easiest thing possible, so there was not much margin 
 
 If professing hate for Rio de Janeiro (and Brasília) was a sport, than I would bring more gold to Brazil than anyone ever has. Truth be told, while Rio makes me mad, I can't deny it's a wonderful city ---and I'm not talking only of natural beauty, it has many amazing man-made stuff as well! Maybe I'm just really sad that our former capital is left abandoned and ransacked... by their own citizens sometimes.
 
-![](p-day20.png)
+![](img/p-day20.png)
 
 
 
@@ -272,17 +272,17 @@ I have never used a raster before, so this was exciting! I have been meaning to 
 
 :::: {layout-nrow=3}
 
-![](p-day21_1.png)
+![](img/p-day21_1.png)
 
-![](p-day21_2.png)
+![](img/p-day21_2.png)
 
-![](p-day21_3.png)
+![](img/p-day21_3.png)
 
-![](p-day21_4.png)
+![](img/p-day21_4.png)
 
-![](p-day21_5.png)
+![](img/p-day21_5.png)
 
-![](p-day21_6.png)
+![](img/p-day21_6.png)
 
 ::::
 
@@ -323,7 +323,7 @@ For those that unaware, Belo Horizonte had two major inspirations. The clearest 
 :::: {layout-ncol=2}
 ![Haussmann's transformed Paris](https://blogs.loc.gov/maps/files/2023/05/ParisMonuments-scaled.jpg)
 
-![L'Enfant Plan for D.C.](https://bostonraremaps.com/wp-content/uploads/2015/08/BRM3051-Ellicott-Washington-DC-1792_lowres-3000x2138.jpg)
+![L'Enfant Plan for D.C.](https://bostonraremaps.com/wimg/p-content/uploads/2015/08/BRM3051-Ellicott-Washington-DC-1792_lowres-3000x2138.jpg)
 ::::
 
 However, the second inspiration was the City Beautiful movement---in Brazil, we call it *Cidade Jardim*, or Garden City. This urban paradigm was founded in England by Ebenezer Howard in the lat 19th century, so it was very *avant-garde*: Belo Horizonte was planned between 1893-1895 and inaugurated only two years later (with a lot of work to be done in the next decades, tho)! At the heart of City Beautiful lies the **miasma theory**: they believed that some diseases such as cholera spread through the air (now we know that it's basically a sewage issue) and used this a justification to condemn what was seen as "too much" density. 
@@ -341,9 +341,9 @@ In practice, what happened is that the urban part was mostly occupied by the eli
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/22-upside.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1727387001865883984)
 
-![](p-day22_1.png)
+![](img/p-day22_1.png)
 
-{{< video p-day22_2.mp4 >}}
+{{< video img/p-day22_2.mp4 >}}
 
 
 ## Day 25: Antarctica
@@ -353,11 +353,11 @@ I don't have much to say about antarctica... But imagine visiting another resear
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/25-antarctica.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1728534081409872373)
 
-![](p-day25_1.png)
+![](img/p-day25_1.png)
 
 Ps.: What if we use the Antarctic Polar Stereographic to project the whole world? *Parece que o jogo virou, não é mesmo?* I can barely see Brazil, less even Antarctica
 
-![](p-day25_2.png)
+![](img/p-day25_2.png)
 
 
 
@@ -371,10 +371,10 @@ i use the same strategy from day 3 to put every city in the same scale... but th
 * See me on [Twitter](https://twitter.com/baarthur0/status/1728796537994494129)
 
 these are all the urban rail systems in brazil, regardless of the service quality or frequence. 
-![](p-day26_1.png)
+![](img/p-day26_1.png)
 
 however, we know not all of them are equal. using mobilidados' classification as average-to-high capacity transit,  i generated a new map which basically ruled out infrequent service in single track systems, while still leaving some tram systems such as santos and sobral. 
-![](p-day26_2.png)
+![](img/p-day26_2.png)
 
 alas, as my friend heitor villa-doidos noted, many people were shocked with the existence of light rail systems in ceará outisde of the capital, so i made a special map only for them (fork it [here](https://github.com/baarthur/mapchallenge-2023/blob/main/src/26-minimal_ceara.R)).
 
@@ -403,7 +403,7 @@ This was a simple dispersion analysis of density and GDP per capita for the 10 B
 * Fork me on [GitHub](https://github.com/baarthur/mapchallenge-2023/blob/main/src/28-map_or_graph.qmd)
 * See me on [Twitter](https://twitter.com/baarthur0/status/1729604865544835140)
 
-![](p-day28.png)
+![](img/p-day28.png)
 
 
 
