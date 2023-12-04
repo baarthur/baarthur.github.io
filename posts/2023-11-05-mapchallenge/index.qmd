@@ -157,11 +157,11 @@ I have always loved antique maps, especially the 19th century ones. Here are som
 :::: {layout-nrow=1 layout-valign="bottom"}
 
 ::: {layout-nrow=1}
-![Original plan for Belo Horizonte, 1893.](day-11_bh.jpeg){width="300"}
-![Central do Brasil Railway, 1890.](day-11_br1.png){width="300"}
+![Original plan for Belo Horizonte, 1893.](img/day-11_bh.jpeg){width="300"}
+![Central do Brasil Railway, 1890.](img/day-11_br1.png){width="300"}
 :::
 
-![Brazilian Railways Company, 1912.](day-11_br2.webp){width="800"}
+![Brazilian Railway Company, 1912.](img/day-11_br2.webp){width="800"}
 ::::
 
 So basically this is what I had to do: 
@@ -332,7 +332,7 @@ On the good side, they loved trees and this indeed leads to beautiful city... Bu
 
 It all looks beautiful, but... For who? In Belo Horizonte, it certainly was for the state oligarchies. Reis' plan^[check it in full resolution at the State's Publich Archive: http://www.siaapm.cultura.mg.gov.br/modules/grandes_formatos_docs/photo.php?lid=88] divided the city in three. The **urban** zone, inside the circular avenue, is where people were supposed to live and work; most amenities (e.g. the Municipal Park and the Central Station) were built there. The **suburban** zone would have a sparser grid, allowing low density housing and some less desirable/big venues such as the slaughterhouse, the graveyard, and the (horse) riding club. Finally, the third would be the farms zone, dedicated to small crops and livestock to feed the city. The named edges outside this plant, I believe, are the names of the surrounding estates: back then, Belo Horizonte was no more than a little village.
 
-![City of Minas, Aarão Reis' Plan. The city was (re)named Belo Horizonte only in 1904!](day-22-bh.jpeg){height="500"}
+![City of Minas, Aarão Reis' Plan. The city was (re)named Belo Horizonte only in 1904!](img/day-22-bh.jpeg){height="500"}
 
 In practice, what happened is that the urban part was mostly occupied by the elites, whereas the constructuion workers, besides a portion of Barro Preto neighborhood (which now is mostly trade, services, and offices) in the urban zone, spread through the supposedly suburban zone. From my mother side, I ascend from Italian immigrants that put their blood to build Belo Horizonte, and I grew up hearing all kinds of stories from that time. Many Italian immigrants, like my family, clustered in three neighborhoods: Barro Preto, Santa Teresa (east), and Prado/Barroca/Calafate (west). Belo Horizonte grew exponentially until the 1970s, rapidly occupying most of its area and conurbing with neighboring cities, giving rise to the country's third biggest metropolitan area (seventh in South America). But as we can see, while this growth was centered in the original urban zone, there were also some clusters here and there, such as Venda Nova in the north (bottom of the map!) and Barreiro in the southwest.
 
@@ -411,7 +411,7 @@ This was a simple dispersion analysis of density and GDP per capita for the 10 B
 
 November was definitely a month. I couldn't keep up with all of it, but I loved doing these maps! I had great interactions on twitter, as people seemed to enjoy these maps as well... And it was surprising to see that some maps unexpectedly gained more attention than expected ---I'm talking about you, day 4!--- while others that you pour your heart and soul (day 22...) are a flop. I do these things for myself, tho, as I write these lines for myself too. I think it's great if someone enjoys them too, but I'm very happy just for making maps :)
 
-![All my maps, combined](img/all-maps.png)
+![All my maps, combined](img/all-maps.png){height="500"}
 
 
 
