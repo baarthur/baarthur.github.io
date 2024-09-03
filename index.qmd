@@ -22,16 +22,16 @@ about:
 ---
 
 ::: {.content-visible when-profile="english"}
-Master's student in Economics at UFJF, Brazil. 
 
-Passionate about cities, I research about regional, urban, and labor economics, especially agglomeration economies, accessibility, land use, and local labor markets.
+Passionate about cities and transit, I research urban economics with intersections on labor, transportation, housing, and development economics. Highly #rstats and #rspatial enthusiast.
+
 
 ---
 
 ## Education
 
 Universidade Federal de Juiz de Fora (UFJF) | Juiz de Fora, Brazil  
-M.Sc. in Applied Economics | 2022 - present   
+M.Sc. in Applied Economics | 2022 - 2024
 
 Ibmec | Belo Horizonte, Brazil  
 B.Sc. in Economics | 2017 - 2021
@@ -39,6 +39,8 @@ B.Sc. in Economics | 2017 - 2021
 ---
 
 ## Experience
+
+Brazilian Review of Regional and Urban Studies | Editorial Assistant | 2024-present
 
 UFJF | Research Assistant | 2023
 
@@ -50,25 +52,26 @@ Impacto Hub | M&A Analyst | 2019 - 2021
 
 
 ::: {.content-visible when-profile="portuguese"}
-Mestrando em Economia na UFJF 
 
-Apaixonado por cidades, pesquiso economia regional e urbana e economia do trabalho, em especial economias de aglomeração, acessibilidade, uso do solo e mercados de trabalho locais.
+Apaixonado por cidades, pesquiso economia urbana e suas interseções com mercado de trabalho, transporte coletivo, uso do solo e desenvolvimento econômico. Entusiasta de #rstats e #rspatial.
 
 ---
 
 ## Formação
 
 Universidade Federal de Juiz de Fora (UFJF) | Juiz de Fora, Brasil  
-Mestrado em Economia Aplicada | Março de 2022 - presente  
+Mestrado em Economia Aplicada | 2022 - 2024  
 
 Ibmec | Belo Horizonte, Brasil  
-Graduação em Economia | Fevereiro de 2017 - dezembro de 2021
+Graduação em Economia | 2017 - 2021
 
 ---
 
 ## Experiênca
 
-UFJF | Assistante de pesquisa | 2023 - presente
+Revista Brasileira de Estudos Regionais e Urbanos | Assistente de Edição | 2024-presente
+
+UFJF | Assistante de pesquisa | 2023
 
 UFJF | Estágio docência | 2022 - 2023
 

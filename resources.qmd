@@ -13,16 +13,15 @@ Class material, working papers, and more
 
 
 ## Working Papers
+- Rapid Transit, Labor Market, and Business Growth: The case of São Paulo, Brazil
+  + Upcoming presentations at the LACEA 2024 (Montevideo, Uruguay) and 22nd Enaber (Vitória, Brazil) conferences.
+
 - Real estate and rapid transit: Estimating the market premium of the São Paulo Rail Network
-  + Presented at 20th Enaber (Salvador, Brazil) and 50th Anpec (Fortaleza, Brazil)
-  + [English version](input/metro_en.pdf)
-  + [Portuguese version](input/metro_pt.pdf)
+  + Presented at the 20th Enaber (Salvador, Brazil) and 50th Anpec (Fortaleza, Brazil) conferences.
   + [Presentation (Portuguese)](https://baarthur.github.io/metro_sp/)
   
 - Heritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil
-  + Presenting at the 29th IIOA (Alghero, Italy) in June 2023
-  + [English version](input/io-tur_en.pdf)
-  + [Presentation](https://baarthur.github.io/29iioa_slides)
+  + Presented at the 29th IIOA conference (Alghero, Italy).
   
   
 ## R
@@ -47,6 +46,9 @@ Notas de aula, trabalhos em andamento e mais
 
 
 ## Trabalhos em andamento
+- Rapid Transit, Labor Market, and Business Growth: The case of São Paulo, Brazil
+  + Próximas apresentações: LACEA 2024 (Montevideo, Uruguay) e no 22º Enaber (Vitória, Brasil).
+
 - Real estate and rapid transit: estimating the market premium of the São Paulo Rail Network
   + Apresentado no XX Enaber (Salvador, Brasil) e no 50º Encontro Nacional de Economia (Fortaleza, Brasil)
   + [Versão atual (inglês)](input/metro_en.pdf)
@@ -54,7 +56,7 @@ Notas de aula, trabalhos em andamento e mais
   + [Apresentação (português)](https://baarthur.github.io/metro_sp/)
   
 - Heritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil
-  + Apresentando no 29th IIOA (Alghero, Itália) em junho de 2023
+  + Apresentado no 29th IIOA (Alghero, Itália) 
   + [Versão atual (inglês)](input/io-tur_en.pdf)
   + [Apresentação (inglês)](https://baarthur.github.io/29iioa_slides)
   
