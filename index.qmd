@@ -1,6 +1,6 @@
 ---
 title: "Arthur Bazolli Alvarenga"
-image: input/anpec50.jpg
+image: input/profile_pic.jpeg
 toc: false
 about: 
   template: trestles
@@ -18,29 +18,35 @@ about:
       href: https://github.com/baarthur
     - icon: envelope
       text: Email
-      href: mailto:arthur.bazolli@estudante.ufjf.br
+      href: mailto:arthur.alvarenga@ipea.gov.br
 ---
 
 ::: {.content-visible when-profile="english"}
 
-Passionate about cities and transit, I research urban economics with intersections on labor, transportation, housing, and development economics. Highly #rstats and #rspatial enthusiast.
+Passionate about cities and transit, I research urban economics with intersections on labor and development economics. Highly #rstats and #rspatial enthusiast.
 
 
 ---
 
 ## Education
 
-Universidade Federal de Juiz de Fora (UFJF) | Juiz de Fora, Brazil  
+UFJF | Juiz de Fora, Brazil  
 M.Sc. in Applied Economics | 2022 - 2024
 
 Ibmec | Belo Horizonte, Brazil  
 B.Sc. in Economics | 2017 - 2021
 
+Cemfi Summer School | Madrid, Spain  
+Quantitative Spatial Economics | 2024
+
+UC Stone/LSE/IPEA Summer School | Brasília, Brazil  
+Socioeconomic Opportunity and Inequality | Incoming
+
 ---
 
 ## Experience
 
-Brazilian Review of Regional and Urban Studies | Editorial Assistant | 2024-present
+IPEA | Research Assistant @ [AOP-Lab](https://www.ipea.gov.br/acessooportunidades/en/sobre/) | 2024 - present
 
 UFJF | Research Assistant | 2023
 
@@ -59,17 +65,23 @@ Apaixonado por cidades, pesquiso economia urbana e suas interseções com mercad
 
 ## Formação
 
-Universidade Federal de Juiz de Fora (UFJF) | Juiz de Fora, Brasil  
+UFJF | Juiz de Fora, Brasil  
 Mestrado em Economia Aplicada | 2022 - 2024  
 
 Ibmec | Belo Horizonte, Brasil  
 Graduação em Economia | 2017 - 2021
 
+Cemfi Summer School | Madrid, Spain  
+Quantitative Spatial Economics | 2024
+
+UC Stone/LSE/IPEA Summer School | Brasília, Brazil  
+Socioeconomic Opportunity and Inequality | Jul/25
+
 ---
 
 ## Experiênca
 
-Revista Brasileira de Estudos Regionais e Urbanos | Assistente de Edição | 2024-presente
+Ipea | Assistente de pesquisa no [AOP-Lab](https://www.ipea.gov.br/acessooportunidades/sobre/) | 2024 - presente
 
 UFJF | Assistante de pesquisa | 2023
 

@@ -1,0 +1,70 @@
+---
+toc: true
+---
+
+::: {.content-visible when-profile="english"}
+# Research
+:::
+
+::: {.content-visible when-profile="portuguese"}
+# Pesquisa
+:::
+
+<center>
+![](input/banner_access_rio.png){width=650px}
+</center>
+
+::: {.content-visible when-profile="english"}
+## R
+- `{tidyrais}`: A toolkit for tidying the Brazilian employer-employee dataset
+  + *Coming soon*
+- `{spatialops}`: Spatial operations and other handy tools
+  + [GitHub repo](https://github.com/baarthur/spatialops)
+- `abnquarto`: A `Quarto` template using Brazilian standardization system
+  + [GitHub repo](https://github.com/baarthur/abnquarto)
+  + [Demo](input/abnq-demo.pdf)
+
+## Working Papers
+- **Access to Opportunities and Employment Outcomes**, with Rafael Pereira and Filipe Cavalcanti
+  + Preprint: *coming soon*
+
+- **Rapid Transit, Labor Market, and Business Growth: The case of São Paulo, Brazil**, with Admir Betarelli and Ricardo Freguglia
+  + Abstract: The São Paulo Metropolitan Region underwent a series of rapid transit investments since the mid-2000s that increased the region’s rail network by around 20 percent. We examine the impact of this expansion on wages, employment, and the emergence of new firms using unique geolocated employer-employee data from an annual administrative survey conducted by the Brazilian Ministry of Labor from 2006 to 2017. To account for spatial differences, we estimate the impact separately for each transit line, whereas our staggered difference-in-differences approach assesses treatment timing heterogeneities. Our results indicate an 11.3 percent increase in employment and a 9 percent rise in new firms, with no significant change in wages. The average number of workers per firm remained constant, suggesting that employment gains stemmed from new companies rather than the expansion of existing ones. The effects varied between transit lines with the most substantial impacts observed for Line 9, in one of the less developed regions of São Paulo. Beyond providing unique empirical evidence for São Paulo, this study contributes a framework for applying the novel staggered Difference-in-Differences (DiD) method in the context of transit policy, emphasizing spatial characteristics.
+  + Preprint: *coming soon*
+  + [Presentation](https://github.com/baarthur/lacea-2024)
+
+- **Real estate and rapid transit: Estimating the market premium of the São Paulo Metro**, with Ari Araujo and Admir Betaterelli
+  + Abstract:
+  + [Presentation (Portuguese)](https://baarthur.github.io/metro_sp/)
+  
+- **Heritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil**, with Fernando Perobelli, Cláudio Seibert, Elvira Medeiros, and Filipe Santiago
+  + Presented at the 29th IIOA conference (Alghero, Italy).
+  
+  
+:::
+
+
+
+::: {.content-visible when-profile="portuguese"}
+## R
+- `{tidyrais}`: Ferramentas para limpar a base identificada da RAIS
+  + *Em breve*
+- `{spatialops}`: Operações espaciais e outras ferramentas úteis
+  + [GitHub repo](https://github.com/baarthur/spatialops)
+- `abnquarto`: um template em `Quarto` nas normas da ABNT
+  + [GitHub repo](https://github.com/baarthur/abnquarto)
+  + [Exemplo](input/abnq-demo.pdf)
+  
+## Trabalhos em andamento
+- Access to Opportunity and Labor Outcomes
+  + *Em breve*
+
+- Rapid Transit, Labor Market, and Business Growth: The case of São Paulo, Brazil
+  + Resumo: The São Paulo Metropolitan Region underwent a series of rapid transit investments since the mid-2000s that increased the region’s rail network by around 20 percent. We examine the impact of this expansion on wages, employment, and the emergence of new firms using unique geolocated employer-employee data from an annual administrative survey conducted by the Brazilian Ministry of Labor from 2006 to 2017. To account for spatial differences, we estimate the impact separately for each transit line, whereas our staggered difference-in-differences approach assesses treatment timing heterogeneities. Our results indicate an 11.3 percent increase in employment and a 9 percent rise in new firms, with no significant change in wages. The average number of workers per firm remained constant, suggesting that employment gains stemmed from new companies rather than the expansion of existing ones. The effects varied between transit lines with the most substantial impacts observed for Line 9, in one of the less developed regions of São Paulo. Beyond providing unique empirical evidence for São Paulo, this study contributes a framework for applying the novel staggered Difference-in-Differences (DiD) method in the context of transit policy, emphasizing spatial characteristics.
+
+- Real estate and rapid transit: estimating the market premium of the São Paulo Rail Network
+  + [Apresentação (português)](https://baarthur.github.io/metro_sp/)
+  
+- Heritage Tourism and Economic Development: An Input-Output Analysis for Minas Gerais, Brazil
+  
+:::

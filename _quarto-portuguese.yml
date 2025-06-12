@@ -13,8 +13,8 @@ website:
     left:
       - href: index.qmd
         text: Início
-      - href: resources.qmd
-        text: Material
+      - href: research.qmd
+        text: Pesquisa
       - href: input/cv.pdf
         text: CV
       - href: posts.qmd

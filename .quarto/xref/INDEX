@@ -47,5 +47,8 @@
   },
   "posts/tutorial-quarto-eval.qmd": {
     "tutorial-quarto-eval.html": "851cc10f"
+  },
+  "research.qmd": {
+    "research.html": "24581281"
   }
 }
